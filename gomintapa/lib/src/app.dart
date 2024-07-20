@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gomintapa/src/screens/login.dart';
+import 'package:gomintapa/src/screens/register.dart';
 
 import 'screens/home.dart';
 
@@ -10,7 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false, // 디버그 배너 삭제
-      // 공통 테마 설정 : 로그인 화면
+      // 공통 테마 설정 : 로그인, 회원가입 화면
       theme: ThemeData(
         scaffoldBackgroundColor: const Color.fromARGB(255, 224, 224, 224),
         inputDecorationTheme: const InputDecorationTheme(
@@ -55,7 +56,8 @@ class MyApp extends StatelessWidget {
         ),
       ),
       routes: {
-        '/': (context) => Login(),
+        '/': (context) => Register(),
+        '/login': (context) => Login(),
       },
       initialRoute: '/',
       // home: Intro(),

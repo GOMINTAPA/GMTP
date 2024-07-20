@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:gomintapa/src/screens/register.dart';
 import 'package:gomintapa/src/widgets/forms/label_textfield.dart';
 
-class Login extends StatefulWidget {
-  const Login({super.key});
+class Register extends StatefulWidget {
+  const Register({super.key});
 
   @override
-  State<Login> createState() => _LoginState();
+  State<Register> createState() => _RegisterState();
 }
 
-class _LoginState extends State<Login> {
+class _RegisterState extends State<Register> {
+  //final authController = Get.put(AuthController());
+  //final _idController = TextEditingController();
+  //final _passwordController = TextEditingController();
+  //final _passwordConfirmController = TextEditingController();
+  //final _nameController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +33,7 @@ class _LoginState extends State<Login> {
             ),
             const SizedBox(height: 47),
             Text(
-              '로그인',
+              '회원가입',
               textAlign: TextAlign.left,
               style: TextStyle(
                 color: Colors.black,
@@ -40,7 +45,7 @@ class _LoginState extends State<Login> {
             ),
             const SizedBox(height: 15),
             Container(
-              // 로그인과 아이디 사이 구분선
+              // 회원가입과 아이디 사이 구분선
               width: 320,
               height: 1,
               child: Column(
@@ -66,14 +71,26 @@ class _LoginState extends State<Login> {
             const SizedBox(height: 24),
             LabelTextField(
               label: '아이디',
-              hintText: '아이디를 입력해주세요.',
+              hintText: '4~12자리의 숫자, 영문만 가능합니다.',
               keyboardType: TextInputType.phone,
               //controller: _idController,
             ),
             LabelTextField(
+              label: '닉네임',
+              hintText: '닉네임을 입력해주세요.',
+              keyboardType: TextInputType.phone,
+              //controller: _nameController,
+            ),
+            LabelTextField(
               label: '비밀번호',
-              hintText: '비밀번호를 입력해주세요.',
+              hintText: '4~12자리의 숫자, 영문만 가능합니다.',
               //controller: _passwordController,
+              isObscure: true,
+            ),
+            LabelTextField(
+              label: '비밀번호 확인',
+              hintText: '비밀번호를 한번 더 입력해주세요.',
+              //controller: _passwordConfirmController,
               isObscure: true,
             ),
             const SizedBox(height: 108),
@@ -83,19 +100,8 @@ class _LoginState extends State<Login> {
                 foregroundColor: Colors.white,
               ),
               onPressed: () {},
-              child: const Text('로그인'),
+              child: const Text('가입하기'),
             ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.white,
-                foregroundColor: Color(0xFF3C3C3C),
-              ),
-              onPressed: () {
-                //Get.to(() => const Register());
-              },
-              child: const Text('회원가입'),
-            )
           ],
         ),
       ),
