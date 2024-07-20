@@ -1,42 +1,41 @@
 import 'package:flutter/material.dart';
+import '../widgets/navigation/bottom_navigation_bar.dart';
 
-class Home extends StatelessWidget {
+import '../widgets/navigation/app_bar.dart';
+
+final List<Widget> myTabItems = [
+  Center(child: Text('막상막하')),
+  Center(child: Text('홈')),
+  Center(child: Text('해결탕탕'))
+];
+
+class Home extends StatefulWidget {
   const Home({super.key});
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  int _selectedIndex = 1;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(60.0),
-        child: AppBar(
-          centerTitle: true,
-          title: SizedBox(
-            height: 60.0, // AppBar의 높이에 맞추기 위함
-            child: Image.asset(
-              'assets/images/gomintapa_logo.png',
-              fit: BoxFit.contain, // 이미지가 AppBar 안에 맞춰지도록
-            ),
-          ),
-          backgroundColor: Color(0xffD9D9D9),
-          actions: [
-            IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.search,
-                size: 30,
-              ),
-            ),
-            SizedBox(width: 10), // 아이콘 사이 여백
-            IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.account_box_rounded,
-                size: 30,
-              ),
-            ),
-            SizedBox(width: 10), // 아이콘 사이 여백
-          ],
-        ),
+      appBar: AppBarWidget(),
+      body: IndexedStack(
+        index: _selectedIndex,
+        children: myTabItems,
+      ),
+      bottomNavigationBar: BottomNavigationBarWidget(
+        selectedIndex: _selectedIndex,
+        onItemTapped: _onItemTapped,
       ),
     );
   }
