@@ -67,7 +67,7 @@ class _LoginState extends State<Login> {
               label: '아이디',
               hintText: '아이디를 입력해주세요.',
               keyboardType: TextInputType.phone,
-              //controller: _phoneController,
+              //controller: _idController,
             ),
             LabelTextField(
               label: '비밀번호',
