@@ -14,34 +14,42 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         scaffoldBackgroundColor: const Color.fromARGB(255, 224, 224, 224),
         inputDecorationTheme: const InputDecorationTheme(
-          hintStyle: TextStyle(fontSize: 16, color: Colors.grey),
-          floatingLabelStyle: TextStyle(fontSize: 10),
-          contentPadding: EdgeInsets.all(10),
+          hintStyle: TextStyle(
+              fontSize: 12,
+              color: Color.fromARGB(255, 155, 155, 155),
+              fontWeight: FontWeight.bold),
+          floatingLabelStyle: TextStyle(fontSize: 12),
+          contentPadding:
+              const EdgeInsets.symmetric(horizontal: 21, vertical: 7),
           enabledBorder: OutlineInputBorder(
             // 비활성화
-            borderSide: BorderSide(color: Colors.grey),
+            borderSide: BorderSide(color: Color.fromARGB(255, 155, 155, 155)),
           ),
           focusedBorder: OutlineInputBorder(
             // 포커스
-            borderSide: BorderSide(color: Colors.black),
+            borderSide: BorderSide(color: Color(0xFF3C3C3C)),
           ),
         ),
         // 텍스트 설정
         textTheme: const TextTheme(
           labelLarge: TextStyle(
-            fontSize: 16,
+            fontSize: 20,
             fontFamily: 'Noto Sans',
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w700,
           ),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            padding: const EdgeInsets.symmetric(vertical: 22),
-            textStyle:
-                const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            minimumSize: const Size(double.infinity, 10),
+            padding: const EdgeInsets.symmetric(horizontal: 21, vertical: 7),
+            textStyle: const TextStyle(
+                fontWeight: FontWeight.w700,
+                fontSize: 16,
+                letterSpacing: 0.50,
+                fontFamily: 'Roboto'),
+            minimumSize: const Size(280, 50),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(5),
+              side: BorderSide(width: 1, color: Color(0xFF3C3C3C)),
+              borderRadius: BorderRadius.circular(10),
             ),
           ),
         ),
