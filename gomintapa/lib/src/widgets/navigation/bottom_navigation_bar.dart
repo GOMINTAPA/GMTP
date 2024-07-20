@@ -30,18 +30,39 @@ class BottomNavigationBarWidget extends StatelessWidget {
       backgroundColor: Color(0xffD9D9D9),
       items: List.generate(iconPaths.length, (index) {
         return BottomNavigationBarItem(
-          icon: Image.asset(
+          icon: _buildIcon(index),
+          label: '',
+        );
+      }),
+      currentIndex: selectedIndex,
+      onTap: onItemTapped,
+    );
+  }
+
+  Widget _buildIcon(int index) {
+    return Container(
+      width: 45,
+      height: 45,
+      child: Stack(
+        children: [
+          Image.asset(
             selectedIndex == index
                 ? selectedIconPaths[index]
                 : iconPaths[index],
             width: 45,
             height: 45,
           ),
-          label: '',
-        );
-      }),
-      currentIndex: selectedIndex,
-      onTap: onItemTapped,
+          if (selectedIndex == index)
+            Positioned(
+              bottom: 0,
+              child: Container(
+                width: 45,
+                height: 4,
+                color: Colors.red, // 빨간색 바
+              ),
+            ),
+        ],
+      ),
     );
   }
 }
