@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false, // 디버그 배너 삭제
       // 공통 테마 설정 : 로그인, 회원가입 화면
       theme: ThemeData(
-        scaffoldBackgroundColor: const Color.fromARGB(255, 224, 224, 224),
+        scaffoldBackgroundColor: const Color.fromARGB(255, 244, 244, 244),
         inputDecorationTheme: const InputDecorationTheme(
           hintStyle: TextStyle(
               fontSize: 12,
