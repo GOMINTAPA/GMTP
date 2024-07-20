@@ -56,10 +56,9 @@ flutter:
     # the material Icons class.
     uses-material-design: true
 
-    assets:
-      - assets/images/gmtp_logo_big.png
     # To add assets to your application, add an assets section, like this:
     assets:
+        - assets/images/gmtp_logo_big.png
         - assets/images/gomintapa_logo.png
         - assets/images/home.png
         - assets/images/makmak.png

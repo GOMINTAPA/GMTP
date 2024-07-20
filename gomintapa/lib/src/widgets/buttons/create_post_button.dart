@@ -26,6 +26,7 @@ class CreatePostButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(25), // 모서리 둥글기
           ),
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20), // 패딩
+          elevation: 5, // 그림자 설정
         ),
       ),
     );

@@ -16,15 +16,18 @@ class _FeedIndexState extends State<FeedIndex> {
     return Scaffold(
       body: Stack(
         children: [
-          Column(
-            children: [
-              FilterSection(
-                onFilterPressed: () {
-                  // 필터 버튼 클릭 시
-                },
-              ),
-              // 다른 위젯이 추가될 수 있음
-            ],
+          Container(
+            color: Colors.white,
+            child: Column(
+              children: [
+                FilterSection(
+                  onFilterPressed: () {
+                    // 필터 버튼 클릭 시
+                  },
+                ),
+                // 다른 위젯이 추가될 수 있음
+              ],
+            ),
           ),
           Align(
               alignment: Alignment.bottomCenter,

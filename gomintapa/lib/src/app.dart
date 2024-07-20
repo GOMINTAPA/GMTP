@@ -55,7 +55,8 @@ class MyApp extends StatelessWidget {
         ),
       ),
       routes: {
-        '/': (context) => Login(),
+        // '/': (context) => Login(),
+        '/': (context) => Home(),
       },
       initialRoute: '/',
       // home: Intro(),
