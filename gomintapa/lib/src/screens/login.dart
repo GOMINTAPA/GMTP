@@ -13,9 +13,18 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 21, vertical: 7),
+        padding: const EdgeInsets.symmetric(horizontal: 31, vertical: 7),
         child: ListView(
           children: [
+            const SizedBox(height: 22),
+            Padding(
+              padding: const EdgeInsets.only(left: 156), // 이미지 왼쪽에 156픽셀 패딩 추가
+              child: Image.asset(
+                'assets/images/gmtp_logo_big.png',
+                width: 130,
+                height: 130,
+              ),
+            ),
             const SizedBox(height: 47),
             Text(
               '로그인',

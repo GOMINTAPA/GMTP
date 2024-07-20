@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
               fontWeight: FontWeight.bold),
           floatingLabelStyle: TextStyle(fontSize: 12),
           contentPadding:
-              const EdgeInsets.symmetric(horizontal: 21, vertical: 7),
+              const EdgeInsets.symmetric(horizontal: 31, vertical: 7),
           enabledBorder: OutlineInputBorder(
             // 비활성화
             borderSide: BorderSide(color: Color.fromARGB(255, 155, 155, 155)),
@@ -34,13 +34,13 @@ class MyApp extends StatelessWidget {
         textTheme: const TextTheme(
           labelLarge: TextStyle(
             fontSize: 20,
-            fontFamily: 'Noto Sans',
+            fontFamily: 'Roboto',
             fontWeight: FontWeight.w700,
           ),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            padding: const EdgeInsets.symmetric(horizontal: 21, vertical: 7),
+            padding: const EdgeInsets.symmetric(horizontal: 31, vertical: 7),
             textStyle: const TextStyle(
                 fontWeight: FontWeight.w700,
                 fontSize: 16,
