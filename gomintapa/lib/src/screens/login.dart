@@ -16,6 +16,44 @@ class _LoginState extends State<Login> {
         padding: const EdgeInsets.symmetric(horizontal: 21, vertical: 7),
         child: ListView(
           children: [
+            const SizedBox(height: 47),
+            Text(
+              '로그인',
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 32,
+                fontFamily: 'Roboto',
+                fontWeight: FontWeight.w400,
+                letterSpacing: 0.50,
+              ),
+            ),
+            const SizedBox(height: 15),
+            Container(
+              // 로그인과 아이디 사이 구분선
+              width: 320,
+              height: 1,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    width: double.infinity,
+                    decoration: ShapeDecoration(
+                      shape: RoundedRectangleBorder(
+                        side: BorderSide(
+                          width: 1,
+                          strokeAlign: BorderSide.strokeAlignCenter,
+                          color: Color(0xFF9A9A9A),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 24),
             LabelTextField(
               label: '아이디',
               hintText: '아이디를 입력해주세요.',
