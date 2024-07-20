@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:gomintapa/src/screens/login.dart';
 import 'package:gomintapa/src/screens/register.dart';
-
 import 'screens/home.dart';
 
 class MyApp extends StatelessWidget {
@@ -12,8 +12,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false, // 디버그 배너 삭제
       routes: {
-        '/': (context) => Register(),
-        '/login': (context) => Login(),
+        '/': (context) => Home(),
+        // '/': (context) => Login(),
+        // '/register': (context) => Register(),
       },
       initialRoute: '/',
       // home: Intro(),
