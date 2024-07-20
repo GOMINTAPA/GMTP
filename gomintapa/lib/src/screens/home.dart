@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import '../widgets/navigation/bottom_navigation_bar.dart';
 
 import '../widgets/navigation/app_bar.dart';
+import 'feed/index.dart';
 
 // 화면에 표시할 위젯 목록
 final List<Widget> myTabItems = [
   Center(child: Text('막상막하')),
-  Center(child: Text('홈')),
+  FeedIndex(),
   Center(child: Text('해결탕탕'))
 ];
 
