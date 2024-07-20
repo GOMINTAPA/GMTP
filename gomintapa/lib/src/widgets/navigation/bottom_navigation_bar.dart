@@ -40,29 +40,32 @@ class BottomNavigationBarWidget extends StatelessWidget {
   }
 
   Widget _buildIcon(int index) {
-    return Container(
-      width: 45,
-      height: 45,
-      child: Stack(
-        children: [
-          Image.asset(
-            selectedIndex == index
-                ? selectedIconPaths[index]
-                : iconPaths[index],
-            width: 45,
-            height: 45,
-          ),
-          if (selectedIndex == index)
-            Positioned(
-              bottom: 0,
-              child: Container(
-                width: 45,
-                height: 4,
-                color: Colors.red, // 빨간색 바
+    return Stack(
+      clipBehavior: Clip.none,
+      alignment: Alignment.center,
+      children: [
+        // 아이콘 이미지
+        Image.asset(
+          selectedIndex == index ? selectedIconPaths[index] : iconPaths[index],
+          width: 45, // 아이콘의 너비
+          height: 45, // 아이콘의 높이
+        ),
+        // 선택된 아이템일 때만 빨간색 바 표시
+        if (selectedIndex == index)
+          Positioned(
+            bottom: -20, // 빨간색 바 위치
+            child: Container(
+              width: 80, // 빨간색 바의 너비
+              height: 4, // 빨간색 바의 높이
+              decoration: BoxDecoration(
+                color: Colors.red,
+                borderRadius: BorderRadius.vertical(
+                  top: Radius.circular(100),
+                ),
               ),
             ),
-        ],
-      ),
+          ),
+      ],
     );
   }
 }
