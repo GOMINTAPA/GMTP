@@ -29,8 +29,8 @@ class FilterSheet extends StatelessWidget {
         maxHeight: 300, // 바텀 시트의 최대 높이
         minHeight: 300, // 바텀 시트의 최소 높이
         maxWidth:
-            MediaQuery.of(context).size.width * 0.75, // 최대 너비 (화면 너비의 75%)
-        minWidth: MediaQuery.of(context).size.width * 0.75, // 최소 너비
+            MediaQuery.of(context).size.width * 0.85, // 최대 너비 (화면 너비의 75%)
+        minWidth: MediaQuery.of(context).size.width * 0.85, // 최소 너비
       ),
       child: Column(
         children: [
@@ -39,9 +39,9 @@ class FilterSheet extends StatelessWidget {
             child: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.symmetric(
-                    vertical: 30.0, horizontal: 40.0),
+                    vertical: 50.0, horizontal: 10.0),
                 child: Wrap(
-                  spacing: 20.0, // 버튼 사이의 가로 간격
+                  spacing: 15.0, // 버튼 사이의 가로 간격
                   runSpacing: 40.0, // 버튼 사이의 세로 간격
                   children: _buildFilterButtons(), // 키워드 버튼 생성
                 ),
