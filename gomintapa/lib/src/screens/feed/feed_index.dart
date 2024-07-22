@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../widgets/buttons/create_post_button.dart';
-import '../../widgets/sections/filter_section.dart';
+import '../../widgets/sections/filter_bar_section.dart';
 
 class FeedIndex extends StatefulWidget {
   const FeedIndex({super.key});
