@@ -9,14 +9,18 @@ class ConcernTabBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return TabBar(
       controller: controller,
+
+      // 탭 선택 스타일
       labelColor: Colors.black,
-      unselectedLabelColor: Color.fromARGB(255, 217, 217, 217),
       labelStyle: const TextStyle(
         fontSize: 15,
         fontFamily: 'Roboto',
         fontWeight: FontWeight.w700,
         letterSpacing: 0.50,
       ),
+
+      // 탭 미선택 스타일
+      unselectedLabelColor: Color.fromARGB(255, 217, 217, 217),
       unselectedLabelStyle: const TextStyle(
         fontSize: 15,
         fontFamily: 'Roboto',

@@ -39,9 +39,11 @@ class _ConcernFeedSectionState extends State<ConcernFeedSection>
       backgroundColor: Colors.white,
       body: Column(
         children: [
-          ConcernTabBar(controller: tabController),
+          ConcernTabBar(controller: tabController), // TabBar
           // Expanded 없으면 오류 발생
-          Expanded(child: ConcernTabBarView(controller: tabController)),
+          Expanded(
+              child:
+                  ConcernTabBarView(controller: tabController)), // TabBarView
         ],
       ),
     );
