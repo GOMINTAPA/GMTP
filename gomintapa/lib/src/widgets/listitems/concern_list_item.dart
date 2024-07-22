@@ -30,7 +30,7 @@ class ConcernListItem extends StatelessWidget {
               children: [
                 // 제목 영역
                 Text(
-                  '고민 제목 ',
+                  '고민 제목',
                   overflow:
                       TextOverflow.ellipsis, // 제목 길이가 한 줄을 초과할 경우 말 줄임표 처리
                   textAlign: TextAlign.center,
@@ -44,6 +44,75 @@ class ConcernListItem extends StatelessWidget {
                 ),
                 const SizedBox(height: 18),
                 // 선택 항목 영역
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Container(
+                      width: 120,
+                      height: 70,
+                      decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 255, 155, 155),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      alignment: Alignment.center,
+                      child: Center(
+                        child: SizedBox(
+                          width: 100,
+                          height: 50,
+                          child: Center(
+                            child: Text(
+                              '선택 111111111111',
+                              maxLines: 2, // 최대 두 줄
+                              overflow: TextOverflow
+                                  .ellipsis, // 텍스트 길이가 영역을 초과할 경우 말 줄임표 처리
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontFamily: 'Roboto',
+                                fontWeight: FontWeight.w700,
+                                letterSpacing: 0.50,
+                              ),
+                              softWrap: true,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: 120,
+                      height: 70,
+                      decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 93, 177, 255),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      alignment: Alignment.center,
+                      child: Center(
+                        child: SizedBox(
+                          width: 100,
+                          height: 50,
+                          child: Center(
+                            child: Text(
+                              '선택 2',
+                              maxLines: 2, // 최대 두 줄
+                              overflow: TextOverflow
+                                  .ellipsis, // 텍스트 길이가 영역을 초과할 경우 말 줄임표 처리
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontFamily: 'Roboto',
+                                fontWeight: FontWeight.w700,
+                                letterSpacing: 0.50,
+                              ),
+                              softWrap: true,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
