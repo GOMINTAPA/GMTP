@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widgets/navigation/bottom_navigation_bar.dart';
 
-import '../widgets/navigation/app_bar.dart';
+import '../widgets/navigation/home_app_bar.dart';
 import 'feed/index.dart';
 
 // 화면에 표시할 위젯 목록
@@ -43,7 +43,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarWidget(), // 상단 앱 바
+      appBar: HomeAppBar(), // 상단 앱 바
       body: PageView(
         controller: _pageController, // 페이지 전환을 위한 컨트롤러
         onPageChanged: (index) {
