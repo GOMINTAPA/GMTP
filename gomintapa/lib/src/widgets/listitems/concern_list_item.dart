@@ -1,5 +1,39 @@
 import 'package:flutter/material.dart';
 
+// 위로 뒤집은 사다리꼴을 만드는 사용자 정의 클리퍼
+class UpsideDownTrapezoidClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    final Path path = Path();
+    path.moveTo(0, size.height); // 왼쪽 하단 모서리
+    path.lineTo(size.width, size.height); // 오른쪽 하단 모서리
+    path.lineTo(size.width - 40, 0); // 오른쪽 상단 모서리
+    path.lineTo(0, 0); // 왼쪽 상단 모서리
+    path.close(); // 경로 닫기
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
+}
+
+// 위쪽이 좁고 아래쪽이 넓은 사다리꼴을 만드는 사용자 정의 클리퍼
+class BottomWideTrapezoidClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    final Path path = Path();
+    path.moveTo(0, 0); // 왼쪽 상단 모서리
+    path.lineTo(size.width, 0); // 오른쪽 상단 모서리
+    path.lineTo(size.width, size.height); // 오른쪽 하단 모서리
+    path.lineTo(size.width - 40, size.height); // 왼쪽 하단 모서리
+    path.close(); // 경로 닫기
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
+}
+
 class ConcernListItem extends StatelessWidget {
   const ConcernListItem({super.key});
 
@@ -34,7 +68,7 @@ class ConcernListItem extends StatelessWidget {
                   height: 20,
                   alignment: Alignment.center,
                   child: Text(
-                    '고민 제목 123456789000000000000', // 이 텍스트를 원하는 제목으로 변경하세요.
+                    '고민 제목',
                     maxLines: 1, // 텍스트가 한 줄로 제한됨
                     overflow:
                         TextOverflow.ellipsis, // 텍스트 길이가 영역을 초과할 경우 말 줄임표 처리
@@ -54,67 +88,54 @@ class ConcernListItem extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Container(
-                      width: 120,
-                      height: 70,
-                      decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 255, 155, 155),
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      alignment: Alignment.center,
-                      child: Center(
-                        child: SizedBox(
-                          width: 100,
-                          height: 50,
-                          child: Center(
-                            child: Text(
-                              '선택 111111111111',
-                              maxLines: 2, // 최대 두 줄
-                              overflow: TextOverflow
-                                  .ellipsis, // 텍스트 길이가 영역을 초과할 경우 말 줄임표 처리
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontFamily: 'Roboto',
-                                fontWeight: FontWeight.w700,
-                                letterSpacing: 0.50,
-                              ),
-                              softWrap: true,
-                            ),
+                    // 첫 번째 선택 항목 (위로 뒤집은 사다리꼴)
+                    ClipPath(
+                      clipper: UpsideDownTrapezoidClipper(), // 위로 뒤집은 사다리꼴
+                      child: Container(
+                        width: 90,
+                        height: 80,
+                        color: Color.fromARGB(255, 255, 155, 155), // 배경색
+                        alignment: Alignment.center,
+                        child: Text(
+                          '선택 1',
+                          maxLines: 2, // 최대 두 줄
+                          overflow: TextOverflow
+                              .ellipsis, // 텍스트 길이가 영역을 초과할 경우 말 줄임표 처리
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontFamily: 'Roboto',
+                            fontWeight: FontWeight.w700,
+                            letterSpacing: 0.50,
                           ),
+                          softWrap: true, // 줄바꿈을 허용
                         ),
                       ),
                     ),
-                    Container(
-                      width: 120,
-                      height: 70,
-                      decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 93, 177, 255),
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      alignment: Alignment.center,
-                      child: Center(
-                        child: SizedBox(
-                          width: 100,
-                          height: 50,
-                          child: Center(
-                            child: Text(
-                              '선택 2',
-                              maxLines: 2, // 최대 두 줄
-                              overflow: TextOverflow
-                                  .ellipsis, // 텍스트 길이가 영역을 초과할 경우 말 줄임표 처리
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontFamily: 'Roboto',
-                                fontWeight: FontWeight.w700,
-                                letterSpacing: 0.50,
-                              ),
-                              softWrap: true,
-                            ),
+                    // 두 번째 선택 항목 (위쪽이 좁고 아래쪽이 넓은 사다리꼴)
+                    ClipPath(
+                      clipper:
+                          BottomWideTrapezoidClipper(), // 위쪽이 좁고 아래쪽이 넓은 사다리꼴
+                      child: Container(
+                        width: 90,
+                        height: 80,
+                        color: Color.fromARGB(255, 93, 177, 255), // 배경색
+                        alignment: Alignment.center,
+                        child: Text(
+                          '선택 2',
+                          maxLines: 2, // 최대 두 줄
+                          overflow: TextOverflow
+                              .ellipsis, // 텍스트 길이가 영역을 초과할 경우 말 줄임표 처리
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontFamily: 'Roboto',
+                            fontWeight: FontWeight.w700,
+                            letterSpacing: 0.50,
                           ),
+                          softWrap: true, // 줄바꿈을 허용
                         ),
                       ),
                     ),
