@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-// 위로 뒤집은 사다리꼴을 만드는 사용자 정의 클리퍼
+// 첫 번째 선택 항목
 class UpsideDownTrapezoidClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
@@ -17,7 +17,7 @@ class UpsideDownTrapezoidClipper extends CustomClipper<Path> {
   bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }
 
-// 위쪽이 좁고 아래쪽이 넓은 사다리꼴을 만드는 사용자 정의 클리퍼
+// 두 번째 선택 항목
 class BottomWideTrapezoidClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
@@ -86,11 +86,12 @@ class ConcernListItem extends StatelessWidget {
                 const SizedBox(height: 18),
                 // 선택 항목 영역
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment:
+                      MainAxisAlignment.spaceBetween, // 항목들 사이의 간격을 최소화
                   children: [
-                    // 첫 번째 선택 항목 (위로 뒤집은 사다리꼴)
+                    // 첫 번째 선택 항목
                     ClipPath(
-                      clipper: UpsideDownTrapezoidClipper(), // 위로 뒤집은 사다리꼴
+                      clipper: UpsideDownTrapezoidClipper(),
                       child: Container(
                         width: 90,
                         height: 80,
@@ -113,12 +114,11 @@ class ConcernListItem extends StatelessWidget {
                         ),
                       ),
                     ),
-                    // 두 번째 선택 항목 (위쪽이 좁고 아래쪽이 넓은 사다리꼴)
+                    // 두 번째 선택 항목
                     ClipPath(
-                      clipper:
-                          BottomWideTrapezoidClipper(), // 위쪽이 좁고 아래쪽이 넓은 사다리꼴
+                      clipper: BottomWideTrapezoidClipper(),
                       child: Container(
-                        width: 90,
+                        width: 120,
                         height: 80,
                         color: Color.fromARGB(255, 93, 177, 255), // 배경색
                         alignment: Alignment.center,
