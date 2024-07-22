@@ -47,7 +47,7 @@ class _FeedIndexState extends State<FeedIndex> {
     });
   }
 
-  // 페이지 이동 메서드
+  // 페이지 이동 메서드 : 이동만 확인하려고 임시로 MyPage로 설정해둠
   void _navigateToMyPage(BuildContext context) {
     Navigator.push(
       context,
@@ -81,7 +81,8 @@ class _FeedIndexState extends State<FeedIndex> {
           Expanded(
             child: ListView(
               children: [
-                ConcernListItem(onTap: () => _navigateToMyPage(context)),
+                ConcernListItem(
+                    onTap: () => _navigateToMyPage(context)), // 임시 설정
                 ConcernListItem(onTap: () => _navigateToMyPage(context)),
                 ConcernListItem(onTap: () => _navigateToMyPage(context)),
                 ConcernListItem(onTap: () => _navigateToMyPage(context)),

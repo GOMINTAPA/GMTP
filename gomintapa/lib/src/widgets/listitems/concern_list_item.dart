@@ -35,7 +35,7 @@ class BottomWideTrapezoidClipper extends CustomClipper<Path> {
 }
 
 class ConcernListItem extends StatelessWidget {
-  final VoidCallback onTap;
+  final VoidCallback onTap; // onTap 콜백 추가
   const ConcernListItem({super.key, required this.onTap});
 
   @override
@@ -43,7 +43,7 @@ class ConcernListItem extends StatelessWidget {
     return Column(
       children: [
         InkWell(
-          onTap: onTap,
+          onTap: onTap, // onTap 콜백 설정
           child: Container(
             width: 300,
             height: 150,
