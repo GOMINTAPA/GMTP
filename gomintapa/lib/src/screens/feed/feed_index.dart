@@ -41,7 +41,7 @@ class _FeedIndexState extends State<FeedIndex> {
   // 키워드를 삭제하는 메서드
   void _removeKeyword(String keyword) {
     setState(() {
-      _selectedKeywords.remove(keyword);
+      _selectedKeywords.remove(keyword); // 키워드를 선택된 키워드 집합에서 제거
     });
   }
 
@@ -51,13 +51,14 @@ class _FeedIndexState extends State<FeedIndex> {
       body: Stack(
         children: [
           Container(
-            color: Colors.white,
+            color: Colors.white, // 배경색
             child: Column(
               children: [
                 // 필터 버튼과 선택된 키워드를 표시하는 섹션
                 FilterBarSection(
-                  onFilterPressed: () => _showFilterModal(context),
-                  selectedKeywords: _selectedKeywords,
+                  onFilterPressed: () =>
+                      _showFilterModal(context), // 필터 버튼 클릭 시 필터 모달 표시
+                  selectedKeywords: _selectedKeywords, // 현재 선택된 키워드 전달
                   onKeywordRemoved: _removeKeyword, // 키워드 삭제 콜백 함수
                 ),
               ],
