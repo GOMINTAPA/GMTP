@@ -11,6 +11,50 @@ class FeedIndex extends StatefulWidget {
 }
 
 class _FeedIndexState extends State<FeedIndex> {
+  void _showFilterModal(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (BuildContext context) {
+        return _buildFilterSheet();
+      },
+    );
+  }
+
+  Widget _buildFilterSheet() {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(15),
+        ),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+          ),
+          Divider(),
+          ListTile(
+            title: Text('여행'),
+            onTap: () {
+              // 키워드 선택 로직
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            title: Text('친구'),
+            onTap: () {
+              // 키워드 선택 로직
+              Navigator.pop(context);
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,9 +65,7 @@ class _FeedIndexState extends State<FeedIndex> {
             child: Column(
               children: [
                 FilterSection(
-                  onFilterPressed: () {
-                    // 필터 버튼 클릭 시
-                  },
+                  onFilterPressed: () => _showFilterModal(context),
                 ),
                 // 다른 위젯이 추가될 수 있음
               ],
