@@ -29,17 +29,24 @@ class ConcernListItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 // 제목 영역
-                Text(
-                  '고민 제목',
-                  overflow:
-                      TextOverflow.ellipsis, // 제목 길이가 한 줄을 초과할 경우 말 줄임표 처리
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 16,
-                    fontFamily: 'Roboto',
-                    fontWeight: FontWeight.w800,
-                    letterSpacing: 0.50,
+                Container(
+                  width: 285,
+                  height: 20,
+                  alignment: Alignment.center,
+                  child: Text(
+                    '고민 제목 123456789000000000000', // 이 텍스트를 원하는 제목으로 변경하세요.
+                    maxLines: 1, // 텍스트가 한 줄로 제한됨
+                    overflow:
+                        TextOverflow.ellipsis, // 텍스트 길이가 영역을 초과할 경우 말 줄임표 처리
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 16,
+                      fontFamily: 'Roboto',
+                      fontWeight: FontWeight.w800,
+                      letterSpacing: 0.50,
+                    ),
+                    softWrap: false, // 줄바꿈을 하지 않음
                   ),
                 ),
                 const SizedBox(height: 18),
