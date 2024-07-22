@@ -66,6 +66,7 @@ class _FeedIndexState extends State<FeedIndex> {
             ),
           ),
           const SizedBox(height: 30),
+
           Expanded(
             child: ListView(
               children: [
@@ -77,6 +78,7 @@ class _FeedIndexState extends State<FeedIndex> {
               ],
             ),
           ),
+          //),
           // 하단 중앙에 위치한 '고민 작성' 버튼
           Align(
             alignment: Alignment.bottomCenter,

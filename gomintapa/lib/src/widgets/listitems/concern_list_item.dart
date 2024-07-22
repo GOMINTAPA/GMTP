@@ -48,7 +48,7 @@ class ConcernListItem extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(height: 30), // 항목과 항목 사이의 간격을 추가
+        const SizedBox(height: 30), // 항목과 항목 사이의 간격 추가
       ],
     );
   }
