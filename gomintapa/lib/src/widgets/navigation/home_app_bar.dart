@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gomintapa/src/screens/my/mypage.dart';
 
 import '../sections/app_bar_section.dart';
 
@@ -20,7 +21,11 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           SizedBox(width: 10), // 아이콘 버튼 사이 간격
           IconButton(
             onPressed: () {
-              // 계정 버튼 클릭 시 동작
+              // 계정 버튼 클릭 시 MyPage로 이동
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MyPage()),
+              );
             },
             icon: Icon(Icons.account_box_rounded, size: 30),
           ),

@@ -10,7 +10,10 @@ class BackAppBar extends StatelessWidget implements PreferredSizeWidget {
     return Scaffold(
       appBar: AppBarSection(
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            // 현재 화면을 닫고 이전 화면으로 돌아가기
+            Navigator.pop(context);
+          },
           icon: Icon(Icons.arrow_back_rounded, size: 30),
         ),
       ),
