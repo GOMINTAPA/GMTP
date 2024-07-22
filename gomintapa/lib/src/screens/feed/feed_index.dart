@@ -34,68 +34,148 @@ class _FeedIndexState extends State<FeedIndex> {
       ),
       // 높이와 너비 설정
       constraints: BoxConstraints(
-        maxHeight: 280, // 바텀 시트의 최대 높이
-        minHeight: 280, // 바텀 시트의 최소 높이
+        maxHeight: 300, // 바텀 시트의 최대 높이
+        minHeight: 300, // 바텀 시트의 최소 높이
         maxWidth:
-            MediaQuery.of(context).size.width * 0.85, // 최대 가로 길이 (화면 너비의 90%)
-        minWidth: 320, // 최소 가로 길이
+            MediaQuery.of(context).size.width * 0.75, // 최대 가로 길이 (화면 너비의 90%)
+        minWidth: MediaQuery.of(context).size.width * 0.75, // 최소 가로 길이
       ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          vertical: 60.0,
-          horizontal: 30.0,
-        ),
-        child: GridView.count(
-          crossAxisCount: 3, // 3개 버튼을 한 줄에 배치
-          crossAxisSpacing: 20.0, // 버튼 사이의 가로 간격
-          mainAxisSpacing: 40.0, // 버튼 사이의 세로 간격
-          shrinkWrap: true, // 콘텐츠 크기에 맞게 크기 조정
-          children: [
-            _buildFilterButton('여행'),
-            _buildFilterButton('친구'),
-            _buildFilterButton('음악'),
-            _buildFilterButton('영화'),
-            _buildFilterButton('운동'),
-            _buildFilterButton('음식'),
-          ],
-        ),
+      child: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 30.0,
+                  horizontal: 40.0,
+                ),
+                child: Wrap(
+                  spacing: 20.0, // 버튼 사이의 가로 간격
+                  runSpacing: 40.0, // 버튼 사이의 세로 간격
+                  children: [
+                    _buildFilterButton('음식'),
+                    _buildFilterButton('패션'),
+                    _buildFilterButton('친구'),
+                    _buildFilterButton('가족'),
+                    _buildFilterButton('연애'),
+                    _buildFilterButton('직장'),
+                    _buildFilterButton('학업'),
+                    _buildFilterButton('진로'),
+                    _buildFilterButton('건강'),
+                    _buildFilterButton('운동'),
+                    _buildFilterButton('영화'),
+                    _buildFilterButton('게임'),
+                    _buildFilterButton('여행'),
+                    _buildFilterButton('경제'),
+                    _buildFilterButton('기타'),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Divider(
+            thickness: 0.5,
+            color: Color(0xffA7A7A7),
+            height: 0, // Divider 위아래의 공간 제거
+          ),
+          Container(
+            height: 55, // 버튼 영역의 높이
+            child: Row(
+              children: [
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context); // 바텀 시트 닫기
+                    },
+                    child: Text(
+                      '닫기',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      foregroundColor: Colors.black,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.zero, // 버튼의 테두리를 네모나게
+                      ),
+                      elevation: 0,
+                      minimumSize:
+                          Size(double.infinity, 55), // 버튼이 영역을 꽉 채우도록 설정
+                    ),
+                  ),
+                ),
+                VerticalDivider(
+                  thickness: 0.5,
+                  color: Color(0xffA7A7A7),
+                  width: 0,
+                ),
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      // 적용 버튼 클릭 시 동작
+                      Navigator.pop(context); // 바텀 시트 닫기
+                    },
+                    child: Text(
+                      '적용',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      foregroundColor: Colors.black,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.zero, // 버튼의 테두리를 네모나게
+                      ),
+                      elevation: 0,
+                      minimumSize:
+                          Size(double.infinity, 55), // 버튼이 영역을 꽉 채우도록 설정
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
 
   Widget _buildFilterButton(String text) {
-    // final bool isSelected = _selectedKeywords.contains(text);
+    final bool isSelected = _selectedKeywords.contains(text);
 
     return Container(
       width: 80,
       height: 40,
       child: OutlinedButton(
         onPressed: () {
-          // setState(() {
-          //   if (isSelected) {
-          //     _selectedKeywords.remove(text); // 선택 해제
-          //   } else {
-          //     _selectedKeywords.add(text); // 선택 추가
-          //   }
-          // });
+          setState(() {
+            if (isSelected) {
+              _selectedKeywords.remove(text); // 선택 해제
+            } else {
+              _selectedKeywords.add(text); // 선택 추가
+            }
+          });
         },
         child: Text(
           text,
-          style: TextStyle(fontSize: 15),
+          style: TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.bold,
+            color: isSelected ? Color(0xff0E83EF) : Colors.black,
+          ),
         ),
         style: OutlinedButton.styleFrom(
-          // backgroundColor: Colors.white,
-          // backgroundColor: isSelected ? Colors.blue : Colors.grey,
-          foregroundColor: Colors.black, //
           side: BorderSide(
             width: 1.5,
-            color: Colors.grey,
-            // style: BorderStyle.values,
+            color: isSelected ? Color(0xff0E83EF) : Color(0xffA7A7A7),
           ),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(50),
           ),
-          // padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20), // 패딩
         ),
       ),
     );
@@ -118,12 +198,13 @@ class _FeedIndexState extends State<FeedIndex> {
             ),
           ),
           Align(
-              alignment: Alignment.bottomCenter,
-              child: CreatePostButton(
-                onPressed: () {
-                  // 고민 작성 버튼 클릭 시 동작
-                },
-              )),
+            alignment: Alignment.bottomCenter,
+            child: CreatePostButton(
+              onPressed: () {
+                // 고민 작성 버튼 클릭 시 동작
+              },
+            ),
+          ),
         ],
       ),
     );
