@@ -14,12 +14,13 @@ class _MyPageState extends State<MyPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: BackAppBar(),
       body: Column(
         children: [
           // 계정 정보 영역
-          // 프로필
           MyUserSection(UserModel(id: 1, name: '노는게젤조아')),
+          const SizedBox(height: 25),
           // 고민 정보 영역
         ],
       ),
