@@ -59,7 +59,7 @@ class ConcernListItem extends StatelessWidget {
                 )
               ],
             ),
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(10.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -84,7 +84,7 @@ class ConcernListItem extends StatelessWidget {
                     softWrap: false, // 줄바꿈을 하지 않음
                   ),
                 ),
-                const SizedBox(height: 18),
+                const SizedBox(height: 20),
                 // 선택 항목 영역
                 Row(
                   mainAxisAlignment:
@@ -95,7 +95,7 @@ class ConcernListItem extends StatelessWidget {
                       clipper: UpsideDownTrapezoidClipper(),
                       child: Container(
                         width: 90,
-                        height: 80,
+                        height: 88,
                         color: Color.fromARGB(255, 255, 155, 155), // 배경색
                         alignment: Alignment.center,
                         child: Text(
@@ -119,8 +119,8 @@ class ConcernListItem extends StatelessWidget {
                     ClipPath(
                       clipper: BottomWideTrapezoidClipper(),
                       child: Container(
-                        width: 90,
-                        height: 80,
+                        width: 100,
+                        height: 88,
                         color: Color.fromARGB(255, 93, 177, 255), // 배경색
                         alignment: Alignment.center,
                         child: Text(
