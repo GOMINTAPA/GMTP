@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gomintapa/src/widgets/listitems/concern_list_item.dart';
 
 import '../../widgets/buttons/create_post_button.dart';
 import '../../widgets/sections/filter_bar_section.dart';
@@ -48,7 +49,7 @@ class _FeedIndexState extends State<FeedIndex> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
+      body: Column(
         children: [
           Container(
             color: Colors.white, // 배경색
@@ -61,6 +62,18 @@ class _FeedIndexState extends State<FeedIndex> {
                   selectedKeywords: _selectedKeywords, // 현재 선택된 키워드 전달
                   onKeywordRemoved: _removeKeyword, // 키워드 삭제 콜백 함수
                 ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 30),
+          Expanded(
+            child: ListView(
+              children: [
+                ConcernListItem(),
+                ConcernListItem(),
+                ConcernListItem(),
+                ConcernListItem(),
+                ConcernListItem(),
               ],
             ),
           ),
