@@ -3,18 +3,32 @@ import 'package:flutter/material.dart';
 import '../../shared/keyword_data.dart';
 import '../buttons/filter_sheet_button.dart';
 
-class FilterSheet extends StatelessWidget {
-  final Set<String> selectedKeywords; // 현재 선택된 키워드의 집합
-  final ValueChanged<String> onKeywordSelected; // 키워드가 선택될 때 호출될 콜백 함수
+class FilterSheet extends StatefulWidget {
+  final Set<String> initialSelectedKeywords; // 초기 선택된 키워드
+  final ValueChanged<Set<String>> onApply; // 적용 버튼 클릭 시 호출될 콜백 함수
   final VoidCallback onClose; // 바텀 시트를 닫을 때 호출될 콜백 함수
 
   // 생성자
   const FilterSheet({
     Key? key,
-    required this.selectedKeywords,
-    required this.onKeywordSelected,
+    required this.initialSelectedKeywords,
+    required this.onApply,
     required this.onClose,
   }) : super(key: key);
+
+  @override
+  _FilterSheetState createState() => _FilterSheetState();
+}
+
+class _FilterSheetState extends State<FilterSheet> {
+  late Set<String> _selectedKeywords;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedKeywords =
+        Set.from(widget.initialSelectedKeywords); // 초기 선택된 키워드로 상태를 설정
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,17 +43,19 @@ class FilterSheet extends StatelessWidget {
         maxHeight: 300, // 바텀 시트의 최대 높이
         minHeight: 300, // 바텀 시트의 최소 높이
         maxWidth:
-            MediaQuery.of(context).size.width * 0.85, // 최대 너비 (화면 너비의 75%)
+            MediaQuery.of(context).size.width * 0.85, // 최대 너비 (화면 너비의 85%)
         minWidth: MediaQuery.of(context).size.width * 0.85, // 최소 너비
       ),
       child: Column(
         children: [
-          // 스크롤 할 수 있도록 구성
+          // 키워드 버튼 목록을 스크롤 할 수 있도록 구성
           Expanded(
             child: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.symmetric(
-                    vertical: 50.0, horizontal: 10.0),
+                  vertical: 50.0,
+                  horizontal: 10.0,
+                ),
                 child: Wrap(
                   spacing: 15.0, // 버튼 사이의 가로 간격
                   runSpacing: 40.0, // 버튼 사이의 세로 간격
@@ -61,7 +77,7 @@ class FilterSheet extends StatelessWidget {
               children: [
                 Expanded(
                   child: ElevatedButton(
-                    onPressed: onClose, // 바텀 시트를 닫기 위한 콜백 함수
+                    onPressed: widget.onClose, // 바텀 시트를 닫기 위한 콜백 함수
                     child: Text(
                       '닫기',
                       style:
@@ -87,7 +103,8 @@ class FilterSheet extends StatelessWidget {
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {
-                      // 적용 버튼 클릭 시 동작
+                      // 적용 버튼 클릭 시 선택된 키워드를 반환
+                      widget.onApply(_selectedKeywords);
                       Navigator.pop(context); // 바텀 시트 닫기
                     },
                     child: Text(
@@ -120,13 +137,23 @@ class FilterSheet extends StatelessWidget {
   // 필터 버튼 목록 생성
   List<Widget> _buildFilterButtons() {
     return keywords.map((text) {
-      // 각 키워드에 대해 FilterSheetButton 생성
-      final bool isSelected = selectedKeywords.contains(text);
+      // 현재 버튼이 선택되었는지 확인
+      final bool isSelected = _selectedKeywords.contains(text);
 
       return FilterSheetButton(
         text: text,
         isSelected: isSelected,
-        onPressed: () => onKeywordSelected(text),
+        onPressed: () {
+          setState(() {
+            if (isSelected) {
+              // 선택된 버튼 클릭 시 키워드 제거
+              _selectedKeywords.remove(text);
+            } else {
+              // 선택되지 않은 버튼 클릭 시 키워드 추가
+              _selectedKeywords.add(text);
+            }
+          });
+        },
       );
     }).toList();
   }
