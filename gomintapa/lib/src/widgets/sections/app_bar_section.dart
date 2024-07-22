@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
-class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
+class AppBarSection extends StatelessWidget implements PreferredSizeWidget {
+  final Widget? leading;
+  final List<Widget>? actions;
+
+  AppBarSection({this.leading, this.actions});
+
   @override
   Size get preferredSize => Size.fromHeight(60.0); // AppBar의 높이 설정
 
@@ -16,22 +21,8 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
       backgroundColor: Color(0xffD9D9D9), // 상단바 배경색
-      actions: [
-        IconButton(
-          onPressed: () {
-            // 검색 버튼 클릭 시 동작
-          },
-          icon: Icon(Icons.search, size: 30),
-        ),
-        SizedBox(width: 10), // 아이콘 버튼 사이 간격
-        IconButton(
-          onPressed: () {
-            // 계정 버튼 클릭 시 동작
-          },
-          icon: Icon(Icons.account_box_rounded, size: 30),
-        ),
-        SizedBox(width: 10), // 아이콘 버튼 사이 간격
-      ],
+      leading: leading,
+      actions: actions,
     );
   }
 }
