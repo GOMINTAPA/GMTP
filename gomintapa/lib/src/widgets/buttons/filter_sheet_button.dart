@@ -20,7 +20,6 @@ class FilterSheetButton extends StatelessWidget {
       // 버튼의 너비와 높이 설정
       width: 80,
       height: 40,
-
       child: OutlinedButton(
         onPressed: onPressed,
         child: Text(
@@ -32,7 +31,6 @@ class FilterSheetButton extends StatelessWidget {
             color: isSelected ? Color(0xff0E83EF) : Colors.black,
           ),
         ),
-
         // 버튼의 스타일 정의
         style: OutlinedButton.styleFrom(
           side: BorderSide(

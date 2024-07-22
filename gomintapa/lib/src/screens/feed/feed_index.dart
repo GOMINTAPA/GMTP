@@ -19,19 +19,17 @@ class _FeedIndexState extends State<FeedIndex> {
   void _showFilterModal(BuildContext context) {
     showModalBottomSheet(
       context: context,
-      backgroundColor: Colors.transparent, // 배경색을 투명으로 설정
+      backgroundColor: Colors.transparent, // 바텀 시트의 배경색을 투명으로 설정
       builder: (BuildContext context) {
-        // FilterSheet를 모달로 표시
+        // FilterSheet 위젯을 모달로 표시
         return FilterSheet(
-          selectedKeywords: _selectedKeywords, // 현재 선택된 키워드
-          onKeywordSelected: (keyword) {
-            // 키워드가 선택되거나 선택 해제될 때 호출됨
+          initialSelectedKeywords: _selectedKeywords, // 현재 선택된 키워드 전달
+          onApply: (selectedKeywords) {
+            // '적용' 버튼 클릭 시 호출되는 콜백
             setState(() {
-              if (_selectedKeywords.contains(keyword)) {
-                _selectedKeywords.remove(keyword); // 키워드 선택 해제
-              } else {
-                _selectedKeywords.add(keyword); // 키워드 선택 추가
-              }
+              // 선택된 키워드를 상태에 반영
+              _selectedKeywords.clear();
+              _selectedKeywords.addAll(selectedKeywords);
             });
           },
           onClose: () => Navigator.pop(context), // 바텀 시트를 닫기 위한 콜백
@@ -40,22 +38,33 @@ class _FeedIndexState extends State<FeedIndex> {
     );
   }
 
+  // 키워드를 삭제하는 메서드
+  void _removeKeyword(String keyword) {
+    setState(() {
+      _selectedKeywords.remove(keyword); // 키워드를 선택된 키워드 집합에서 제거
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
           Container(
-            color: Colors.white,
+            color: Colors.white, // 배경색
             child: Column(
               children: [
-                FilterSection(
-                  onFilterPressed: () => _showFilterModal(context),
+                // 필터 버튼과 선택된 키워드를 표시하는 섹션
+                FilterBarSection(
+                  onFilterPressed: () =>
+                      _showFilterModal(context), // 필터 버튼 클릭 시 필터 모달 표시
+                  selectedKeywords: _selectedKeywords, // 현재 선택된 키워드 전달
+                  onKeywordRemoved: _removeKeyword, // 키워드 삭제 콜백 함수
                 ),
-                // 다른 위젯이 추가될 수 있음
               ],
             ),
           ),
+          // 하단 중앙에 위치한 '고민 작성' 버튼
           Align(
             alignment: Alignment.bottomCenter,
             child: CreatePostButton(
