@@ -7,7 +7,7 @@ class UpsideDownTrapezoidClipper extends CustomClipper<Path> {
     final Path path = Path();
     path.moveTo(0, size.height); // 왼쪽 하단 모서리
     path.lineTo(size.width, size.height); // 오른쪽 하단 모서리
-    path.lineTo(size.width - 40, 0); // 오른쪽 상단 모서리
+    path.lineTo(size.width - 65, 0); // 오른쪽 상단 모서리
     path.lineTo(0, 0); // 왼쪽 상단 모서리
     path.close(); // 경로 닫기
     return path;
@@ -25,7 +25,7 @@ class BottomWideTrapezoidClipper extends CustomClipper<Path> {
     path.moveTo(0, 0); // 왼쪽 상단 모서리
     path.lineTo(size.width, 0); // 오른쪽 상단 모서리
     path.lineTo(size.width, size.height); // 오른쪽 하단 모서리
-    path.lineTo(size.width - 40, size.height); // 왼쪽 하단 모서리
+    path.lineTo(size.width - 80, size.height); // 왼쪽 하단 모서리
     path.close(); // 경로 닫기
     return path;
   }
@@ -79,7 +79,6 @@ class ConcernListItem extends StatelessWidget {
                       fontSize: 16,
                       fontFamily: 'Roboto',
                       fontWeight: FontWeight.w800,
-                      letterSpacing: 0.50,
                     ),
                     softWrap: false, // 줄바꿈을 하지 않음
                   ),
@@ -88,13 +87,13 @@ class ConcernListItem extends StatelessWidget {
                 // 선택 항목 영역
                 Row(
                   mainAxisAlignment:
-                      MainAxisAlignment.spaceBetween, // 항목들 사이의 간격을 최소화
+                      MainAxisAlignment.center, // 항목들 사이의 간격을 최소화
                   children: [
                     // 첫 번째 선택 항목
                     ClipPath(
                       clipper: UpsideDownTrapezoidClipper(),
                       child: Container(
-                        width: 90,
+                        width: 140,
                         height: 88,
                         color: Color.fromARGB(255, 255, 155, 155), // 배경색
                         alignment: Alignment.center,
@@ -109,7 +108,6 @@ class ConcernListItem extends StatelessWidget {
                             fontSize: 16,
                             fontFamily: 'Roboto',
                             fontWeight: FontWeight.w700,
-                            letterSpacing: 0.50,
                           ),
                           softWrap: true, // 줄바꿈을 허용
                         ),
@@ -119,7 +117,7 @@ class ConcernListItem extends StatelessWidget {
                     ClipPath(
                       clipper: BottomWideTrapezoidClipper(),
                       child: Container(
-                        width: 100,
+                        width: 140,
                         height: 88,
                         color: Color.fromARGB(255, 93, 177, 255), // 배경색
                         alignment: Alignment.center,
@@ -134,7 +132,6 @@ class ConcernListItem extends StatelessWidget {
                             fontSize: 16,
                             fontFamily: 'Roboto',
                             fontWeight: FontWeight.w700,
-                            letterSpacing: 0.50,
                           ),
                           softWrap: true, // 줄바꿈을 허용
                         ),
@@ -146,7 +143,7 @@ class ConcernListItem extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(height: 30), // 항목과 항목 사이의 간격 추가
+        const SizedBox(height: 25), // ConcernListItem들 사이의 간격 추가
       ],
     );
   }
