@@ -38,6 +38,13 @@ class _FeedIndexState extends State<FeedIndex> {
     );
   }
 
+  // 키워드를 삭제하는 메서드
+  void _removeKeyword(String keyword) {
+    setState(() {
+      _selectedKeywords.remove(keyword);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,21 +54,11 @@ class _FeedIndexState extends State<FeedIndex> {
             color: Colors.white,
             child: Column(
               children: [
-                // 필터 버튼을 포함하는 섹션
-                FilterSection(
-                  // 필터 버튼 클릭 시 모달 표시
+                // 필터 버튼과 선택된 키워드를 표시하는 섹션
+                FilterBarSection(
                   onFilterPressed: () => _showFilterModal(context),
-                ),
-                // 선택된 키워드 나열
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Text(
-                    '선택된 키워드: ${_selectedKeywords.join(', ')}',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  selectedKeywords: _selectedKeywords,
+                  onKeywordRemoved: _removeKeyword, // 키워드 삭제 콜백 함수
                 ),
               ],
             ),
