@@ -35,14 +35,15 @@ class BottomWideTrapezoidClipper extends CustomClipper<Path> {
 }
 
 class ConcernListItem extends StatelessWidget {
-  const ConcernListItem({super.key});
+  final VoidCallback onTap;
+  const ConcernListItem({super.key, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         InkWell(
-          onTap: () {},
+          onTap: onTap,
           child: Container(
             width: 300,
             height: 150,
@@ -118,7 +119,7 @@ class ConcernListItem extends StatelessWidget {
                     ClipPath(
                       clipper: BottomWideTrapezoidClipper(),
                       child: Container(
-                        width: 120,
+                        width: 90,
                         height: 80,
                         color: Color.fromARGB(255, 93, 177, 255), // 배경색
                         alignment: Alignment.center,

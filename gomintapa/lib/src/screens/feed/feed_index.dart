@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gomintapa/src/screens/my/mypage.dart';
 import 'package:gomintapa/src/widgets/listitems/concern_list_item.dart';
 
 import '../../widgets/buttons/create_post_button.dart';
@@ -46,6 +47,16 @@ class _FeedIndexState extends State<FeedIndex> {
     });
   }
 
+  // 페이지 이동 메서드
+  void _navigateToMyPage(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const MyPage(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,11 +81,11 @@ class _FeedIndexState extends State<FeedIndex> {
           Expanded(
             child: ListView(
               children: [
-                ConcernListItem(),
-                ConcernListItem(),
-                ConcernListItem(),
-                ConcernListItem(),
-                ConcernListItem(),
+                ConcernListItem(onTap: () => _navigateToMyPage(context)),
+                ConcernListItem(onTap: () => _navigateToMyPage(context)),
+                ConcernListItem(onTap: () => _navigateToMyPage(context)),
+                ConcernListItem(onTap: () => _navigateToMyPage(context)),
+                ConcernListItem(onTap: () => _navigateToMyPage(context)),
               ],
             ),
           ),
