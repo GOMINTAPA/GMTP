@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:gomintapa/src/screens/login.dart';
-import 'package:gomintapa/src/screens/register.dart';
+import 'package:gomintapa/src/screens/auth/login.dart';
+import 'package:gomintapa/src/screens/auth/register.dart';
+import 'package:gomintapa/src/screens/my/mypage.dart';
 import 'screens/home.dart';
 
 class MyApp extends StatelessWidget {
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false, // 디버그 배너 삭제
       routes: {
-        '/': (context) => Home(),
+        '/': (context) => MyPage(),
         // '/': (context) => Login(),
         // '/register': (context) => Register(),
       },

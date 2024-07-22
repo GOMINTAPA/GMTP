@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gomintapa/src/screens/register.dart';
+import 'package:gomintapa/src/screens/auth/register.dart';
 import 'package:gomintapa/src/widgets/themes/auth_theme.dart';
 import 'package:gomintapa/src/widgets/forms/label_textfield.dart';
 
