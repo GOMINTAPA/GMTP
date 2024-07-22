@@ -84,19 +84,29 @@ class _ConcernFeedSectionState extends State<ConcernFeedSection>
     return TabBarView(
       controller: tabController,
       children: [
-        Container(
-          alignment: Alignment.center,
-          child: const Text(
-            "작성한 고민",
-            style: TextStyle(fontSize: 40, color: Colors.black),
-          ),
+        ListView(
+          padding: const EdgeInsets.all(30),
+          children: [
+            Container(
+              alignment: Alignment.center,
+              child: const Text(
+                "작성한 고민",
+                style: TextStyle(fontSize: 40, color: Colors.black),
+              ),
+            ),
+          ],
         ),
-        Container(
-          alignment: Alignment.center,
-          child: const Text(
-            "참견한 고민",
-            style: TextStyle(fontSize: 40, color: Colors.black),
-          ),
+        ListView(
+          padding: const EdgeInsets.all(30),
+          children: [
+            Container(
+              alignment: Alignment.center,
+              child: const Text(
+                "참견한 고민",
+                style: TextStyle(fontSize: 40, color: Colors.black),
+              ),
+            ),
+          ],
         ),
       ],
     );

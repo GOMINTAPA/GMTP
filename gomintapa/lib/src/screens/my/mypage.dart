@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gomintapa/src/models/user_model.dart';
+import 'package:gomintapa/src/widgets/buttons/logout.button.dart';
 import 'package:gomintapa/src/widgets/navigation/back_app_bar.dart';
+import 'package:gomintapa/src/widgets/sections/my/bottom_section.dart';
 import 'package:gomintapa/src/widgets/sections/my/concern_feed_section.dart';
 import 'package:gomintapa/src/widgets/sections/my/user_section.dart';
 
@@ -26,6 +28,8 @@ class _MyPageState extends State<MyPage> {
           Expanded(
             child: ConcernFeedSection(),
           ),
+          // 하단 고정 영역
+          BottomSection(onLogoutPressed: () {})
         ],
       ),
     );

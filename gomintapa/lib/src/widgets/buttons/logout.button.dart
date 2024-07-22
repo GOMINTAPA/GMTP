@@ -11,7 +11,7 @@ class LogoutButton extends StatelessWidget {
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         backgroundColor: Color.fromARGB(255, 245, 56, 56),
-        padding: const EdgeInsets.symmetric(horizontal: 21, vertical: 7),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
         fixedSize: const Size(90, 40), // 버튼 크기 고정
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10), // 버튼의 모서리를 둥글게 설정
