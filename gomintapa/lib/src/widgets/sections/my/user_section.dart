@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gomintapa/src/models/user_model.dart';
 
-class MyUserSection extends StatelessWidget {
+class UserSection extends StatelessWidget {
   final UserModel user;
-  const MyUserSection(this.user, {super.key});
+  const UserSection(this.user, {super.key});
 
   @override
   Widget build(BuildContext context) {
