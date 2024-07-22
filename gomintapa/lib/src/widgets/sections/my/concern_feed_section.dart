@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gomintapa/src/widgets/sections/my/concern_tab_bar.dart';
+import 'package:gomintapa/src/widgets/sections/my/concern_tab_bar_view.dart';
 
 class ConcernFeedSection extends StatefulWidget {
   const ConcernFeedSection({super.key});
@@ -40,41 +41,9 @@ class _ConcernFeedSectionState extends State<ConcernFeedSection>
         children: [
           ConcernTabBar(controller: tabController),
           // Expanded 없으면 오류 발생
-          Expanded(child: _tabBarView()),
+          Expanded(child: ConcernTabBarView(controller: tabController)),
         ],
       ),
-    );
-  }
-
-  Widget _tabBarView() {
-    return TabBarView(
-      controller: tabController,
-      children: [
-        ListView(
-          padding: const EdgeInsets.all(30),
-          children: [
-            Container(
-              alignment: Alignment.center,
-              child: const Text(
-                "작성한 고민",
-                style: TextStyle(fontSize: 40, color: Colors.black),
-              ),
-            ),
-          ],
-        ),
-        ListView(
-          padding: const EdgeInsets.all(30),
-          children: [
-            Container(
-              alignment: Alignment.center,
-              child: const Text(
-                "참견한 고민",
-                style: TextStyle(fontSize: 40, color: Colors.black),
-              ),
-            ),
-          ],
-        ),
-      ],
     );
   }
 }
