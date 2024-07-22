@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gomintapa/src/widgets/sections/my/concern_tab_bar.dart';
 
 class ConcernFeedSection extends StatefulWidget {
   const ConcernFeedSection({super.key});
@@ -37,46 +38,11 @@ class _ConcernFeedSectionState extends State<ConcernFeedSection>
       backgroundColor: Colors.white,
       body: Column(
         children: [
-          _tabBar(),
+          ConcernTabBar(controller: tabController),
           // Expanded 없으면 오류 발생
           Expanded(child: _tabBarView()),
         ],
       ),
-    );
-  }
-
-  Widget _tabBar() {
-    return TabBar(
-      controller: tabController,
-      labelColor: Colors.black,
-      unselectedLabelColor: Color.fromARGB(255, 217, 217, 217),
-      labelStyle: const TextStyle(
-        fontSize: 15,
-        fontFamily: 'Roboto',
-        fontWeight: FontWeight.w700,
-        letterSpacing: 0.50,
-      ),
-      unselectedLabelStyle: const TextStyle(
-        fontSize: 15,
-        fontFamily: 'Roboto',
-        fontWeight: FontWeight.w700,
-        letterSpacing: 0.50,
-      ),
-
-      // 탭 바 클릭시 나오는 splash effect 컬러
-      overlayColor: MaterialStatePropertyAll(
-        Colors.white,
-      ),
-
-      // indicator 설정
-      indicatorColor: Colors.black,
-      indicatorWeight: 2,
-      indicatorSize: TabBarIndicatorSize.tab,
-
-      tabs: const [
-        Tab(text: "작성한 고민"),
-        Tab(text: "참견한 고민"),
-      ],
     );
   }
 
