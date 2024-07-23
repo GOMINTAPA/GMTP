@@ -52,9 +52,10 @@ class MakListItem extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 // 선택 항목 영역
-                Row(
-                  mainAxisAlignment:
+                Stack(
+                  /*  mainAxisAlignment:
                       MainAxisAlignment.center, // 항목들 사이의 간격을 최소화
+                   */
                   children: [
                     // 첫 번째 선택 항목
                     Container(
@@ -87,10 +88,43 @@ class MakListItem extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(width: 10),
+
+                    // 두 번째 선택 항목
+                    Positioned(
+                      left: MediaQuery.of(context).size.width - 215,
+                      child: Container(
+                        width: 135,
+                        height: 88,
+                        decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 93, 177, 255), // 배경색
+                          borderRadius:
+                              BorderRadius.circular(5), // borderRadius 추가
+                        ),
+                        alignment: Alignment.center,
+                        child: Container(
+                          width: 120,
+                          height: 60,
+                          padding: const EdgeInsets.all(10.0), // 텍스트 주변 여백
+                          alignment: Alignment.center,
+                          child: Text(
+                            '선택 2 내용',
+                            maxLines: 2, // 최대 두 줄
+                            overflow: TextOverflow
+                                .ellipsis, // 텍스트 길이가 영역을 초과할 경우 말 줄임표 처리
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontFamily: 'Roboto',
+                              fontWeight: FontWeight.w700,
+                            ),
+                            softWrap: true, // 줄바꿈을 허용
+                          ),
+                        ),
+                      ),
+                    ),
                     // 중앙 텍스트 영역
                     Container(
-                      height: 88,
                       alignment: Alignment.center,
                       child: RichText(
                         text: TextSpan(
@@ -98,9 +132,9 @@ class MakListItem extends StatelessWidget {
                             TextSpan(
                               text: '?%',
                               style: TextStyle(
-                                color: Colors.red,
+                                color: Color(0xFFFF0000),
                                 fontSize: 20,
-                                fontWeight: FontWeight.bold,
+                                fontWeight: FontWeight.w900,
                               ),
                             ),
                             TextSpan(
@@ -108,42 +142,10 @@ class MakListItem extends StatelessWidget {
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 20,
-                                fontWeight: FontWeight.bold,
+                                fontWeight: FontWeight.w900,
                               ),
                             ),
                           ],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    // 두 번째 선택 항목
-                    Container(
-                      width: 135,
-                      height: 88,
-                      decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 93, 177, 255), // 배경색
-                        borderRadius:
-                            BorderRadius.circular(5), // borderRadius 추가
-                      ),
-                      alignment: Alignment.center,
-                      child: Container(
-                        width: 120,
-                        height: 60,
-                        padding: const EdgeInsets.all(10.0), // 텍스트 주변 여백
-                        alignment: Alignment.center,
-                        child: Text(
-                          '선택 2 내용',
-                          maxLines: 2, // 최대 두 줄
-                          overflow: TextOverflow
-                              .ellipsis, // 텍스트 길이가 영역을 초과할 경우 말 줄임표 처리
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontFamily: 'Roboto',
-                            fontWeight: FontWeight.w700,
-                          ),
-                          softWrap: true, // 줄바꿈을 허용
                         ),
                       ),
                     ),
