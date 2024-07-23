@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gomintapa/src/screens/feed/mak_feed_index.dart';
 import '../widgets/navigation/bottom_navigation_bar.dart';
 
 import '../widgets/navigation/home_app_bar.dart';
@@ -6,7 +7,7 @@ import 'feed/feed_index.dart';
 
 // 화면에 표시할 위젯 목록
 final List<Widget> myTabItems = [
-  Center(child: Text('막상막하')),
+  MakFeedIndex(),
   FeedIndex(),
   Center(child: Text('해결탕탕'))
 ];
