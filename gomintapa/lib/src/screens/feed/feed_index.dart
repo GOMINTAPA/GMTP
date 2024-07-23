@@ -5,7 +5,6 @@ import 'package:gomintapa/src/widgets/listitems/concern_list_item.dart';
 import '../../widgets/buttons/create_post_button.dart';
 import '../../widgets/sections/filter_bar_section.dart';
 import '../../widgets/sections/filter_sheet.dart';
-import '../post/create_post.dart';
 
 class FeedIndex extends StatefulWidget {
   const FeedIndex({super.key});
