@@ -29,6 +29,10 @@ class _CreatePostState extends State<CreatePost> {
 
   @override
   Widget build(BuildContext context) {
+    // 화면의 너비를 비율로 계산
+    final double screenWidth = MediaQuery.of(context).size.width;
+    final double containerWidth = screenWidth * 0.9; // 화면 너비의 90%로 설정
+
     return Scaffold(
       appBar: FormActionAppBar(),
       body: ListView(
@@ -38,16 +42,76 @@ class _CreatePostState extends State<CreatePost> {
             titleController: _titleController,
             contentController: _contentController,
           ),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 40),
+            child: Divider(
+              thickness: 1,
+              color: Color(0xffA7A7A7),
+              height: 0, // Divider 위아래의 공간 제거
+            ),
+          ),
           ChoicesSection(
             inputController: _aInputController,
             hintText: 'A 입력',
             backgroundColor: Color(0xffFF9B9B),
+            containerWidth: containerWidth, // containerWidth 전달
+          ),
+          Container(
+            color: Colors.white,
+            child: const Text(
+              'vs',
+              style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+                color: Color(0xff9B9B9B),
+              ),
+              textAlign: TextAlign.center,
+            ),
           ),
           ChoicesSection(
             inputController: _bInputController,
             hintText: 'B 입력',
             backgroundColor: Color(0xff5DB1FF),
+            containerWidth: containerWidth, // containerWidth 전달
           ),
+          const SizedBox(height: 10),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 40),
+            child: Divider(
+              thickness: 1,
+              color: Color(0xffA7A7A7),
+              height: 0, // Divider 위아래의 공간 제거
+            ),
+          ),
+          const SizedBox(height: 30),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 40), // 좌우 여백 추가
+            child: SizedBox(
+              width: double.infinity, // 가능한 모든 너비를 사용
+              height: 50,
+              child: OutlinedButton(
+                onPressed: () {},
+                style: OutlinedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10), // 모서리 둥굴게 설정
+                  ),
+                  side: const BorderSide(
+                    color: Color(0xff9B9B9B), // 버튼 테두리
+                  ),
+                ),
+                child: const Text(
+                  '키워드 선택',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Color(0xff9B9B9B),
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(height: 30),
         ],
       ),
     );
