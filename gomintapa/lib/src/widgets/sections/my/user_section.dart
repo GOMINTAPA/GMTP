@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gomintapa/src/models/user_model.dart';
+import 'package:gomintapa/src/screens/my/edit_profile.dart';
 import 'package:gomintapa/src/widgets/buttons/edit_profile_button.dart';
 
 class UserSection extends StatelessWidget {
@@ -66,7 +67,10 @@ class UserSection extends StatelessWidget {
             // 계정 정보 : 버튼 영역
             EditProfileButton(
               onPressed: () {
-                // 정보 수정 버튼을 눌렀을 때 실행할 코드
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const EditProfile()),
+                );
               },
             ),
           ],
