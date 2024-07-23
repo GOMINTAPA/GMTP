@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gomintapa/src/models/user_model.dart';
+import 'package:gomintapa/src/widgets/buttons/edit_profile_button.dart';
 
 class UserSection extends StatelessWidget {
   final UserModel user;
@@ -63,26 +64,11 @@ class UserSection extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             // 계정 정보 : 버튼 영역
-            ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 31, vertical: 7),
-                  textStyle: const TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 16,
-                      letterSpacing: 0.50,
-                      fontFamily: 'Roboto'),
-                  minimumSize: const Size(280, 40),
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(
-                        width: 1, color: Color.fromARGB(255, 155, 155, 155)),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  backgroundColor: Colors.white,
-                  foregroundColor: Color.fromARGB(255, 155, 155, 155),
-                ),
-                onPressed: () {},
-                child: const Text('정보 수정'))
+            EditProfileButton(
+              onPressed: () {
+                // 정보 수정 버튼을 눌렀을 때 실행할 코드
+              },
+            ),
           ],
         ),
       ),
