@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:gomintapa/src/widgets/buttons/logout.button.dart';
 
 class BottomSection extends StatelessWidget {
-  final VoidCallback onLogoutPressed;
+  final Widget buttonWidget; // 로그아웃 대신 Widget을 받도록 수정
 
-  const BottomSection({Key? key, required this.onLogoutPressed})
-      : super(key: key);
+  const BottomSection({
+    Key? key,
+    required this.buttonWidget,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +21,7 @@ class BottomSection extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              LogoutButton(
-                onPressed: onLogoutPressed,
-              ),
+              buttonWidget, // 전달된 Widget을 사용
             ],
           ),
         ),
