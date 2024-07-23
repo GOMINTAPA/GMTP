@@ -37,45 +37,45 @@ class _EditProfileState extends State<EditProfile> {
     // 비밀번호와 비밀번호 확인 필드는 빈 상태로 유지 (사용자가 새로 입력해야 함)
   }
 
-  // 입력값 검증
-  bool _validateInputs() {
-    // 닉네임 검증
-    if (_nameController.text.isEmpty) {
-      Get.snackbar('오류', '닉네임을 입력해주세요.');
-      return false;
-    }
+  // // 입력값 검증
+  // bool _validateInputs() {
+  //   // 닉네임 검증
+  //   if (_nameController.text.isEmpty) {
+  //     Get.snackbar('오류', '닉네임을 입력해주세요.');
+  //     return false;
+  //   }
 
-    // 아이디 검증
-    RegExp idRegex = RegExp(r'^[a-zA-Z0-9]{4,12}$');
-    if (_idController.text.isEmpty) {
-      Get.snackbar('오류', '아이디를 입력해주세요.');
-      return false;
-    } else if (!idRegex.hasMatch(_idController.text)) {
-      Get.snackbar('오류', '아이디는 4~12자리의 알파벳과 숫자만 가능합니다.');
-      return false;
-    }
+  //   // 아이디 검증
+  //   RegExp idRegex = RegExp(r'^[a-zA-Z0-9]{4,12}$');
+  //   if (_idController.text.isEmpty) {
+  //     Get.snackbar('오류', '아이디를 입력해주세요.');
+  //     return false;
+  //   } else if (!idRegex.hasMatch(_idController.text)) {
+  //     Get.snackbar('오류', '아이디는 4~12자리의 알파벳과 숫자만 가능합니다.');
+  //     return false;
+  //   }
 
-    // 비밀번호 검증
-    RegExp passwordRegex = RegExp(
-        r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$');
-    if (_passwordController.text.isEmpty) {
-      Get.snackbar('오류', '비밀번호를 입력해주세요.');
-      return false;
-    } else if (!passwordRegex.hasMatch(_passwordController.text)) {
-      Get.snackbar('오류', '비밀번호는 최소 8자, 대문자, 소문자, 숫자, 특수문자를 포함해야 합니다.');
-      return false;
-    }
+  //   // 비밀번호 검증
+  //   RegExp passwordRegex = RegExp(
+  //       r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$');
+  //   if (_passwordController.text.isEmpty) {
+  //     Get.snackbar('오류', '비밀번호를 입력해주세요.');
+  //     return false;
+  //   } else if (!passwordRegex.hasMatch(_passwordController.text)) {
+  //     Get.snackbar('오류', '비밀번호는 최소 8자, 대문자, 소문자, 숫자, 특수문자를 포함해야 합니다.');
+  //     return false;
+  //   }
 
-    // 비밀번호 확인 검증
-    if (_passwordConfirmController.text.isEmpty) {
-      Get.snackbar('오류', '비밀번호 확인을 입력해주세요.');
-      return false;
-    } else if (_passwordController.text != _passwordConfirmController.text) {
-      Get.snackbar('오류', '비밀번호와 비밀번호 확인이 일치하지 않습니다.');
-      return false;
-    }
-    return true;
-  }
+  //   // 비밀번호 확인 검증
+  //   if (_passwordConfirmController.text.isEmpty) {
+  //     Get.snackbar('오류', '비밀번호 확인을 입력해주세요.');
+  //     return false;
+  //   } else if (_passwordController.text != _passwordConfirmController.text) {
+  //     Get.snackbar('오류', '비밀번호와 비밀번호 확인이 일치하지 않습니다.');
+  //     return false;
+  //   }
+  //   return true;
+  // }
 
   // 제출 버튼 클릭 시 호출되는 함수
   _submit() async {
@@ -136,12 +136,6 @@ class _EditProfileState extends State<EditProfile> {
                 label: '비밀번호',
                 hintText: '4~12자리의 숫자, 영문만 가능합니다.',
                 controller: _passwordController,
-                isObscure: true,
-              ),
-              LabelTextField(
-                label: '비밀번호 확인',
-                hintText: '비밀번호를 한번 더 입력해주세요.',
-                controller: _passwordConfirmController,
                 isObscure: true,
               ),
             ],
