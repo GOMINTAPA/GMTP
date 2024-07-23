@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class LabelTextField extends StatelessWidget {
   final String label;
   final String hintText;
-  //final TextEditingController controller; // TextField의 입력 값 제어
+  final TextEditingController controller; // TextField의 입력 값 제어
   final bool isObscure; // TextField의 입력 값 숨김 여부
   final TextInputType? keyboardType;
 
@@ -11,7 +11,7 @@ class LabelTextField extends StatelessWidget {
     super.key,
     required this.label,
     required this.hintText,
-    //required this.controller,
+    required this.controller,
     this.isObscure = false,
     this.keyboardType,
   });

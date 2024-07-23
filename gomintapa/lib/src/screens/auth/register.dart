@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:gomintapa/src/widgets/themes/auth_theme.dart';
 import 'package:gomintapa/src/widgets/forms/label_textfield.dart';
+
+import '../../controllers/auth_controller.dart';
+import '../../home.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -10,11 +14,22 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
-  //final authController = Get.put(AuthController());
-  //final _idController = TextEditingController();
-  //final _passwordController = TextEditingController();
-  //final _passwordConfirmController = TextEditingController();
-  //final _nameController = TextEditingController();
+  final authController = Get.put(AuthController());
+  final _idController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _passwordConfirmController = TextEditingController();
+  final _nameController = TextEditingController();
+
+  _submit() async {
+    bool result = await authController.register(
+      _passwordController.text,
+      _nameController.text,
+      null,
+    );
+    if(result) {
+      Get.off(()=>const Home());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,24 +92,24 @@ class _RegisterState extends State<Register> {
                 label: '아이디',
                 hintText: '4~12자리의 숫자, 영문만 가능합니다.',
                 keyboardType: TextInputType.phone,
-                //controller: _idController,
+                controller: _idController,
               ),
               LabelTextField(
                 label: '닉네임',
                 hintText: '닉네임을 입력해주세요.',
                 keyboardType: TextInputType.phone,
-                //controller: _nameController,
+                controller: _nameController,
               ),
               LabelTextField(
                 label: '비밀번호',
                 hintText: '4~12자리의 숫자, 영문만 가능합니다.',
-                //controller: _passwordController,
+                controller: _passwordController,
                 isObscure: true,
               ),
               LabelTextField(
                 label: '비밀번호 확인',
                 hintText: '비밀번호를 한번 더 입력해주세요.',
-                //controller: _passwordConfirmController,
+                controller: _passwordConfirmController,
                 isObscure: true,
               ),
               const SizedBox(height: 108),
@@ -103,7 +118,7 @@ class _RegisterState extends State<Register> {
                   backgroundColor: Color(0xFF3C3C3C),
                   foregroundColor: Colors.white,
                 ),
-                onPressed: () {},
+                onPressed: _submit,
                 child: const Text('가입하기'),
               ),
             ],

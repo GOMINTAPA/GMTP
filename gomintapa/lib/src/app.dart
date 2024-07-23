@@ -1,25 +1,27 @@
 import 'package:flutter/material.dart';
 
+import 'package:get/get_navigation/src/root/get_material_app.dart';
+
 import 'package:gomintapa/src/screens/auth/login.dart';
 import 'package:gomintapa/src/screens/auth/register.dart';
 import 'package:gomintapa/src/screens/my/mypage.dart';
-import 'screens/home.dart';
+import 'home.dart';
 import 'screens/post/create_post.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyWidget extends StatelessWidget {
+  final bool isLogin;
+  const MyWidget(this.isLogin, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false, // 디버그 배너 삭제
       routes: {
-        '/': (context) => CreatePost(),
-        // '/': (context) => Login(),
-        // '/register': (context) => Register(),
+        '/': (context) => Home(),
+        '/intro': (context) => Login(),
+        '/register': (context) => Register(),
       },
-      initialRoute: '/',
-      // home: Intro(),
+      initialRoute: isLogin ? '/' : '/intro',
     );
   }
 }

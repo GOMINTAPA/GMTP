@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../widgets/navigation/bottom_navigation_bar.dart';
+import 'widgets/navigation/bottom_navigation_bar.dart';
 
-import '../widgets/navigation/home_app_bar.dart';
-import 'feed/feed_index.dart';
+import 'widgets/navigation/home_app_bar.dart';
+import 'screens/feed/feed_index.dart';
 
 // 화면에 표시할 위젯 목록
 final List<Widget> myTabItems = [
