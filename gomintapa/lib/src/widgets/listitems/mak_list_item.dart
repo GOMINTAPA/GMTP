@@ -87,8 +87,10 @@ class MakListItem extends StatelessWidget {
                         ),
                       ),
                     ),
+                    const SizedBox(width: 10),
                     // 중앙 텍스트 영역
                     Container(
+                      height: 88,
                       alignment: Alignment.center,
                       child: RichText(
                         text: TextSpan(
