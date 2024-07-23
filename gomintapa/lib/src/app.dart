@@ -25,8 +25,7 @@ class MyWidget extends StatelessWidget {
         '/register': (context) => Register(),
         '/post_detail': (context) => PostDetail(),
       },
-      initialRoute: '/',
-      // initialRoute: isLogin ? '/' : '/intro',
+      initialRoute: isLogin ? '/' : '/intro',
     );
   }
 }

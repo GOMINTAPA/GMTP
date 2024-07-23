@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gomintapa/src/models/feed_model.dart';
-import 'package:gomintapa/src/screens/my/mypage.dart';
 import 'package:gomintapa/src/widgets/cards/card_bottom_section.dart';
 import 'package:gomintapa/src/widgets/cards/card_section.dart';
 import 'package:gomintapa/src/widgets/cards/card_top_section.dart';
 
+import '../../screens/post/post_detail.dart';
+
 class ConcernListItem extends StatelessWidget {
   final FeedModel item;
-  const ConcernListItem(this.item,{super.key});
-  
+  const ConcernListItem(this.item, {super.key});
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         CardSection(
           onTap: () {
-            Get.to(()=> MyPage());
+            Get.to(() => PostDetail());
           }, // onTap 콜백 설정
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
