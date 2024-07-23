@@ -35,84 +35,86 @@ class _CreatePostState extends State<CreatePost> {
 
     return Scaffold(
       appBar: FormActionAppBar(),
-      body: ListView(
-        padding: const EdgeInsets.all(0), // 전체 padding 제거
-        children: [
-          InputSection(
-            titleController: _titleController,
-            contentController: _contentController,
-          ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 40),
-            child: Divider(
-              thickness: 1,
-              color: Color(0xffA7A7A7),
-              height: 0, // Divider 위아래의 공간 제거
+      body: Container(
+        color: Colors.white, // 화면 전체 배경색 흰색으로 설정
+        child: ListView(
+          padding: const EdgeInsets.all(0), // 전체 padding 제거
+          children: [
+            InputSection(
+              titleController: _titleController,
+              contentController: _contentController,
             ),
-          ),
-          ChoicesSection(
-            inputController: _aInputController,
-            hintText: 'A 입력',
-            backgroundColor: Color(0xffFF9B9B),
-            containerWidth: containerWidth, // containerWidth 전달
-          ),
-          Container(
-            color: Colors.white,
-            child: const Text(
-              'vs',
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-                color: Color(0xff9B9B9B),
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ),
-          ChoicesSection(
-            inputController: _bInputController,
-            hintText: 'B 입력',
-            backgroundColor: Color(0xff5DB1FF),
-            containerWidth: containerWidth, // containerWidth 전달
-          ),
-          const SizedBox(height: 10),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 40),
-            child: Divider(
-              thickness: 1,
-              color: Color(0xffA7A7A7),
-              height: 0, // Divider 위아래의 공간 제거
-            ),
-          ),
-          const SizedBox(height: 30),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40), // 좌우 여백 추가
-            child: SizedBox(
-              width: double.infinity, // 가능한 모든 너비를 사용
-              height: 50,
-              child: OutlinedButton(
-                onPressed: () {},
-                style: OutlinedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10), // 모서리 둥굴게 설정
-                  ),
-                  side: const BorderSide(
-                    color: Color(0xff9B9B9B), // 버튼 테두리
-                  ),
-                ),
-                child: const Text(
-                  '키워드 선택',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Color(0xff9B9B9B),
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 40),
+              child: Divider(
+                thickness: 1,
+                color: Color(0xffA7A7A7),
+                height: 0, // Divider 위아래의 공간 제거
               ),
             ),
-          ),
-          SizedBox(height: 30),
-        ],
+            ChoicesSection(
+              inputController: _aInputController,
+              hintText: 'A 입력',
+              backgroundColor: Color(0xffFF9B9B),
+              containerWidth: containerWidth, // containerWidth 전달
+            ),
+            Container(
+              child: const Text(
+                'vs',
+                style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xff9B9B9B),
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            ChoicesSection(
+              inputController: _bInputController,
+              hintText: 'B 입력',
+              backgroundColor: Color(0xff5DB1FF),
+              containerWidth: containerWidth, // containerWidth 전달
+            ),
+            const SizedBox(height: 10),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 40),
+              child: Divider(
+                thickness: 1,
+                color: Color(0xffA7A7A7),
+                height: 0, // Divider 위아래의 공간 제거
+              ),
+            ),
+            const SizedBox(height: 30),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40), // 좌우 여백 추가
+              child: SizedBox(
+                width: double.infinity, // 가능한 모든 너비를 사용
+                height: 50,
+                child: OutlinedButton(
+                  onPressed: () {},
+                  style: OutlinedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10), // 모서리 둥굴게 설정
+                    ),
+                    side: const BorderSide(
+                      color: Color(0xff9B9B9B), // 버튼 테두리
+                    ),
+                  ),
+                  child: const Text(
+                    '키워드 선택',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Color(0xff9B9B9B),
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 30),
+          ],
+        ),
       ),
     );
   }
