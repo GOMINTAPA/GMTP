@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../utils/dialog_util.dart';
+import '../../utils/post_submission_util.dart';
+import '../../utils/unsaved_changes_dialog_util.dart';
 import '../../widgets/buttons/keyword_select_button.dart';
 import '../../widgets/navigation/form_action_app_bar.dart';
 import '../../widgets/sections/my/bottom_section.dart';
@@ -101,57 +102,26 @@ class _CreatePostState extends State<CreatePost> {
     final String aInput = _aInputController.text;
     final String bInput = _bInputController.text;
 
-    // 제목, 내용, A입력, B입력이 모두 비어있지 않은지 확인
-    if (title.isEmpty || content.isEmpty || aInput.isEmpty || bInput.isEmpty) {
-      // 모든 필드가 채워져야 함
-      _showErrorDialog('모든 필드를 입력해 주세요.');
-      return;
-    }
-
-    // TODO: 제출 로직 구현 (예: 서버에 데이터 전송, 로컬 저장 등)
-
-    // 현재는 데이터 출력으로 대체
-    print('제목: $title');
-    print('내용: $content');
-    print('A 입력: $aInput');
-    print('B 입력: $bInput');
-
-    // 제출이 완료된 후 이전 화면으로 돌아가기
-    Navigator.pop(context);
-  }
-
-  void _showErrorDialog(String message) {
-    showDialog(
+    // 제출 로직 처리
+    handleSubmitPost(
       context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('제출 오류'),
-          content: Text(message),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context); // 다이얼로그 닫기
-              },
-              child: Text('확인'),
-            ),
-          ],
-        );
-      },
+      title: title,
+      content: content,
+      aInput: aInput,
+      bInput: bInput,
     );
   }
 
-  // 사용자가 입력한 내용이 있는지 확인
-  bool _hasUnsavedChanges() {
-    return _titleController.text.isNotEmpty ||
-        _contentController.text.isNotEmpty ||
-        _aInputController.text.isNotEmpty ||
-        _bInputController.text.isNotEmpty;
-  }
-
   void _handleClose() {
-    if (_hasUnsavedChanges()) {
+    // 사용자가 입력한 내용이 있는지 확인
+    if (hasUnsavedChanges(
+      title: _titleController.text,
+      content: _contentController.text,
+      aInput: _aInputController.text,
+      bInput: _bInputController.text,
+    )) {
       // 입력된 내용이 있을 경우, 다이얼로그를 띄워서 사용자에게 확인을 요청
-      showUnsavedChangesDialog(
+      handleUnsavedChangesDialog(
         context,
         () {
           // 사용자가 '네'를 클릭하면 이전 화면으로 돌아가기

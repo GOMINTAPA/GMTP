@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 
-// 입력된 내용이 있는 경우, 사용자가 나가려 할 때 경고 메시지 표시
-Future<void> showUnsavedChangesDialog(
+// 일반적인 확인 다이얼로그
+Future<void> showConfirmationDialog(
   BuildContext context,
+  String title,
+  String content,
   VoidCallback onConfirm,
 ) {
   return showDialog(
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: Text('현재 작성 중인 글이 있습니다.'),
-        content: Text('정말로 나가시겠습니까?'),
+        title: Text(title),
+        content: Text(content),
         actions: [
           TextButton(
             onPressed: () {
@@ -24,6 +26,27 @@ Future<void> showUnsavedChangesDialog(
               Navigator.pop(context); // 다이얼로그 닫기
             },
             child: Text('아니요'),
+          ),
+        ],
+      );
+    },
+  );
+}
+
+// 오류 메시지를 표시하는 다이얼로그
+void showErrorDialog(BuildContext context, String message) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('제출 오류'),
+        content: Text(message),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context); // 다이얼로그 닫기
+            },
+            child: Text('확인'),
           ),
         ],
       );
