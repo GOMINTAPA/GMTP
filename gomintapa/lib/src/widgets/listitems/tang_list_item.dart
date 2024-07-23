@@ -55,7 +55,7 @@ class TangListItem extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 5),
               // 선택 항목 영역
               Row(
                 mainAxisAlignment: MainAxisAlignment.center, // 항목들 사이의 간격을 최소화
