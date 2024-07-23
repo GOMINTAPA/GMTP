@@ -68,7 +68,7 @@ class ConcernListItem extends StatelessWidget {
                       child: Container(
                         width: 120,
                         height: 60,
-                        padding: const EdgeInsets.all(10.0), // 텍스트 주변 여백
+                        padding: const EdgeInsets.all(5), // 텍스트 주변 여백
                         alignment: Alignment.center,
                         child: Text(
                           '선택 1 내용',
@@ -100,7 +100,7 @@ class ConcernListItem extends StatelessWidget {
                       child: Container(
                         width: 120,
                         height: 60,
-                        padding: const EdgeInsets.all(10.0), // 텍스트 주변 여백
+                        padding: const EdgeInsets.all(5), // 텍스트 주변 여백
                         alignment: Alignment.center,
                         child: Text(
                           '선택 2 내용',

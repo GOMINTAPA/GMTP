@@ -49,7 +49,7 @@ class TangListItem extends StatelessWidget {
                       height: 20,
                       alignment: Alignment.center,
                       child: Text(
-                        '윤지니는 바보 멍청이다',
+                        '고민 제목',
                         maxLines: 1, // 텍스트가 한 줄로 제한됨
                         overflow: TextOverflow
                             .ellipsis, // 텍스트 길이가 영역을 초과할 경우 말 줄임표 처리
@@ -87,7 +87,7 @@ class TangListItem extends StatelessWidget {
                         padding: const EdgeInsets.all(5), // 텍스트 주변 여백
                         alignment: Alignment.center,
                         child: Text(
-                          '윤진이바보멍청이똥개해삼말미잘메롱',
+                          '선택 1 내용',
                           maxLines: 2, // 최대 두 줄
                           overflow: TextOverflow
                               .ellipsis, // 텍스트 길이가 영역을 초과할 경우 말 줄임표 처리
