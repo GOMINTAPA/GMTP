@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:gomintapa/src/controllers/feed_controller.dart';
 import 'package:gomintapa/src/screens/my/mypage.dart';
 import 'package:gomintapa/src/widgets/listitems/concern_list_item.dart';
 
@@ -14,9 +16,24 @@ class FeedIndex extends StatefulWidget {
 }
 
 class _FeedIndexState extends State<FeedIndex> {
+  final feedController = Get.put(FeedController());
   // 선택된 키워드를 저장할 Set
   final Set<String> _selectedKeywords = {};
+  int _currentPage = 1;
 
+  bool _onNotification(ScrollNotification scrollInfo) {
+    if (scrollInfo is ScrollEndNotification &&
+        scrollInfo.metrics.extentAfter == 0) {
+      feedController.feedIndex(page: ++_currentPage);
+      return true;
+    }
+    return false;
+  }
+
+  Future<void> _onRefresh() async {
+    _currentPage = 1;
+    await feedController.feedIndex();
+  }
   // 필터 모달
   void _showFilterModal(BuildContext context) {
     showModalBottomSheet(
@@ -79,15 +96,30 @@ class _FeedIndexState extends State<FeedIndex> {
           const SizedBox(height: 30),
 
           Expanded(
-            child: ListView(
-              children: [
-                ConcernListItem(
-                    onTap: () => _navigateToMyPage(context)), // 임시 설정
-                ConcernListItem(onTap: () => _navigateToMyPage(context)),
-                ConcernListItem(onTap: () => _navigateToMyPage(context)),
-                ConcernListItem(onTap: () => _navigateToMyPage(context)),
-                ConcernListItem(onTap: () => _navigateToMyPage(context)),
-              ],
+            // child: ListView(
+            //   children: [
+            //     ConcernListItem(
+            //         onTap: () => _navigateToMyPage(context)), // 임시 설정
+            //     ConcernListItem(onTap: () => _navigateToMyPage(context)),
+            //     ConcernListItem(onTap: () => _navigateToMyPage(context)),
+            //     ConcernListItem(onTap: () => _navigateToMyPage(context)),
+            //     ConcernListItem(onTap: () => _navigateToMyPage(context)),
+            //   ],
+            // ),
+            child: Obx(
+              () => NotificationListener<ScrollNotification>(
+                onNotification: _onNotification,
+                  child: RefreshIndicator(
+                    onRefresh: _onRefresh,
+                    child: ListView.builder(
+                    itemCount: feedController.feedList.length,
+                    itemBuilder: (context, index) {
+                      final item = feedController.feedList[index];
+                      return ConcernListItem(item);
+                    },
+                    ),
+                  ), 
+              ),
             ),
           ),
           //),
