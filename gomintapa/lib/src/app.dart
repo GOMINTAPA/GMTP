@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gomintapa/src/screens/auth/login.dart';
 import 'package:gomintapa/src/screens/auth/register.dart';
+import 'package:gomintapa/src/screens/feed/feed_index.dart';
 import 'package:gomintapa/src/screens/feed/mak_feed_index.dart';
 import 'package:gomintapa/src/screens/feed/tang_feed_index.dart';
 import 'package:gomintapa/src/screens/my/mypage.dart';

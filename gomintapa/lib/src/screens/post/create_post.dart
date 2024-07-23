@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../widgets/buttons/keyword_select_button.dart';
 import '../../widgets/navigation/form_action_app_bar.dart';
+import '../../widgets/sections/my/bottom_section.dart';
 import '../../widgets/sections/post/choices_section.dart';
 import '../../widgets/sections/post/input_section.dart';
 
@@ -18,8 +20,19 @@ class _CreatePostState extends State<CreatePost> {
   final TextEditingController _aInputController = TextEditingController();
   final TextEditingController _bInputController = TextEditingController();
 
+  // 공통 Divider를 변수로 정의
+  final Widget commonDivider = const Padding(
+    padding: EdgeInsets.symmetric(horizontal: 40),
+    child: Divider(
+      thickness: 1,
+      color: Color(0xffA7A7A7),
+      height: 0, // Divider 위아래의 공간 제거
+    ),
+  );
+
   @override
   void dispose() {
+    // 컨트롤러 해제
     _titleController.dispose();
     _contentController.dispose();
     _aInputController.dispose();
@@ -29,91 +42,60 @@ class _CreatePostState extends State<CreatePost> {
 
   @override
   Widget build(BuildContext context) {
-    // 화면의 너비를 비율로 계산
-    final double screenWidth = MediaQuery.of(context).size.width;
+    final double screenWidth =
+        MediaQuery.of(context).size.width; // 화면의 너비를 비율로 계산
     final double containerWidth = screenWidth * 0.9; // 화면 너비의 90%로 설정
 
     return Scaffold(
       appBar: FormActionAppBar(),
       body: Container(
         color: Colors.white, // 화면 전체 배경색 흰색으로 설정
-        child: ListView(
-          padding: const EdgeInsets.all(0), // 전체 padding 제거
-          children: [
-            InputSection(
-              titleController: _titleController,
-              contentController: _contentController,
-            ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 40),
-              child: Divider(
-                thickness: 1,
-                color: Color(0xffA7A7A7),
-                height: 0, // Divider 위아래의 공간 제거
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              // 제목, 내용 입력 섹션
+              InputSection(
+                titleController: _titleController,
+                contentController: _contentController,
               ),
-            ),
-            ChoicesSection(
-              inputController: _aInputController,
-              hintText: 'A 입력',
-              backgroundColor: Color(0xffFF9B9B),
-              containerWidth: containerWidth, // containerWidth 전달
-            ),
-            Container(
-              child: const Text(
-                'vs',
-                style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xff9B9B9B),
-                ),
-                textAlign: TextAlign.center,
+              // 공통 Divider
+              commonDivider,
+              // A 입력 및 사진첨부 섹션
+              ChoicesSection(
+                inputController: _aInputController,
+                hintText: 'A 입력',
+                backgroundColor: const Color(0xffFF9B9B),
+                containerWidth: containerWidth, // containerWidth 전달
               ),
-            ),
-            ChoicesSection(
-              inputController: _bInputController,
-              hintText: 'B 입력',
-              backgroundColor: Color(0xff5DB1FF),
-              containerWidth: containerWidth, // containerWidth 전달
-            ),
-            const SizedBox(height: 10),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 40),
-              child: Divider(
-                thickness: 1,
-                color: Color(0xffA7A7A7),
-                height: 0, // Divider 위아래의 공간 제거
-              ),
-            ),
-            const SizedBox(height: 30),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40), // 좌우 여백 추가
-              child: SizedBox(
-                width: double.infinity, // 가능한 모든 너비를 사용
-                height: 50,
-                child: OutlinedButton(
-                  onPressed: () {},
-                  style: OutlinedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10), // 모서리 둥굴게 설정
-                    ),
-                    side: const BorderSide(
-                      color: Color(0xff9B9B9B), // 버튼 테두리
-                    ),
-                  ),
-                  child: const Text(
-                    '키워드 선택',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Color(0xff9B9B9B),
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
+              // VS Text
+              const Center(
+                child: Text(
+                  'vs',
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xff9B9B9B),
                   ),
                 ),
               ),
-            ),
-            SizedBox(height: 30),
-          ],
+              // B 입력 및 사진 첨부 섹션
+              ChoicesSection(
+                inputController: _bInputController,
+                hintText: 'B 입력',
+                backgroundColor: const Color(0xff5DB1FF),
+                containerWidth: containerWidth, // containerWidth 전달
+              ),
+              // 공통 Divider
+              const SizedBox(height: 10),
+              commonDivider,
+              const SizedBox(height: 30),
+            ],
+          ),
+        ),
+      ),
+      bottomNavigationBar: BottomSection(
+        buttonWidget: KeywordSelectButton(
+          onPressed: () {}, // 버튼 클릭 시 호출되는 메서드
         ),
       ),
     );
@@ -127,7 +109,7 @@ class _CreatePostState extends State<CreatePost> {
 
     // TODO: 제출 로직 구현 (예: 서버에 데이터 전송, 로컬 저장 등)
 
-    // 예시로 데이터를 콘솔에 출력
+    // 현재는 데이터 출력으로 대체
     print('제목: $title');
     print('내용: $content');
     print('A 입력: $aInput');
