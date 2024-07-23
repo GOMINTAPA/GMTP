@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:gomintapa/src/controllers/auth_controller.dart';
 import 'package:gomintapa/src/screens/auth/register.dart';
 import 'package:gomintapa/src/widgets/themes/auth_theme.dart';
 import 'package:gomintapa/src/widgets/forms/label_textfield.dart';
+
+import '../../home.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -11,6 +15,20 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final authController = Get.put(AuthController());
+  final _idController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  _submit() async {
+    bool result = await authController.login(
+      _idController.text,
+      _passwordController.text,
+    );
+    if(result) {
+      Get.offAll(() => const Home());
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -72,12 +90,12 @@ class _LoginState extends State<Login> {
                 label: '아이디',
                 hintText: '아이디를 입력해주세요.',
                 keyboardType: TextInputType.phone,
-                //controller: _idController,
+                controller: _idController
               ),
               LabelTextField(
                 label: '비밀번호',
                 hintText: '비밀번호를 입력해주세요.',
-                //controller: _passwordController,
+                controller: _passwordController,
                 isObscure: true,
               ),
               const SizedBox(height: 108),
@@ -86,7 +104,7 @@ class _LoginState extends State<Login> {
                   backgroundColor: Color(0xFF3C3C3C),
                   foregroundColor: Colors.white,
                 ),
-                onPressed: () {},
+                onPressed: _submit,
                 child: const Text('로그인'),
               ),
               const SizedBox(height: 20),
@@ -96,7 +114,7 @@ class _LoginState extends State<Login> {
                   foregroundColor: Color(0xFF3C3C3C),
                 ),
                 onPressed: () {
-                  //Get.to(() => const Register());
+                  Get.to(() => const Register());
                 },
                 child: const Text('회원가입'),
               )
