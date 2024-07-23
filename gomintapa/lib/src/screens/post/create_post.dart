@@ -40,6 +40,7 @@ class _CreatePostState extends State<CreatePost> {
     return Scaffold(
       appBar: FormActionAppBar(
         onClose: _handleClose, // _handleClose 메서드 전달
+        onSubmit: _submitPost, // _submitPost 메서드 전달
       ),
       body: Container(
         color: Colors.white, // 화면 전체 배경색 흰색으로 설정
@@ -100,6 +101,13 @@ class _CreatePostState extends State<CreatePost> {
     final String aInput = _aInputController.text;
     final String bInput = _bInputController.text;
 
+    // 제목, 내용, A입력, B입력이 모두 비어있지 않은지 확인
+    if (title.isEmpty || content.isEmpty || aInput.isEmpty || bInput.isEmpty) {
+      // 모든 필드가 채워져야 함
+      _showErrorDialog('모든 필드를 입력해 주세요.');
+      return;
+    }
+
     // TODO: 제출 로직 구현 (예: 서버에 데이터 전송, 로컬 저장 등)
 
     // 현재는 데이터 출력으로 대체
@@ -107,6 +115,29 @@ class _CreatePostState extends State<CreatePost> {
     print('내용: $content');
     print('A 입력: $aInput');
     print('B 입력: $bInput');
+
+    // 제출이 완료된 후 이전 화면으로 돌아가기
+    Navigator.pop(context);
+  }
+
+  void _showErrorDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('제출 오류'),
+          content: Text(message),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context); // 다이얼로그 닫기
+              },
+              child: Text('확인'),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   // 사용자가 입력한 내용이 있는지 확인
