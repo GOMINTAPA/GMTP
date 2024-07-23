@@ -24,7 +24,7 @@ class _LoginState extends State<Login> {
       _idController.text,
       _passwordController.text,
     );
-    if(result) {
+    if (result) {
       Get.offAll(() => const Home());
     }
   }
@@ -87,15 +87,15 @@ class _LoginState extends State<Login> {
               ),
               const SizedBox(height: 24),
               LabelTextField(
-                label: '아이디',
-                hintText: '아이디를 입력해주세요.',
-                keyboardType: TextInputType.phone,
-                controller: _idController
-              ),
+                  label: '아이디',
+                  hintText: '아이디를 입력해주세요.',
+                  keyboardType: TextInputType.text,
+                  controller: _idController),
               LabelTextField(
                 label: '비밀번호',
                 hintText: '비밀번호를 입력해주세요.',
                 controller: _passwordController,
+                keyboardType: TextInputType.text,
                 isObscure: true,
               ),
               const SizedBox(height: 108),
