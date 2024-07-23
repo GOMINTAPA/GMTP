@@ -124,32 +124,6 @@ class MakListItem extends StatelessWidget {
                         ),
                       ),
                     ),
-                    /* // 중앙 텍스트 영역
-                    Container(
-                      alignment: Alignment.center,
-                      child: RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: '?%',
-                              style: TextStyle(
-                                color: Color(0xFFFF0000),
-                                fontSize: 20,
-                                fontWeight: FontWeight.w900,
-                              ),
-                            ),
-                            TextSpan(
-                              text: ' 차이',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w900,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ), */
                     //중앙 텍스트 영역
                     Container(
                       alignment: Alignment.center,
