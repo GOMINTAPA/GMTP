@@ -23,14 +23,20 @@ class PostDetail extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
+                    // 프로필 섹션
                     ProfileSection(),
-                    SizedBox(height: 20),
+                    SizedBox(height: 10),
                     Divider(color: Color(0xffD9D9D9)),
+                    // 고민 내용(제목, 내용) 섹션
+                    ContentSection(
+                      title: '안녕하세요ㅎㅎ',
+                      content:
+                          '아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 ',
+                    ),
+                    Divider(color: Color(0xffD9D9D9)),
+                    // 항목, 사진 섹션
                   ],
                 ),
-                // 프로필 섹션
-                // 고민 내용(제목, 내용) 섹션
-                // 항목, 사진 섹션
               ),
             ],
           ),
@@ -41,6 +47,8 @@ class PostDetail extends StatelessWidget {
 }
 
 class ProfileSection extends StatelessWidget {
+  const ProfileSection({super.key});
+
   @override
   Widget build(BuildContext context) {
     return const Row(
@@ -63,6 +71,45 @@ class ProfileSection extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class ContentSection extends StatelessWidget {
+  final String title;
+  final String content;
+
+  const ContentSection({
+    super.key,
+    required this.title,
+    required this.content,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 5),
+          Text(
+            title,
+            style: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 10),
+          Text(
+            content,
+            style: const TextStyle(
+              fontSize: 16,
+            ),
+          ),
+          const SizedBox(height: 10),
+        ],
+      ),
     );
   }
 }
