@@ -27,8 +27,8 @@ class _RegisterState extends State<Register> {
       _passwordController.text,
       _nameController.text,
     );
-    if(result) {
-      Get.off(()=>const Login());
+    if (result) {
+      Get.off(() => const Login());
     }
   }
 
@@ -92,25 +92,27 @@ class _RegisterState extends State<Register> {
               LabelTextField(
                 label: '아이디',
                 hintText: '4~12자리의 숫자, 영문만 가능합니다.',
-                keyboardType: TextInputType.phone,
+                keyboardType: TextInputType.text,
                 controller: _idController,
               ),
               LabelTextField(
                 label: '닉네임',
                 hintText: '닉네임을 입력해주세요.',
-                keyboardType: TextInputType.phone,
+                keyboardType: TextInputType.text,
                 controller: _nameController,
               ),
               LabelTextField(
                 label: '비밀번호',
                 hintText: '4~12자리의 숫자, 영문만 가능합니다.',
                 controller: _passwordController,
+                keyboardType: TextInputType.text,
                 isObscure: true,
               ),
               LabelTextField(
                 label: '비밀번호 확인',
                 hintText: '비밀번호를 한번 더 입력해주세요.',
                 controller: _passwordConfirmController,
+                keyboardType: TextInputType.text,
                 isObscure: true,
               ),
               const SizedBox(height: 108),
