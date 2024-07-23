@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:gomintapa/src/screens/auth/login.dart';
 import 'package:gomintapa/src/widgets/themes/auth_theme.dart';
 import 'package:gomintapa/src/widgets/forms/label_textfield.dart';
 
@@ -22,12 +23,12 @@ class _RegisterState extends State<Register> {
 
   _submit() async {
     bool result = await authController.register(
+      _idController.text,
       _passwordController.text,
       _nameController.text,
-      null,
     );
     if(result) {
-      Get.off(()=>const Home());
+      Get.off(()=>const Login());
     }
   }
 

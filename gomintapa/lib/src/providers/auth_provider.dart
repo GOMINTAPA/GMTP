@@ -11,12 +11,12 @@ class AuthProvider extends Provider {
     final response = await put('/auth/phone', {'code': code});
     return response.body;
   }
-  Future<Map> register(String id, String password, String name,[int? profile]) async {
+  Future<Map> register(String id, String password, String name) async {
     final response = await post('/auth/register', {
     'identifier': id,
     'password': password,
-    'name': name,
-    'profile': profile,
+    'nick_name': name,
+    // 'profile': profile,
     });
     return response.body;
   }

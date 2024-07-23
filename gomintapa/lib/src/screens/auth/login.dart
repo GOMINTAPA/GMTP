@@ -19,22 +19,6 @@ class _LoginState extends State<Login> {
   final _idController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  @override
-  void initState() {
-    super.initState();
-    _idController.addListener(() {
-      authController.updateButtonState(_idController);
-    });
-  }
-
-  @override
-  void dispose() {
-    _idController.removeListener(() {
-      authController.updateButtonState(_idController);
-    });
-    super.dispose();
-  }
-
   _submit() async {
     bool result = await authController.login(
       _idController.text,
@@ -120,9 +104,7 @@ class _LoginState extends State<Login> {
                   backgroundColor: Color(0xFF3C3C3C),
                   foregroundColor: Colors.white,
                 ),
-                onPressed: () {
-                  Get.to(() => const Login());
-                },
+                onPressed: _submit,
                 child: const Text('로그인'),
               ),
               const SizedBox(height: 20),

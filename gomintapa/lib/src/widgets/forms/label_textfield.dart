@@ -24,7 +24,7 @@ class LabelTextField extends StatelessWidget {
         Text(label, style: Theme.of(context).textTheme.labelLarge),
         const SizedBox(height: 8),
         TextField(
-          //controller: controller,
+          controller: controller,
           obscureText: isObscure,
           keyboardType: TextInputType.phone,
           style: const TextStyle(fontSize: 12),
