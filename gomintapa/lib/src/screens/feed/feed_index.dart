@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gomintapa/src/controllers/feed_controller.dart';
-import 'package:gomintapa/src/screens/my/mypage.dart';
 import 'package:gomintapa/src/widgets/listitems/concern_list_item.dart';
 
 import '../../widgets/buttons/create_post_button.dart';
@@ -34,6 +33,7 @@ class _FeedIndexState extends State<FeedIndex> {
     _currentPage = 1;
     await feedController.feedIndex();
   }
+
   // 필터 모달
   void _showFilterModal(BuildContext context) {
     showModalBottomSheet(
@@ -64,16 +64,6 @@ class _FeedIndexState extends State<FeedIndex> {
     });
   }
 
-  // 페이지 이동 메서드 : 이동만 확인하려고 임시로 MyPage로 설정해둠
-  void _navigateToMyPage(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const MyPage(),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -96,29 +86,19 @@ class _FeedIndexState extends State<FeedIndex> {
           const SizedBox(height: 30),
 
           Expanded(
-            // child: ListView(
-            //   children: [
-            //     ConcernListItem(
-            //         onTap: () => _navigateToMyPage(context)), // 임시 설정
-            //     ConcernListItem(onTap: () => _navigateToMyPage(context)),
-            //     ConcernListItem(onTap: () => _navigateToMyPage(context)),
-            //     ConcernListItem(onTap: () => _navigateToMyPage(context)),
-            //     ConcernListItem(onTap: () => _navigateToMyPage(context)),
-            //   ],
-            // ),
             child: Obx(
               () => NotificationListener<ScrollNotification>(
                 onNotification: _onNotification,
-                  child: RefreshIndicator(
-                    onRefresh: _onRefresh,
-                    child: ListView.builder(
+                child: RefreshIndicator(
+                  onRefresh: _onRefresh,
+                  child: ListView.builder(
                     itemCount: feedController.feedList.length,
                     itemBuilder: (context, index) {
                       final item = feedController.feedList[index];
                       return ConcernListItem(item);
                     },
-                    ),
-                  ), 
+                  ),
+                ),
               ),
             ),
           ),
