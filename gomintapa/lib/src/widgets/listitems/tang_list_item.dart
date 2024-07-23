@@ -14,6 +14,16 @@ class TangListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // 결과에 따른 고민 카드 배경 색상 변경
+    Color containerColor;
+    if (isOption1Winner) {
+      containerColor = Color.fromARGB(255, 255, 230, 224); // 1옵션이 이겼을 때 색상
+    } else if (isOption2Winner) {
+      containerColor = Color.fromARGB(255, 234, 240, 255); // 2옵션이 이겼을 때 색상
+    } else {
+      containerColor = Color(0xFFF4F4F4); // 기본 색상
+    }
+
     return Column(
       children: [
         InkWell(
@@ -22,7 +32,7 @@ class TangListItem extends StatelessWidget {
             width: 300,
             height: 150,
             decoration: BoxDecoration(
-              color: Color(0xFFF4F4F4),
+              color: containerColor, // 결과에 따른 고민 카드 배경 색상 변경
               borderRadius: BorderRadius.circular(15),
               boxShadow: [
                 BoxShadow(
