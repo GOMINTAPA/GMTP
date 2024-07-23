@@ -1,39 +1,5 @@
 import 'package:flutter/material.dart';
 
-// 첫 번째 선택 항목
-class UpsideDownTrapezoidClipper extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    final Path path = Path();
-    path.moveTo(0, size.height); // 왼쪽 하단 모서리
-    path.lineTo(size.width, size.height); // 오른쪽 하단 모서리
-    path.lineTo(size.width - 65, 0); // 오른쪽 상단 모서리
-    path.lineTo(0, 0); // 왼쪽 상단 모서리
-    path.close(); // 경로 닫기
-    return path;
-  }
-
-  @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
-}
-
-// 두 번째 선택 항목
-class BottomWideTrapezoidClipper extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    final Path path = Path();
-    path.moveTo(0, 0); // 왼쪽 상단 모서리
-    path.lineTo(size.width, 0); // 오른쪽 상단 모서리
-    path.lineTo(size.width, size.height); // 오른쪽 하단 모서리
-    path.lineTo(size.width - 80, size.height); // 왼쪽 하단 모서리
-    path.close(); // 경로 닫기
-    return path;
-  }
-
-  @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
-}
-
 class ConcernListItem extends StatelessWidget {
   final VoidCallback onTap; // onTap 콜백 추가
   const ConcernListItem({super.key, required this.onTap});
@@ -90,15 +56,22 @@ class ConcernListItem extends StatelessWidget {
                       MainAxisAlignment.center, // 항목들 사이의 간격을 최소화
                   children: [
                     // 첫 번째 선택 항목
-                    ClipPath(
-                      clipper: UpsideDownTrapezoidClipper(),
-                      child: Container(
-                        width: 140,
-                        height: 88,
+                    Container(
+                      width: 135,
+                      height: 88,
+                      decoration: BoxDecoration(
                         color: Color.fromARGB(255, 255, 155, 155), // 배경색
+                        borderRadius:
+                            BorderRadius.circular(5), // borderRadius 추가
+                      ),
+                      alignment: Alignment.center,
+                      child: Container(
+                        width: 120,
+                        height: 60,
+                        padding: const EdgeInsets.all(10.0), // 텍스트 주변 여백
                         alignment: Alignment.center,
                         child: Text(
-                          '선택 1',
+                          '선택 1 내용',
                           maxLines: 2, // 최대 두 줄
                           overflow: TextOverflow
                               .ellipsis, // 텍스트 길이가 영역을 초과할 경우 말 줄임표 처리
@@ -113,16 +86,24 @@ class ConcernListItem extends StatelessWidget {
                         ),
                       ),
                     ),
+                    const SizedBox(width: 10),
                     // 두 번째 선택 항목
-                    ClipPath(
-                      clipper: BottomWideTrapezoidClipper(),
-                      child: Container(
-                        width: 140,
-                        height: 88,
+                    Container(
+                      width: 135,
+                      height: 88,
+                      decoration: BoxDecoration(
                         color: Color.fromARGB(255, 93, 177, 255), // 배경색
+                        borderRadius:
+                            BorderRadius.circular(5), // borderRadius 추가
+                      ),
+                      alignment: Alignment.center,
+                      child: Container(
+                        width: 120,
+                        height: 60,
+                        padding: const EdgeInsets.all(10.0), // 텍스트 주변 여백
                         alignment: Alignment.center,
                         child: Text(
-                          '선택 2',
+                          '선택 2 내용',
                           maxLines: 2, // 최대 두 줄
                           overflow: TextOverflow
                               .ellipsis, // 텍스트 길이가 영역을 초과할 경우 말 줄임표 처리
