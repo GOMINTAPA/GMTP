@@ -5,6 +5,7 @@ import 'package:gomintapa/src/widgets/listitems/concern_list_item.dart';
 import '../../widgets/buttons/create_post_button.dart';
 import '../../widgets/sections/filter_bar_section.dart';
 import '../../widgets/sections/filter_sheet.dart';
+import '../post/create_post.dart';
 
 class FeedIndex extends StatefulWidget {
   const FeedIndex({super.key});
@@ -96,7 +97,8 @@ class _FeedIndexState extends State<FeedIndex> {
             alignment: Alignment.bottomCenter,
             child: CreatePostButton(
               onPressed: () {
-                // 고민 작성 버튼 클릭 시 동작
+                // 고민 작성 버튼 클릭 시 고민 작성 페이지로 이동
+                Navigator.pushNamed(context, '/create_post');
               },
             ),
           ),
