@@ -15,4 +15,10 @@ class UserModel {
     profileImage =
         AssetImage(profileImagePath ?? 'assets/images/default_profile.png');
   }
+
+  UserModel.parse(Map m) {
+    id = m['id'];
+    name = m['name'];
+    profile = m['profile_id'];
+  }
 }
