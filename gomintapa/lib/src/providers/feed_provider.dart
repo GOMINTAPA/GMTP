@@ -13,12 +13,13 @@ class FeedProvider extends Provider {
   }
 
   Future<Map> store(
-      String title, String content, String firstOption, String secondOption) async {
+      String title, String content, String firstOption, String secondOption, String keyword) async {
     final Map<String, dynamic> body = {
       'title': title,
       'content': content,
       'first_option': firstOption,
-      'second_option': secondOption
+      'second_option': secondOption,
+      'keyword': keyword,
     };
 
     // if (image != null) {
@@ -32,13 +33,15 @@ class FeedProvider extends Provider {
   Future<Map> update(
     int id,
     String title,
-    String price,
+    String firstOption,
+    String secondOption,
     String content,
     int? image,
   ) async {
     final Map<String, dynamic> body = {
       'title': title,
-      'price': price,
+      'first_option': firstOption,
+      'second_option': secondOption,
       'content': content,
     };
     if (image != null) {

@@ -19,8 +19,8 @@ class FeedController extends GetxController {
   }
 
   Future<bool> feedCreate(
-      String title, String price, String content, int? image) async {
-    Map body = await feedProvider.store(title, price, content, image);
+      String title, String content, String firstOption, String secondOption, String keyword) async {
+    Map body = await feedProvider.store(title, content, firstOption, secondOption, keyword);
 
     if (body['result'] == 'ok') {
       await feedIndex();
@@ -51,12 +51,10 @@ class FeedController extends GetxController {
     return false;
   }
 
-  feedUpdate(int id, String title, String priceString, String content,
-      int? image) async {
+  feedUpdate(int id, String title, String content, String firstOption, String secondOption, int? image) async {
     // price와 image를 적절한 타입으로 변환
-    int price = int.tryParse(priceString) ?? 0; // price를 int로 변환,실패 시 0
     Map body =
-        await feedProvider.update(id, title, priceString, content, image);
+        await feedProvider.update(id, title, content, firstOption, secondOption, image);
     if (body['result'] == 'ok') {
       // ID를 기반으로 리스트에서 해당 요소를 찾아 업데이트
       int index = feedList.indexWhere((feed) => feed.id == id);
@@ -64,7 +62,7 @@ class FeedController extends GetxController {
         // 찾은 인덱스 위치의 요소를 업데이트
         FeedModel updatedFeed = feedList[index].copyWith(
           title: title,
-          price: price,
+          firstOption: firstOption,
           content: content,
           imageId: image,
         );

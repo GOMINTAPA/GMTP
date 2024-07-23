@@ -5,7 +5,8 @@ class FeedModel {
   late int id;
   late String title;
   late String content;
-  late int price;
+  late String firstOption;
+  late String secondOption;
   int? imageId;
   DateTime? createdAt;
   bool isMe = false;
@@ -18,7 +19,8 @@ class FeedModel {
     required this.id,
     required this.title,
     required this.content,
-    required this.price,
+    required this.firstOption,
+    required this.secondOption,
     this.imageId,
     required this.createdAt, required this.isMe,
     this.writer,
@@ -28,7 +30,8 @@ class FeedModel {
     id =m['id'];
     title =m['title'];
     content =m['content'];
-    price =m['price'];
+    firstOption = m['first_option'];
+    secondOption = m['second_option'];
     imageId =m['image_id'];
     createdAt = DateTime.parse(m['created_at']);
     isMe = m['is_me'] ?? false;
@@ -39,7 +42,8 @@ class FeedModel {
     int? id,
     String? title,
     String? content,
-    int? price,
+    String? firstOption,
+    String? secondOption,
     int? imageId,
     DateTime? createdAt, bool? isMe, UserModel? writer,
   }) {
@@ -47,7 +51,8 @@ class FeedModel {
       id: id ?? this.id,
       title: title ?? this.title,
       content: content ?? this.content,
-      price: price ?? this.price,
+      firstOption: firstOption ?? this.firstOption,
+      secondOption: secondOption ?? this.secondOption,
       imageId: imageId ?? this.imageId,
       createdAt: createdAt ?? this.createdAt,
       isMe: isMe ?? this.isMe,
