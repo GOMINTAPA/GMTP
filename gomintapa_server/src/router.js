@@ -20,8 +20,6 @@ router.use(logRequestTime);
 router.post('/file', upload.single('file'), fileController.upload);
 router.get('/file/:id', fileController.download);
 
-router.get('/auth/phone', apiUserController.phone);
-router.put('/auth/phone', apiUserController.phoneVerify);
 router.post('/auth/register', apiUserController.register);
 router.post('/auth/login', apiUserController.login);
 
