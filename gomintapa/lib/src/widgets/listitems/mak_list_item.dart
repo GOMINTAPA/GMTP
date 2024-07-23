@@ -87,6 +87,32 @@ class MakListItem extends StatelessWidget {
                         ),
                       ),
                     ),
+                    // 중앙 텍스트 영역
+                    Container(
+                      alignment: Alignment.center,
+                      child: RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: '?%',
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            TextSpan(
+                              text: ' 차이',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                     const SizedBox(width: 10),
                     // 두 번째 선택 항목
                     Container(
