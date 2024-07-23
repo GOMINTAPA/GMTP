@@ -4,6 +4,9 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 import 'package:gomintapa/src/screens/auth/login.dart';
 import 'package:gomintapa/src/screens/auth/register.dart';
+import 'package:gomintapa/src/screens/feed/feed_index.dart';
+import 'package:gomintapa/src/screens/feed/mak_feed_index.dart';
+import 'package:gomintapa/src/screens/feed/tang_feed_index.dart';
 import 'package:gomintapa/src/screens/my/mypage.dart';
 import 'home.dart';
 import 'screens/post/create_post.dart';
@@ -17,7 +20,8 @@ class MyWidget extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false, // 디버그 배너 삭제
       routes: {
-        '/': (context) => Home(),
+
+        '/': (context) => TangFeedIndex(),
         '/intro': (context) => Login(),
         '/register': (context) => Register(),
       },

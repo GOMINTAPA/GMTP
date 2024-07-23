@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gomintapa/src/models/user_model.dart';
+import 'package:gomintapa/src/widgets/buttons/logout.button.dart';
 import 'package:gomintapa/src/widgets/navigation/back_app_bar.dart';
 import 'package:gomintapa/src/widgets/sections/my/bottom_section.dart';
 import 'package:gomintapa/src/widgets/sections/my/concern_feed_section.dart';
@@ -24,11 +25,15 @@ class _MyPageState extends State<MyPage> {
           UserSection(UserModel(id: 1, name: '노는게젤조아')),
           const SizedBox(height: 25),
           // 고민 정보 영역
-          Expanded(
+          const Expanded(
             child: ConcernFeedSection(),
           ),
           // 하단 고정 영역
-          BottomSection(onLogoutPressed: () {})
+          BottomSection(
+            buttonWidget: LogoutButton(
+              onPressed: () {},
+            ),
+          )
         ],
       ),
     );
