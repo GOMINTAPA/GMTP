@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:gomintapa/src/screens/auth/login.dart';
 import 'package:gomintapa/src/screens/auth/register.dart';
 import 'package:gomintapa/src/screens/feed/mak_feed_index.dart';
@@ -14,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false, // 디버그 배너 삭제
       routes: {
-        '/': (context) => MakFeedIndex(),
+        '/': (context) => Home(),
         // '/': (context) => Login(),
         // '/register': (context) => Register(),
       },
