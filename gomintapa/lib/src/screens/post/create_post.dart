@@ -55,7 +55,7 @@ class _CreatePostState extends State<CreatePost> {
     return Scaffold(
       appBar: FormActionAppBar(
         onClose: _handleClose, // _handleClose 메서드 전달
-        onSubmit: _submit, // _submitPost 메서드 전달
+        onSubmit: _submitPost, // _submitPost 메서드 전달
       ),
       body: Container(
         color: Colors.white, // 화면 전체 배경색 흰색으로 설정
@@ -110,21 +110,24 @@ class _CreatePostState extends State<CreatePost> {
     );
   }
 
-  // void _submitPost() {
-  //   final String title = _titleController.text;
-  //   final String content = _contentController.text;
-  //   final String aInput = _aInputController.text;
-  //   final String bInput = _bInputController.text;
+  void _submitPost() async {
+    final result = await feedController.feedCreate(
+      _titleController.text,
+      _contentController.text,
+      _aInputController.text,
+      _bInputController.text,
+      _keywordController.text
+    );
 
-  //   // 제출 로직 처리
-  //   handleSubmitPost(
-  //     context: context,
-  //     title: title,
-  //     content: content,
-  //     aInput: aInput,
-  //     bInput: bInput,
-  //   );
-  // }
+    handleSubmitPost(
+      context: context, 
+      title: _titleController.text, 
+      content: _contentController.text, 
+      aInput: _aInputController.text, 
+      bInput: _bInputController.text
+    );
+    
+  }
 
   void _handleClose() {
     // 사용자가 입력한 내용이 있는지 확인
