@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../sections/app_bar_section.dart';
 
 class FormActionAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final VoidCallback onClose;
+  final VoidCallback onClose; // onClose 콜백 정의
 
   const FormActionAppBar({
     Key? key,
@@ -18,9 +18,7 @@ class FormActionAppBar extends StatelessWidget implements PreferredSizeWidget {
     return Scaffold(
       appBar: AppBarSection(
         leading: IconButton(
-          onPressed: () {
-            onClose(); // 닫기 버튼 클릭 시 onClose 콜백 호출
-          },
+          onPressed: onClose,
           icon: Icon(Icons.close_rounded, size: 30),
         ),
         actions: [
@@ -28,7 +26,7 @@ class FormActionAppBar extends StatelessWidget implements PreferredSizeWidget {
             onPressed: () {},
             icon: Icon(Icons.done_rounded, size: 30),
           ),
-          SizedBox(width: 10), // 아이콘 버튼 사이 간격
+          SizedBox(width: 10),
         ],
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../utils/dialog_util.dart';
 import '../../widgets/buttons/keyword_select_button.dart';
 import '../../widgets/navigation/form_action_app_bar.dart';
 import '../../widgets/sections/my/bottom_section.dart';
@@ -20,16 +21,6 @@ class _CreatePostState extends State<CreatePost> {
   final TextEditingController _aInputController = TextEditingController();
   final TextEditingController _bInputController = TextEditingController();
 
-  // 공통 Divider를 변수로 정의
-  final Widget commonDivider = const Padding(
-    padding: EdgeInsets.symmetric(horizontal: 40),
-    child: Divider(
-      thickness: 1,
-      color: Color(0xffA7A7A7),
-      height: 0, // Divider 위아래의 공간 제거
-    ),
-  );
-
   @override
   void dispose() {
     // 컨트롤러 해제
@@ -40,14 +31,6 @@ class _CreatePostState extends State<CreatePost> {
     super.dispose();
   }
 
-  // 사용자가 입력한 내용이 있는지 확인
-  bool _hasUnsavedChanges() {
-    return _titleController.text.isNotEmpty ||
-        _contentController.text.isNotEmpty ||
-        _aInputController.text.isNotEmpty ||
-        _bInputController.text.isNotEmpty;
-  }
-
   @override
   Widget build(BuildContext context) {
     final double screenWidth =
@@ -56,13 +39,7 @@ class _CreatePostState extends State<CreatePost> {
 
     return Scaffold(
       appBar: FormActionAppBar(
-        onClose: () {
-          if (_hasUnsavedChanges()) {
-            _showUnsavedChangesDialog(context);
-          } else {
-            Navigator.pop(context);
-          }
-        },
+        onClose: _handleClose, // _handleClose 메서드 전달
       ),
       body: Container(
         color: Colors.white, // 화면 전체 배경색 흰색으로 설정
@@ -132,31 +109,37 @@ class _CreatePostState extends State<CreatePost> {
     print('B 입력: $bInput');
   }
 
-  // 입력된 내용이 있는 경우, 사용자가 나가려 할 때 경고 메시지 표시
-  void _showUnsavedChangesDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('현재 작성 중인 글이 있습니다.'),
-          content: Text('정말로 나가시겠습니까?'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context); // 다이얼로그 닫기
-                Navigator.pop(context); // 이전 화면으로 돌아가기
-              },
-              child: Text('네'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context); // 다이얼로그 닫기
-              },
-              child: Text('아니요'),
-            ),
-          ],
-        );
-      },
-    );
+  // 사용자가 입력한 내용이 있는지 확인
+  bool _hasUnsavedChanges() {
+    return _titleController.text.isNotEmpty ||
+        _contentController.text.isNotEmpty ||
+        _aInputController.text.isNotEmpty ||
+        _bInputController.text.isNotEmpty;
   }
+
+  void _handleClose() {
+    if (_hasUnsavedChanges()) {
+      // 입력된 내용이 있을 경우, 다이얼로그를 띄워서 사용자에게 확인을 요청
+      showUnsavedChangesDialog(
+        context,
+        () {
+          // 사용자가 '네'를 클릭하면 이전 화면으로 돌아가기
+          Navigator.pop(context);
+        },
+      );
+    } else {
+      // 입력된 내용이 없을 경우, 바로 이전 화면으로 돌아가기
+      Navigator.pop(context);
+    }
+  }
+
+  // 공통 Divider를 변수로 정의
+  final Widget commonDivider = const Padding(
+    padding: EdgeInsets.symmetric(horizontal: 40),
+    child: Divider(
+      thickness: 1,
+      color: Color(0xffA7A7A7),
+      height: 0, // Divider 위아래의 공간 제거
+    ),
+  );
 }
