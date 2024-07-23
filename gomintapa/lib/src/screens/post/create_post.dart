@@ -19,8 +19,19 @@ class _CreatePostState extends State<CreatePost> {
   final TextEditingController _aInputController = TextEditingController();
   final TextEditingController _bInputController = TextEditingController();
 
+  // 공통 Divider를 변수로 정의
+  final Widget commonDivider = const Padding(
+    padding: EdgeInsets.symmetric(horizontal: 40),
+    child: Divider(
+      thickness: 1,
+      color: Color(0xffA7A7A7),
+      height: 0, // Divider 위아래의 공간 제거
+    ),
+  );
+
   @override
   void dispose() {
+    // 컨트롤러 해제
     _titleController.dispose();
     _contentController.dispose();
     _aInputController.dispose();
@@ -41,64 +52,50 @@ class _CreatePostState extends State<CreatePost> {
         child: ListView(
           padding: const EdgeInsets.all(0), // 전체 padding 제거
           children: [
-            // 제목, 내용 입력
+            // 제목, 내용 입력 섹션
             InputSection(
               titleController: _titleController,
               contentController: _contentController,
             ),
-            // 구분선
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 40),
-              child: Divider(
-                thickness: 1,
-                color: Color(0xffA7A7A7),
-                height: 0, // Divider 위아래의 공간 제거
-              ),
-            ),
-            // A 입력 및 사진첨부
+            // 공통 Divider
+            commonDivider,
+            // A 입력 및 사진첨부 섹션
             ChoicesSection(
               inputController: _aInputController,
               hintText: 'A 입력',
-              backgroundColor: Color(0xffFF9B9B),
+              backgroundColor: const Color(0xffFF9B9B),
               containerWidth: containerWidth, // containerWidth 전달
             ),
             // VS Text
-            Container(
-              child: const Text(
+            const Center(
+              child: Text(
                 'vs',
                 style: TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
                   color: Color(0xff9B9B9B),
                 ),
-                textAlign: TextAlign.center,
               ),
             ),
-            // B 입력 및 사진 첨부
+            // B 입력 및 사진 첨부 섹션
             ChoicesSection(
               inputController: _bInputController,
               hintText: 'B 입력',
-              backgroundColor: Color(0xff5DB1FF),
+              backgroundColor: const Color(0xff5DB1FF),
               containerWidth: containerWidth, // containerWidth 전달
             ),
-            // 구분선
+            // 공통 Divider
             const SizedBox(height: 10),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 40),
-              child: Divider(
-                thickness: 1,
-                color: Color(0xffA7A7A7),
-                height: 0, // Divider 위아래의 공간 제거
-              ),
-            ),
+            commonDivider,
             const SizedBox(height: 30),
+            // 키워드 선택 버튼
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40), // 좌우 여백 추가
               child: KeywordSelectButton(
                 onPressed: () {},
-              ), // 키워드 선택 버튼
+              ),
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
           ],
         ),
       ),
@@ -113,7 +110,7 @@ class _CreatePostState extends State<CreatePost> {
 
     // TODO: 제출 로직 구현 (예: 서버에 데이터 전송, 로컬 저장 등)
 
-    // 예시로 데이터를 콘솔에 출력
+    // 현재는 데이터 출력으로 대체
     print('제목: $title');
     print('내용: $content');
     print('A 입력: $aInput');
