@@ -27,8 +27,8 @@ class _RegisterState extends State<Register> {
       _passwordController.text,
       _nameController.text,
     );
-    if(result) {
-      Get.off(()=>const Login());
+    if (result) {
+      Get.off(() => const Login());
     }
   }
 

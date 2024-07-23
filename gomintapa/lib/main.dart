@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:gomintapa/src/controllers/auth_controller.dart';
 
 import 'my_database.dart';
 import 'mysql_db.dart';
@@ -9,6 +11,8 @@ void main() {
   String token = Global.accessToken;
 
   bool isLogin = token.isNotEmpty;
+
+  Get.put(AuthController()); // AuthController 등록
 
   runApp(MyWidget(isLogin));
 }
@@ -36,47 +40,54 @@ class _HomeScreenState extends State<HomeScreen> {
   var _bConnection = false;
   var _name = 'Database';
 
-  @override 
+  @override
   void initState() {
     super.initState();
-    MysqlDb.initializeDB().then((value)=> {
-      _database = value,
-      _name = _database.getName(),
-      _bConnection = true,
-      print('Connection Success!!'),
-      setState(() {})
-    });
+    MysqlDb.initializeDB().then((value) => {
+          _database = value,
+          _name = _database.getName(),
+          _bConnection = true,
+          print('Connection Success!!'),
+          setState(() {})
+        });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('${_name} Example'),
       ),
-      body: Column(children: [
-        _viewTextField(),
-        _viewCommandButton(),
-        _dataListView(),
-      ],),
+      body: Column(
+        children: [
+          _viewTextField(),
+          _viewCommandButton(),
+          _dataListView(),
+        ],
+      ),
     );
   }
 
   List<Map<String, dynamic>> users = [];
 
   Widget _dataListView() {
-    if (_bConnection==false) return CircularProgressIndicator();
+    if (_bConnection == false) return CircularProgressIndicator();
 
-    if (users.length >0) {
+    if (users.length > 0) {
       return SingleChildScrollView(
-        child: DataTable(columns: [DataColumn(label: Text('Name')), DataColumn(label: Text('AGE'))],
-        rows: users.map((user) {
-          return DataRow(
-            cells: [
-              DataCell(Text(user['name'])), 
-              DataCell(Text(user['age'].toString())),
+        child: DataTable(
+          columns: [
+            DataColumn(label: Text('Name')),
+            DataColumn(label: Text('AGE'))
+          ],
+          rows: users.map((user) {
+            return DataRow(
+              cells: [
+                DataCell(Text(user['name'])),
+                DataCell(Text(user['age'].toString())),
               ],
-              );
-        }).toList(),
+            );
+          }).toList(),
         ),
       );
     } else {
@@ -87,19 +98,54 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _viewCommandButton() {
     return Column(
       children: [
-        Row(mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          ElevatedButton(onPressed: () async {users = await _database.selectAll(); setState((){});}, child: Text('전체 검색')),
-          ElevatedButton(onPressed: () async {await _database.deleteAll(); setState((){});}, child: Text('전체 삭제')),
-        ],
-      ),
-      Row(mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-          ElevatedButton(onPressed: () async {users = await _database.selectUser(nameValue.text); setState((){});}, child: Text('검색')),
-          ElevatedButton(onPressed: () async {await _database.insertUser(nameValue.text, int.parse(ageValue.text)); setState((){});}, child: Text('삽입')),
-          ElevatedButton(onPressed: () async {await _database.updateUser(nameValue.text, int.parse(ageValue.text)); setState((){});}, child: Text('수정')),
-          ElevatedButton(onPressed: () async {await _database.deleteUser(nameValue.text); setState((){});}, child: Text('삭제')),
-      ],)
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+                onPressed: () async {
+                  users = await _database.selectAll();
+                  setState(() {});
+                },
+                child: Text('전체 검색')),
+            ElevatedButton(
+                onPressed: () async {
+                  await _database.deleteAll();
+                  setState(() {});
+                },
+                child: Text('전체 삭제')),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+                onPressed: () async {
+                  users = await _database.selectUser(nameValue.text);
+                  setState(() {});
+                },
+                child: Text('검색')),
+            ElevatedButton(
+                onPressed: () async {
+                  await _database.insertUser(
+                      nameValue.text, int.parse(ageValue.text));
+                  setState(() {});
+                },
+                child: Text('삽입')),
+            ElevatedButton(
+                onPressed: () async {
+                  await _database.updateUser(
+                      nameValue.text, int.parse(ageValue.text));
+                  setState(() {});
+                },
+                child: Text('수정')),
+            ElevatedButton(
+                onPressed: () async {
+                  await _database.deleteUser(nameValue.text);
+                  setState(() {});
+                },
+                child: Text('삭제')),
+          ],
+        )
       ],
     );
   }
@@ -108,11 +154,29 @@ class _HomeScreenState extends State<HomeScreen> {
   TextEditingController ageValue = TextEditingController(text: '0');
 
   Widget _viewTextField() {
-    return Row(mainAxisAlignment: MainAxisAlignment.center,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text('이름:'), SizedBox(width: 200, height: 35, child: TextField(controller: nameValue, textAlign: TextAlign.center,),),
-        Text('나이:'), SizedBox(width: 100, height: 35, child: TextField(controller: ageValue, textAlign: TextAlign.center,keyboardType: TextInputType.number,),)
+        Text('이름:'),
+        SizedBox(
+          width: 200,
+          height: 35,
+          child: TextField(
+            controller: nameValue,
+            textAlign: TextAlign.center,
+          ),
+        ),
+        Text('나이:'),
+        SizedBox(
+          width: 100,
+          height: 35,
+          child: TextField(
+            controller: ageValue,
+            textAlign: TextAlign.center,
+            keyboardType: TextInputType.number,
+          ),
+        )
       ],
-
     );
-  }}
+  }
+}
