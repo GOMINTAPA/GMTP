@@ -92,7 +92,7 @@ class MakListItem extends StatelessWidget {
 
                     // 두 번째 선택 항목
                     Positioned(
-                      left: MediaQuery.of(context).size.width - 215,
+                      left: 145,
                       child: Container(
                         width: 135,
                         height: 88,
