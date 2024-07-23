@@ -30,27 +30,42 @@ class TangListItem extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // 제목 영역
-                Container(
-                  width: 285,
-                  height: 20,
-                  alignment: Alignment.center,
-                  child: Text(
-                    '고민 제목',
-                    maxLines: 1, // 텍스트가 한 줄로 제한됨
-                    overflow:
-                        TextOverflow.ellipsis, // 텍스트 길이가 영역을 초과할 경우 말 줄임표 처리
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontFamily: 'Roboto',
-                      fontWeight: FontWeight.w800,
+                // 이미지 아이콘과 제목 영역을 포함하는 Row
+                Row(
+                  children: [
+                    // 이미지 아이콘
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(right: 8.0), // 아이콘과 제목 사이의 간격
+                      child: Image.asset(
+                        'assets/images/tangtang_selected.png',
+                        width: 45,
+                        height: 45,
+                      ),
                     ),
-                    softWrap: false, // 줄바꿈을 하지 않음
-                  ),
+                    // 제목 영역
+                    Container(
+                      width: 227,
+                      height: 20,
+                      alignment: Alignment.center,
+                      child: Text(
+                        '윤지니는 바보 멍청이다',
+                        maxLines: 1, // 텍스트가 한 줄로 제한됨
+                        overflow: TextOverflow
+                            .ellipsis, // 텍스트 길이가 영역을 초과할 경우 말 줄임표 처리
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                          fontFamily: 'Roboto',
+                          fontWeight: FontWeight.w800,
+                        ),
+                        softWrap: false, // 줄바꿈을 하지 않음
+                      ),
+                    ),
+                  ],
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 5),
                 // 선택 항목 영역
                 Row(
                   mainAxisAlignment:
@@ -59,7 +74,7 @@ class TangListItem extends StatelessWidget {
                     // 첫 번째 선택 항목
                     Container(
                       width: 135,
-                      height: 88,
+                      height: 78,
                       decoration: BoxDecoration(
                         color: Color.fromARGB(255, 255, 155, 155), // 배경색
                         borderRadius:
@@ -69,10 +84,10 @@ class TangListItem extends StatelessWidget {
                       child: Container(
                         width: 120,
                         height: 60,
-                        padding: const EdgeInsets.all(10.0), // 텍스트 주변 여백
+                        padding: const EdgeInsets.all(5), // 텍스트 주변 여백
                         alignment: Alignment.center,
                         child: Text(
-                          '선택 1 내용',
+                          '윤진이바보멍청이똥개해삼말미잘메롱',
                           maxLines: 2, // 최대 두 줄
                           overflow: TextOverflow
                               .ellipsis, // 텍스트 길이가 영역을 초과할 경우 말 줄임표 처리
@@ -91,7 +106,7 @@ class TangListItem extends StatelessWidget {
                     // 두 번째 선택 항목
                     Container(
                       width: 135,
-                      height: 88,
+                      height: 78,
                       decoration: BoxDecoration(
                         color: Color.fromARGB(255, 93, 177, 255), // 배경색
                         borderRadius:
@@ -101,7 +116,7 @@ class TangListItem extends StatelessWidget {
                       child: Container(
                         width: 120,
                         height: 60,
-                        padding: const EdgeInsets.all(10.0), // 텍스트 주변 여백
+                        padding: const EdgeInsets.all(5), // 텍스트 주변 여백
                         alignment: Alignment.center,
                         child: Text(
                           '선택 2 내용',
