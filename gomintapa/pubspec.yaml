@@ -82,6 +82,19 @@ flutter:
     # "family" key with the font family name, and a "fonts" key with a
     # list giving the asset and other descriptors for the font. For
     # example:
+
+    fonts:
+        - family: NanumSquare_ac
+          fonts:
+            - assets: assets/fonts/NanumSquare_acB.ttf
+              weight: 700
+            - asset: assets/fonts/NanumSquare_acEB.ttf
+              weight: 800
+            - asset: assets/fonts/NanumSquare_acL.ttf
+              weight: 200
+            - asset: assets/fonts/NanumSquare_acR.ttf
+              weight: 400
+
     # fonts:
     #   - family: Schyler
     #     fonts:
