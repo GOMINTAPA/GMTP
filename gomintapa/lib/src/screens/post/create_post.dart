@@ -12,7 +12,16 @@ class CreatePost extends StatefulWidget {
 class _CreatePostState extends State<CreatePost> {
   // 제목과 내용을 저장할 컨트롤러
   final TextEditingController _titleController = TextEditingController();
-  final TextEditingController _contentControlle = TextEditingController();
+  final TextEditingController _contentController = TextEditingController();
+  final TextEditingController _aInputController = TextEditingController();
+
+  @override
+  void dispose() {
+    _titleController.dispose();
+    _contentController.dispose();
+    _aInputController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,13 +63,12 @@ class _CreatePostState extends State<CreatePost> {
                     ),
                   ),
                   style: TextStyle(fontSize: 16),
-                  maxLines: 1,
                   // maxLength: 100, // 제목 최대 길이
                 ),
                 SizedBox(height: 20), // 제목과 내용 입력란 사이 간격
                 // 내용 입력란
                 TextField(
-                  controller: _contentControlle,
+                  controller: _contentController,
                   decoration: InputDecoration(
                     hintText: '내용을 입력하세요.',
                     hintStyle: TextStyle(
@@ -128,6 +136,50 @@ class _CreatePostState extends State<CreatePost> {
                     ],
                   ),
                 ),
+                Container(
+                  width: containerWidth, // 비율에 맞게 설정된 너비
+                  height: 40,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.rectangle,
+                    color: Color(0xffFF9B9B),
+                    border: Border(
+                      bottom: BorderSide(
+                        color: Color(0xff9B9B9B),
+                        width: 1,
+                      ),
+                      left: BorderSide(
+                        color: Color(0xff9B9B9B),
+                        width: 1,
+                      ),
+                      right: BorderSide(
+                        color: Color(0xff9B9B9B),
+                        width: 1,
+                      ),
+                    ),
+                  ),
+                  child: Center(
+                    child: TextField(
+                      controller: _aInputController,
+                      decoration: InputDecoration(
+                        hintText: 'A 입력',
+                        hintStyle: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        enabledBorder: InputBorder.none,
+                        focusedBorder: InputBorder.none,
+                        contentPadding: EdgeInsets.only(bottom: 10.0),
+                      ),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
@@ -138,12 +190,14 @@ class _CreatePostState extends State<CreatePost> {
 
   void _submitPost() {
     final String title = _titleController.text;
-    final String content = _contentControlle.text;
+    final String content = _contentController.text;
+    final String aInput = _aInputController.text;
 
     // TODO: 제출 로직 구현 (예: 서버에 데이터 전송, 로컬 저장 등)
 
     // 예시로 데이터를 콘솔에 출력
     print('제목: $title');
     print('내용: $content');
+    print('A 입력: $aInput');
   }
 }
