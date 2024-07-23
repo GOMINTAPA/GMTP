@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gomintapa/src/widgets/texts/custom_text.dart';
 
 class MakListItem extends StatelessWidget {
   final VoidCallback onTap; // onTap 콜백 추가
@@ -123,7 +124,7 @@ class MakListItem extends StatelessWidget {
                         ),
                       ),
                     ),
-                    // 중앙 텍스트 영역
+                    /* // 중앙 텍스트 영역
                     Container(
                       alignment: Alignment.center,
                       child: RichText(
@@ -148,7 +149,19 @@ class MakListItem extends StatelessWidget {
                           ],
                         ),
                       ),
-                    ),
+                    ), */
+                    //중앙 텍스트 영역
+                    Container(
+                      alignment: Alignment.center,
+                      child: CustomTextWidget(
+                        strokeColorForMainText: Colors.white, // ?%의 테두리 색상
+                        solidColorForMainText: Colors.red, // ?%의 채우기 색상
+                        strokeColorForBorderText: Colors.white, // 차이의 테두리 색상
+                        solidColorForBorderText: Colors.black, // 차이의 채우기 색상
+                        mainText: '?%',
+                        borderText: '차이',
+                      ),
+                    )
                   ],
                 ),
               ],
