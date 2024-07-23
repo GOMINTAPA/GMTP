@@ -2,8 +2,15 @@ import 'package:flutter/material.dart';
 
 class TangListItem extends StatelessWidget {
   final VoidCallback onTap; // onTap 콜백 추가
+  final bool isOption1Winner; // 첫 번째 옵션이 이겼는지 여부
+  final bool isOption2Winner; // 두 번째 옵션이 이겼는지 여부
 
-  const TangListItem({super.key, required this.onTap});
+  const TangListItem({
+    super.key,
+    required this.onTap,
+    required this.isOption1Winner,
+    required this.isOption2Winner,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +83,11 @@ class TangListItem extends StatelessWidget {
                       width: 135,
                       height: 78,
                       decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 255, 155, 155), // 배경색
+                        color: isOption1Winner
+                            ? Color.fromARGB(255, 255, 155, 155) // 이긴 경우
+                            : isOption2Winner
+                                ? Color.fromARGB(255, 155, 155, 155) // 진 경우
+                                : Color.fromARGB(255, 255, 155, 155), // 기본 색상
                         borderRadius:
                             BorderRadius.circular(5), // borderRadius 추가
                       ),
@@ -108,7 +119,11 @@ class TangListItem extends StatelessWidget {
                       width: 135,
                       height: 78,
                       decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 93, 177, 255), // 배경색
+                        color: isOption2Winner
+                            ? Color.fromARGB(255, 93, 177, 255) // 이긴 경우
+                            : isOption1Winner
+                                ? Color.fromARGB(255, 155, 155, 155) // 진 경우
+                                : Color.fromARGB(255, 93, 177, 255), // 기본 색상
                         borderRadius:
                             BorderRadius.circular(5), // borderRadius 추가
                       ),
