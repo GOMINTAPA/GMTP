@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../utils/post_submission_util.dart';
+import '../../utils/unsaved_changes_dialog_util.dart';
 import '../../widgets/buttons/keyword_select_button.dart';
 import '../../widgets/navigation/form_action_app_bar.dart';
 import '../../widgets/sections/my/bottom_section.dart';
@@ -20,16 +22,6 @@ class _CreatePostState extends State<CreatePost> {
   final TextEditingController _aInputController = TextEditingController();
   final TextEditingController _bInputController = TextEditingController();
 
-  // 공통 Divider를 변수로 정의
-  final Widget commonDivider = const Padding(
-    padding: EdgeInsets.symmetric(horizontal: 40),
-    child: Divider(
-      thickness: 1,
-      color: Color(0xffA7A7A7),
-      height: 0, // Divider 위아래의 공간 제거
-    ),
-  );
-
   @override
   void dispose() {
     // 컨트롤러 해제
@@ -47,7 +39,10 @@ class _CreatePostState extends State<CreatePost> {
     final double containerWidth = screenWidth * 0.9; // 화면 너비의 90%로 설정
 
     return Scaffold(
-      appBar: FormActionAppBar(),
+      appBar: FormActionAppBar(
+        onClose: _handleClose, // _handleClose 메서드 전달
+        onSubmit: _submitPost, // _submitPost 메서드 전달
+      ),
       body: Container(
         color: Colors.white, // 화면 전체 배경색 흰색으로 설정
         child: SingleChildScrollView(
@@ -107,12 +102,45 @@ class _CreatePostState extends State<CreatePost> {
     final String aInput = _aInputController.text;
     final String bInput = _bInputController.text;
 
-    // TODO: 제출 로직 구현 (예: 서버에 데이터 전송, 로컬 저장 등)
-
-    // 현재는 데이터 출력으로 대체
-    print('제목: $title');
-    print('내용: $content');
-    print('A 입력: $aInput');
-    print('B 입력: $bInput');
+    // 제출 로직 처리
+    handleSubmitPost(
+      context: context,
+      title: title,
+      content: content,
+      aInput: aInput,
+      bInput: bInput,
+    );
   }
+
+  void _handleClose() {
+    // 사용자가 입력한 내용이 있는지 확인
+    if (hasUnsavedChanges(
+      title: _titleController.text,
+      content: _contentController.text,
+      aInput: _aInputController.text,
+      bInput: _bInputController.text,
+    )) {
+      // 입력된 내용이 있을 경우, 다이얼로그를 띄워서 사용자에게 확인을 요청
+      handleUnsavedChangesDialog(
+        context,
+        () {
+          // 사용자가 '네'를 클릭하면 이전 화면으로 돌아가기
+          Navigator.pop(context);
+        },
+      );
+    } else {
+      // 입력된 내용이 없을 경우, 바로 이전 화면으로 돌아가기
+      Navigator.pop(context);
+    }
+  }
+
+  // 공통 Divider를 변수로 정의
+  final Widget commonDivider = const Padding(
+    padding: EdgeInsets.symmetric(horizontal: 40),
+    child: Divider(
+      thickness: 1,
+      color: Color(0xffA7A7A7),
+      height: 0, // Divider 위아래의 공간 제거
+    ),
+  );
 }

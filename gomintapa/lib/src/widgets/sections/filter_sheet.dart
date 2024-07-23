@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../shared/keyword_data.dart';
+import '../../screens/shared/keyword_data.dart';
 import '../buttons/filter_sheet_button.dart';
 
 class FilterSheet extends StatefulWidget {
