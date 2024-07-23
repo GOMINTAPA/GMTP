@@ -1,4 +1,4 @@
 class Global {
   static String accessToken = '';
-  static const String baseUrl = 'http://10.0.2.2:3000';
+  static const String baseUrl = 'http://3.34.34.170:3000';
 }

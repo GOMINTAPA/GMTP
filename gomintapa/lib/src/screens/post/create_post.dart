@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:gomintapa/src/controllers/feed_controller.dart';
 
 import '../../utils/post_submission_util.dart';
 import '../../utils/unsaved_changes_dialog_util.dart';
@@ -16,22 +18,34 @@ class CreatePost extends StatefulWidget {
 }
 
 class _CreatePostState extends State<CreatePost> {
+  final feedController = Get.put(FeedController());
   // 제목과 내용을 저장할 컨트롤러
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _contentController = TextEditingController();
   final TextEditingController _aInputController = TextEditingController();
   final TextEditingController _bInputController = TextEditingController();
+  final TextEditingController _keywordController = TextEditingController();
 
-  @override
-  void dispose() {
-    // 컨트롤러 해제
-    _titleController.dispose();
-    _contentController.dispose();
-    _aInputController.dispose();
-    _bInputController.dispose();
-    super.dispose();
+  // 공통 Divider를 변수로 정의
+  final Widget commonDivider = const Padding(
+    padding: EdgeInsets.symmetric(horizontal: 40),
+    child: Divider(
+      thickness: 1,
+      color: Color(0xffA7A7A7),
+      height: 0, // Divider 위아래의 공간 제거
+    ),
+  );
+  
+  _submit() async {
+    final result = await feedController.feedCreate(
+      _titleController.text,
+      _contentController.text,
+      _aInputController.text,
+      _bInputController.text,
+      _keywordController.text
+    );
+
   }
-
   @override
   Widget build(BuildContext context) {
     final double screenWidth =
@@ -96,20 +110,23 @@ class _CreatePostState extends State<CreatePost> {
     );
   }
 
-  void _submitPost() {
-    final String title = _titleController.text;
-    final String content = _contentController.text;
-    final String aInput = _aInputController.text;
-    final String bInput = _bInputController.text;
-
-    // 제출 로직 처리
-    handleSubmitPost(
-      context: context,
-      title: title,
-      content: content,
-      aInput: aInput,
-      bInput: bInput,
+  void _submitPost() async {
+    final result = await feedController.feedCreate(
+      _titleController.text,
+      _contentController.text,
+      _aInputController.text,
+      _bInputController.text,
+      _keywordController.text
     );
+
+    handleSubmitPost(
+      context: context, 
+      title: _titleController.text, 
+      content: _contentController.text, 
+      aInput: _aInputController.text, 
+      bInput: _bInputController.text
+    );
+    
   }
 
   void _handleClose() {
@@ -133,14 +150,4 @@ class _CreatePostState extends State<CreatePost> {
       Navigator.pop(context);
     }
   }
-
-  // 공통 Divider를 변수로 정의
-  final Widget commonDivider = const Padding(
-    padding: EdgeInsets.symmetric(horizontal: 40),
-    child: Divider(
-      thickness: 1,
-      color: Color(0xffA7A7A7),
-      height: 0, // Divider 위아래의 공간 제거
-    ),
-  );
 }
