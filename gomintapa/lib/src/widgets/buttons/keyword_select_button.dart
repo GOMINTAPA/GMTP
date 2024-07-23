@@ -14,7 +14,7 @@ class KeywordSelectButton extends StatelessWidget {
       width: double.infinity, // 가능한 모든 너비를 사용
       height: 50, // 버튼 높이
       child: OutlinedButton(
-        onPressed: () {},
+        onPressed: onPressed,
         style: OutlinedButton.styleFrom(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10), // 모서리 둥굴게 설정

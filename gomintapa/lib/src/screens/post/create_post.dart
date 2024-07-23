@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../widgets/buttons/keyword_select_button.dart';
 import '../../widgets/navigation/form_action_app_bar.dart';
+import '../../widgets/sections/my/bottom_section.dart';
 import '../../widgets/sections/post/choices_section.dart';
 import '../../widgets/sections/post/input_section.dart';
 
@@ -49,54 +50,52 @@ class _CreatePostState extends State<CreatePost> {
       appBar: FormActionAppBar(),
       body: Container(
         color: Colors.white, // 화면 전체 배경색 흰색으로 설정
-        child: ListView(
-          padding: const EdgeInsets.all(0), // 전체 padding 제거
-          children: [
-            // 제목, 내용 입력 섹션
-            InputSection(
-              titleController: _titleController,
-              contentController: _contentController,
-            ),
-            // 공통 Divider
-            commonDivider,
-            // A 입력 및 사진첨부 섹션
-            ChoicesSection(
-              inputController: _aInputController,
-              hintText: 'A 입력',
-              backgroundColor: const Color(0xffFF9B9B),
-              containerWidth: containerWidth, // containerWidth 전달
-            ),
-            // VS Text
-            const Center(
-              child: Text(
-                'vs',
-                style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xff9B9B9B),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              // 제목, 내용 입력 섹션
+              InputSection(
+                titleController: _titleController,
+                contentController: _contentController,
+              ),
+              // 공통 Divider
+              commonDivider,
+              // A 입력 및 사진첨부 섹션
+              ChoicesSection(
+                inputController: _aInputController,
+                hintText: 'A 입력',
+                backgroundColor: const Color(0xffFF9B9B),
+                containerWidth: containerWidth, // containerWidth 전달
+              ),
+              // VS Text
+              const Center(
+                child: Text(
+                  'vs',
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xff9B9B9B),
+                  ),
                 ),
               ),
-            ),
-            // B 입력 및 사진 첨부 섹션
-            ChoicesSection(
-              inputController: _bInputController,
-              hintText: 'B 입력',
-              backgroundColor: const Color(0xff5DB1FF),
-              containerWidth: containerWidth, // containerWidth 전달
-            ),
-            // 공통 Divider
-            const SizedBox(height: 10),
-            commonDivider,
-            const SizedBox(height: 30),
-            // 키워드 선택 버튼
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40), // 좌우 여백 추가
-              child: KeywordSelectButton(
-                onPressed: () {},
+              // B 입력 및 사진 첨부 섹션
+              ChoicesSection(
+                inputController: _bInputController,
+                hintText: 'B 입력',
+                backgroundColor: const Color(0xff5DB1FF),
+                containerWidth: containerWidth, // containerWidth 전달
               ),
-            ),
-            const SizedBox(height: 30),
-          ],
+              // 공통 Divider
+              const SizedBox(height: 10),
+              commonDivider,
+              const SizedBox(height: 30),
+            ],
+          ),
+        ),
+      ),
+      bottomNavigationBar: BottomSection(
+        buttonWidget: KeywordSelectButton(
+          onPressed: () {}, // 버튼 클릭 시 호출되는 메서드
         ),
       ),
     );

@@ -10,20 +10,15 @@ class BottomSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.bottomCenter,
-      child: Container(
-        width: 360,
-        height: 60,
-        color: Colors.transparent,
-        child: Padding(
-          padding: const EdgeInsets.only(right: 10), // 컨테이너 내부 여백 추가
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              buttonWidget, // 전달된 Widget을 사용
-            ],
-          ),
+    return Container(
+      width: double.infinity, // 화면 너비에 맞추기
+      height: 60,
+      color: Colors.white,
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 40),
+        child: Align(
+          alignment: Alignment.centerRight, // 오른쪽 정렬
+          child: buttonWidget, // 전달된 Widget을 사용
         ),
       ),
     );
