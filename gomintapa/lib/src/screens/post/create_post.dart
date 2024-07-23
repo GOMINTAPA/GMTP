@@ -40,6 +40,14 @@ class _CreatePostState extends State<CreatePost> {
     super.dispose();
   }
 
+  // 사용자가 입력한 내용이 있는지 확인
+  bool _hasUnsavedChanges() {
+    return _titleController.text.isNotEmpty ||
+        _contentController.text.isNotEmpty ||
+        _aInputController.text.isNotEmpty ||
+        _bInputController.text.isNotEmpty;
+  }
+
   @override
   Widget build(BuildContext context) {
     final double screenWidth =
@@ -47,7 +55,15 @@ class _CreatePostState extends State<CreatePost> {
     final double containerWidth = screenWidth * 0.9; // 화면 너비의 90%로 설정
 
     return Scaffold(
-      appBar: FormActionAppBar(),
+      appBar: FormActionAppBar(
+        onClose: () {
+          if (_hasUnsavedChanges()) {
+            _showUnsavedChangesDialog(context);
+          } else {
+            Navigator.pop(context);
+          }
+        },
+      ),
       body: Container(
         color: Colors.white, // 화면 전체 배경색 흰색으로 설정
         child: SingleChildScrollView(
@@ -114,5 +130,33 @@ class _CreatePostState extends State<CreatePost> {
     print('내용: $content');
     print('A 입력: $aInput');
     print('B 입력: $bInput');
+  }
+
+  // 입력된 내용이 있는 경우, 사용자가 나가려 할 때 경고 메시지 표시
+  void _showUnsavedChangesDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('현재 작성 중인 글이 있습니다.'),
+          content: Text('정말로 나가시겠습니까?'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context); // 다이얼로그 닫기
+                Navigator.pop(context); // 이전 화면으로 돌아가기
+              },
+              child: Text('네'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context); // 다이얼로그 닫기
+              },
+              child: Text('아니요'),
+            ),
+          ],
+        );
+      },
+    );
   }
 }
