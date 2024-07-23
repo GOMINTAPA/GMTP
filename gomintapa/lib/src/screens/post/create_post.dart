@@ -82,7 +82,7 @@ class _CreatePostState extends State<CreatePost> {
                   'vs',
                   style: TextStyle(
                     fontSize: 30,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w600,
                     color: Color(0xff9B9B9B),
                   ),
                 ),

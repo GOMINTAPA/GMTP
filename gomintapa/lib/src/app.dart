@@ -7,6 +7,7 @@ import 'screens/auth/login.dart';
 import 'screens/auth/register.dart';
 import 'screens/my/mypage.dart';
 import 'screens/post/create_post.dart';
+import 'screens/post/post_detail.dart';
 
 class MyWidget extends StatelessWidget {
   final bool isLogin;
@@ -22,8 +23,10 @@ class MyWidget extends StatelessWidget {
         '/mypage': (context) => MyPage(),
         '/intro': (context) => Login(),
         '/register': (context) => Register(),
+        '/post_detail': (context) => PostDetail(),
       },
-      initialRoute: isLogin ? '/' : '/intro',
+      initialRoute: '/',
+      // initialRoute: isLogin ? '/' : '/intro',
     );
   }
 }
