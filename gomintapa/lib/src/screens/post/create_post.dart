@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../widgets/buttons/keyword_select_button.dart';
 import '../../widgets/navigation/form_action_app_bar.dart';
 import '../../widgets/sections/post/choices_section.dart';
 import '../../widgets/sections/post/input_section.dart';
@@ -29,8 +30,8 @@ class _CreatePostState extends State<CreatePost> {
 
   @override
   Widget build(BuildContext context) {
-    // 화면의 너비를 비율로 계산
-    final double screenWidth = MediaQuery.of(context).size.width;
+    final double screenWidth =
+        MediaQuery.of(context).size.width; // 화면의 너비를 비율로 계산
     final double containerWidth = screenWidth * 0.9; // 화면 너비의 90%로 설정
 
     return Scaffold(
@@ -40,10 +41,12 @@ class _CreatePostState extends State<CreatePost> {
         child: ListView(
           padding: const EdgeInsets.all(0), // 전체 padding 제거
           children: [
+            // 제목, 내용 입력
             InputSection(
               titleController: _titleController,
               contentController: _contentController,
             ),
+            // 구분선
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 40),
               child: Divider(
@@ -52,12 +55,14 @@ class _CreatePostState extends State<CreatePost> {
                 height: 0, // Divider 위아래의 공간 제거
               ),
             ),
+            // A 입력 및 사진첨부
             ChoicesSection(
               inputController: _aInputController,
               hintText: 'A 입력',
               backgroundColor: Color(0xffFF9B9B),
               containerWidth: containerWidth, // containerWidth 전달
             ),
+            // VS Text
             Container(
               child: const Text(
                 'vs',
@@ -69,12 +74,14 @@ class _CreatePostState extends State<CreatePost> {
                 textAlign: TextAlign.center,
               ),
             ),
+            // B 입력 및 사진 첨부
             ChoicesSection(
               inputController: _bInputController,
               hintText: 'B 입력',
               backgroundColor: Color(0xff5DB1FF),
               containerWidth: containerWidth, // containerWidth 전달
             ),
+            // 구분선
             const SizedBox(height: 10),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 40),
@@ -87,30 +94,9 @@ class _CreatePostState extends State<CreatePost> {
             const SizedBox(height: 30),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40), // 좌우 여백 추가
-              child: SizedBox(
-                width: double.infinity, // 가능한 모든 너비를 사용
-                height: 50,
-                child: OutlinedButton(
-                  onPressed: () {},
-                  style: OutlinedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10), // 모서리 둥굴게 설정
-                    ),
-                    side: const BorderSide(
-                      color: Color(0xff9B9B9B), // 버튼 테두리
-                    ),
-                  ),
-                  child: const Text(
-                    '키워드 선택',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Color(0xff9B9B9B),
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
+              child: KeywordSelectButton(
+                onPressed: () {},
+              ), // 키워드 선택 버튼
             ),
             SizedBox(height: 30),
           ],

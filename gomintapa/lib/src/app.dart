@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false, // 디버그 배너 삭제
       routes: {
-        '/': (context) => MyPage(),
+        '/': (context) => CreatePost(),
         // '/': (context) => Login(),
         // '/register': (context) => Register(),
       },
