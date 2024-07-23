@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:gomintapa/src/screens/my/edit_profile.dart';
 
 import 'home.dart';
 import 'screens/auth/login.dart';
@@ -22,9 +23,9 @@ class MyWidget extends StatelessWidget {
         '/mypage': (context) => MyPage(),
         '/intro': (context) => Login(),
         '/register': (context) => Register(),
+        '/edit_profile': (context) => EditProfile()
       },
       initialRoute: isLogin ? '/' : '/intro',
     );
   }
 }
-//test
