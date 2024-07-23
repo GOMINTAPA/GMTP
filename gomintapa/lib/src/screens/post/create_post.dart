@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:gomintapa/src/controllers/feed_controller.dart';
 
 import '../../widgets/buttons/keyword_select_button.dart';
 import '../../widgets/navigation/form_action_app_bar.dart';
@@ -14,6 +16,7 @@ class CreatePost extends StatefulWidget {
 }
 
 class _CreatePostState extends State<CreatePost> {
+  final feedController = Get.put(FeedController());
   // 제목과 내용을 저장할 컨트롤러
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _contentController = TextEditingController();
@@ -29,17 +32,16 @@ class _CreatePostState extends State<CreatePost> {
       height: 0, // Divider 위아래의 공간 제거
     ),
   );
+  
+  _submit() async {
+    final result = await feedController.feedCreate(
+      _titleController.text,
+      _contentController.text,
+      _aInputController.text,
+      _bInputController.text
+    );
 
-  @override
-  void dispose() {
-    // 컨트롤러 해제
-    _titleController.dispose();
-    _contentController.dispose();
-    _aInputController.dispose();
-    _bInputController.dispose();
-    super.dispose();
   }
-
   @override
   Widget build(BuildContext context) {
     final double screenWidth =
@@ -101,18 +103,18 @@ class _CreatePostState extends State<CreatePost> {
     );
   }
 
-  void _submitPost() {
-    final String title = _titleController.text;
-    final String content = _contentController.text;
-    final String aInput = _aInputController.text;
-    final String bInput = _bInputController.text;
+  // void _submitPost() {
+  //   final String title = _titleController.text;
+  //   final String content = _contentController.text;
+  //   final String aInput = _aInputController.text;
+  //   final String bInput = _bInputController.text;
 
-    // TODO: 제출 로직 구현 (예: 서버에 데이터 전송, 로컬 저장 등)
+  //   // TODO: 제출 로직 구현 (예: 서버에 데이터 전송, 로컬 저장 등)
 
-    // 현재는 데이터 출력으로 대체
-    print('제목: $title');
-    print('내용: $content');
-    print('A 입력: $aInput');
-    print('B 입력: $bInput');
-  }
+  //   // 현재는 데이터 출력으로 대체
+  //   print('제목: $title');
+  //   print('내용: $content');
+  //   print('A 입력: $aInput');
+  //   print('B 입력: $bInput');
+  // }
 }
