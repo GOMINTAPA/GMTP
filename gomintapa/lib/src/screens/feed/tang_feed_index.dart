@@ -80,11 +80,26 @@ class _TangFeedIndexState extends State<TangFeedIndex> {
           Expanded(
             child: ListView(
               children: [
-                TangListItem(onTap: () => _navigateToMyPage(context)), // 임시 설정
-                TangListItem(onTap: () => _navigateToMyPage(context)),
-                TangListItem(onTap: () => _navigateToMyPage(context)),
-                TangListItem(onTap: () => _navigateToMyPage(context)),
-                TangListItem(onTap: () => _navigateToMyPage(context)),
+                TangListItem(
+                  onTap: () => _navigateToMyPage(context),
+                  isOption1Winner: true, // 첫 번째 옵션이 이긴 경우
+                  isOption2Winner: false,
+                ), // 임시 설정
+                TangListItem(
+                  onTap: () => _navigateToMyPage(context),
+                  isOption1Winner: false, // 두 번째 옵션이 이긴 경우
+                  isOption2Winner: true,
+                ),
+                TangListItem(
+                  onTap: () => _navigateToMyPage(context),
+                  isOption1Winner: true, // 첫 번째 옵션이 이긴 경우
+                  isOption2Winner: false,
+                ),
+                TangListItem(
+                  onTap: () => _navigateToMyPage(context),
+                  isOption1Winner: false, // 두 번째 옵션이 이긴 경우
+                  isOption2Winner: true,
+                ),
               ],
             ),
           ),
