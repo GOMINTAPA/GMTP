@@ -96,7 +96,8 @@ class _FeedIndexState extends State<FeedIndex> {
             alignment: Alignment.bottomCenter,
             child: CreatePostButton(
               onPressed: () {
-                // 고민 작성 버튼 클릭 시 동작
+                // 고민 작성 버튼 클릭 시 고민 작성 페이지로 이동
+                Navigator.pushNamed(context, '/create_post');
               },
             ),
           ),
