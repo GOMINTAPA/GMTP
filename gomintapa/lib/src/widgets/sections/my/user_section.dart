@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:gomintapa/src/models/user_model.dart';
+import 'package:gomintapa/src/screens/my/mypage_edit.dart';
 
 class UserSection extends StatelessWidget {
   final UserModel user;
@@ -81,7 +83,9 @@ class UserSection extends StatelessWidget {
                   backgroundColor: Colors.white,
                   foregroundColor: Color.fromARGB(255, 155, 155, 155),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(() => const MypageEdit());                
+                },
                 child: const Text('정보 수정'))
           ],
         ),
