@@ -48,7 +48,7 @@ class _MakFeedIndexState extends State<MakFeedIndex> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const MyPage(),
+        builder: (context) => const Mypage(),
       ),
     );
   }

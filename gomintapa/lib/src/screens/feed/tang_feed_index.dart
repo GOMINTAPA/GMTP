@@ -48,7 +48,7 @@ class _TangFeedIndexState extends State<TangFeedIndex> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const MyPage(),
+        builder: (context) => const Mypage(),
       ),
     );
   }
