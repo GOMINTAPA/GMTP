@@ -15,6 +15,7 @@ class ConcernListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        const SizedBox(height: 25), // ConcernListItem들 사이의 간격 추가
         CardSection(
           onTap: () {
             Get.to(() => PostDetail());
@@ -26,7 +27,7 @@ class ConcernListItem extends StatelessWidget {
               CardTopSection(
                 title: item.title,
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
               // 선택 항목 영역
               CardBottomSection(
                 option1: item.firstOption,
@@ -35,7 +36,7 @@ class ConcernListItem extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(height: 25), // ConcernListItem들 사이의 간격 추가
+        const SizedBox(height: 15), // ConcernListItem들 사이의 간격 추가
       ],
     );
   }
