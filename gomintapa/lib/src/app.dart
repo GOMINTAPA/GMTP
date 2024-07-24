@@ -16,6 +16,9 @@ class MyWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      theme: ThemeData(
+        scaffoldBackgroundColor: Colors.white,
+      ),
       debugShowCheckedModeBanner: false, // 디버그 배너 삭제
       routes: {
         '/': (context) => Home(),
