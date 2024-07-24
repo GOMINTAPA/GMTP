@@ -13,6 +13,7 @@ class MakListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        const SizedBox(height: 25),
         CardSection(
           onTap: onTap, // onTap 콜백 설정
           child: Column(
@@ -54,7 +55,7 @@ class MakListItem extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(height: 25), // ConcernListItem들 사이의 간격 추가
+        const SizedBox(height: 10), // ConcernListItem들 사이의 간격 추가
       ],
     );
   }
