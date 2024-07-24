@@ -141,15 +141,20 @@ class _CreatePostState extends State<CreatePost> {
     );
   }
 
+  // 키워드 선택 모달을 표시하고, 사용자가 선택한 키워드를 처리 후 업데이트
   void _showKeywordModal() async {
     final selectedKeywords = await showKeywordModal(
-      context: context,
-      selectedKeywords: _selectedKeywords,
+      context: context, // 현재 context를 전달하여 모달 표시
+      selectedKeywords: _selectedKeywords, // 현재 선택된 키워드 집합을 전달하여 초기 선택 상태 설정
     );
+    // 사용자가 키워드를 선택했을 경우
     if (selectedKeywords != null) {
       setState(() {
+        // 현재 선택된 키워드 모두 제거
         _selectedKeywords.clear();
+        // 새로 선택한 키워드를 _selectedKeywords에 추가
         _selectedKeywords.addAll(selectedKeywords);
+        // 선택된 키워드를 쉼표로 구분하여 컨트롤러의 텍스트를 업데이트
         _keywordController.text = _selectedKeywords.join(', ');
       });
     }
