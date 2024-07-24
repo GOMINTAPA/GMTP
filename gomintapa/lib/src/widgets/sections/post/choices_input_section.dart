@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-import '../../forms/custom_input.dart';
-import '../../forms/photo_attachment.dart';
+import '../../forms/input/custom_input.dart';
+import '../../forms/input/photo_attachment.dart';
 
-class ChoicesSection extends StatelessWidget {
+class ChoicesInputSection extends StatelessWidget {
   final TextEditingController inputController;
   final String hintText;
   final Color backgroundColor;
   final double containerWidth;
 
-  const ChoicesSection({
+  const ChoicesInputSection({
     Key? key,
     required this.inputController,
     required this.hintText,

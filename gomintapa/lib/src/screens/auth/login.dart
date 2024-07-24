@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:gomintapa/src/controllers/auth_controller.dart';
 import 'package:gomintapa/src/screens/auth/register.dart';
 import 'package:gomintapa/src/widgets/themes/auth_theme.dart';
-import 'package:gomintapa/src/widgets/forms/label_textfield.dart';
+import 'package:gomintapa/src/widgets/forms/input/label_textfield.dart';
 
 import '../../home.dart';
 

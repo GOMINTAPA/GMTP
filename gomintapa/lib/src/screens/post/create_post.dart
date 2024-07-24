@@ -7,7 +7,7 @@ import '../../utils/unsaved_changes_dialog_util.dart';
 import '../../widgets/buttons/keyword_select_button.dart';
 import '../../widgets/navigation/form_action_app_bar.dart';
 import '../../widgets/sections/my/bottom_section.dart';
-import '../../widgets/sections/post/choices_section.dart';
+import '../../widgets/sections/post/choices_input_section.dart';
 import '../../widgets/sections/post/input_section.dart';
 
 class CreatePost extends StatefulWidget {
@@ -35,17 +35,16 @@ class _CreatePostState extends State<CreatePost> {
       height: 0, // Divider 위아래의 공간 제거
     ),
   );
-  
+
   _submit() async {
     final result = await feedController.feedCreate(
-      _titleController.text,
-      _contentController.text,
-      _aInputController.text,
-      _bInputController.text,
-      _keywordController.text
-    );
-
+        _titleController.text,
+        _contentController.text,
+        _aInputController.text,
+        _bInputController.text,
+        _keywordController.text);
   }
+
   @override
   Widget build(BuildContext context) {
     final double screenWidth =
@@ -70,7 +69,7 @@ class _CreatePostState extends State<CreatePost> {
               // 공통 Divider
               commonDivider,
               // A 입력 및 사진첨부 섹션
-              ChoicesSection(
+              ChoicesInputSection(
                 inputController: _aInputController,
                 hintText: 'A 입력',
                 backgroundColor: const Color(0xffFF9B9B),
@@ -88,7 +87,7 @@ class _CreatePostState extends State<CreatePost> {
                 ),
               ),
               // B 입력 및 사진 첨부 섹션
-              ChoicesSection(
+              ChoicesInputSection(
                 inputController: _bInputController,
                 hintText: 'B 입력',
                 backgroundColor: const Color(0xff5DB1FF),
@@ -112,21 +111,18 @@ class _CreatePostState extends State<CreatePost> {
 
   void _submitPost() async {
     final result = await feedController.feedCreate(
-      _titleController.text,
-      _contentController.text,
-      _aInputController.text,
-      _bInputController.text,
-      _keywordController.text
-    );
+        _titleController.text,
+        _contentController.text,
+        _aInputController.text,
+        _bInputController.text,
+        _keywordController.text);
 
     handleSubmitPost(
-      context: context, 
-      title: _titleController.text, 
-      content: _contentController.text, 
-      aInput: _aInputController.text, 
-      bInput: _bInputController.text
-    );
-    
+        context: context,
+        title: _titleController.text,
+        content: _contentController.text,
+        aInput: _aInputController.text,
+        bInput: _bInputController.text);
   }
 
   void _handleClose() {

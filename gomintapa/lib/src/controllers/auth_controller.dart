@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../providers/auth_provider.dart';
@@ -16,8 +15,7 @@ class AuthController extends GetxController {
   Timer? countdownTimer;
 
   Future<bool> register(String id, String password, String name) async {
-    Map body = 
-      await authProvider.register(id, password, name);
+    Map body = await authProvider.register(id, password, name);
     if (body['result'] == 'ok') {
       String token = body['access_token'];
       log("token : $token"); // 'dart:developer' 패키지 내의 log 함수
@@ -25,9 +23,9 @@ class AuthController extends GetxController {
       return true;
     }
     Get.snackbar('회원가입 에러', body['message'],
-    snackPosition: SnackPosition.BOTTOM);
+        snackPosition: SnackPosition.BOTTOM);
     return false;
-}
+  }
 
   void _startCountdown(DateTime expiryTime) {
     isButtonEnabled.value = false;
@@ -42,8 +40,8 @@ class AuthController extends GetxController {
         isButtonEnabled.value = true;
         timer.cancel();
       } else {
-        String minutes = timeDiff.inMinutes.toString().padLeft(2,'0');
-        String seconds = (timeDiff.inSeconds%60).toString().padLeft(2,'0');
+        String minutes = timeDiff.inMinutes.toString().padLeft(2, '0');
+        String seconds = (timeDiff.inSeconds % 60).toString().padLeft(2, '0');
         buttonText.value = "인증문자 다시 받기 $minutes:$seconds";
       }
     });
@@ -58,8 +56,7 @@ class AuthController extends GetxController {
       return true;
     }
     Get.snackbar('로그인 에러', body['message'],
-    snackPosition: SnackPosition.BOTTOM);
+        snackPosition: SnackPosition.BOTTOM);
     return false;
   }
-
 }
