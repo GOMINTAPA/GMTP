@@ -10,7 +10,7 @@ class MysqlDb extends MyDatabase {
 
   static Future<MyDatabase> initializeDB() async {
 
-    var conn = await MySQLConnection.createConnection(host: '127.0.0.1', port: 3306,
+    var conn = await MySQLConnection.createConnection(host: '3.34.34.170', port: 3306,
         userName: 'madang', password: 'madang', databaseName: 'madangdb');
     await conn.connect();
 

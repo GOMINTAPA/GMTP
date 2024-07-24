@@ -1,10 +1,7 @@
-import 'dart:math';
-
 import 'package:get/get.dart';
 import 'package:gomintapa/src/models/feed_model.dart';
 
 import '../providers/feed_provider.dart';
-
 
 class FeedController extends GetxController {
   final feedProvider = Get.put(FeedProvider());
@@ -18,9 +15,10 @@ class FeedController extends GetxController {
     (page == 1) ? feedList.assignAll(tmp) : feedList.addAll(tmp);
   }
 
-  Future<bool> feedCreate(
-      String title, String content, String firstOption, String secondOption, String keyword) async {
-    Map body = await feedProvider.store(title, content, firstOption, secondOption, keyword);
+  Future<bool> feedCreate(String title, String content, String firstOption,
+      String secondOption, String keyword) async {
+    Map body = await feedProvider.store(
+        title, content, firstOption, secondOption, keyword);
 
     if (body['result'] == 'ok') {
       await feedIndex();
@@ -51,10 +49,11 @@ class FeedController extends GetxController {
     return false;
   }
 
-  feedUpdate(int id, String title, String content, String firstOption, String secondOption, int? image) async {
+  feedUpdate(int id, String title, String content, String firstOption,
+      String secondOption, int? image) async {
     // price와 image를 적절한 타입으로 변환
-    Map body =
-        await feedProvider.update(id, title, content, firstOption, secondOption, image);
+    Map body = await feedProvider.update(
+        id, title, content, firstOption, secondOption, image);
     if (body['result'] == 'ok') {
       // ID를 기반으로 리스트에서 해당 요소를 찾아 업데이트
       int index = feedList.indexWhere((feed) => feed.id == id);
