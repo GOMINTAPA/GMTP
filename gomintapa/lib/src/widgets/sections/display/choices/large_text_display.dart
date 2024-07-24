@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class TextDisplay extends StatelessWidget {
+class LargeTextDisplay extends StatelessWidget {
   final Color backgroundColor;
   final String choiceText;
 
-  const TextDisplay({
+  const LargeTextDisplay({
     Key? key,
     required this.backgroundColor,
     required this.choiceText,
@@ -13,23 +13,13 @@ class TextDisplay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50,
+      height: 80,
       decoration: BoxDecoration(
         shape: BoxShape.rectangle,
         color: backgroundColor,
-        border: const Border(
-          bottom: BorderSide(
-            color: Color(0xff9B9B9B),
-            width: 1,
-          ),
-          left: BorderSide(
-            color: Color(0xff9B9B9B),
-            width: 1,
-          ),
-          right: BorderSide(
-            color: Color(0xff9B9B9B),
-            width: 1,
-          ),
+        border: Border.all(
+          color: const Color(0xff9B9B9B),
+          width: 1,
         ),
       ),
       child: Center(
