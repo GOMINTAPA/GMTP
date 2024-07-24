@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_instance/get_instance.dart';
+import 'package:gomintapa/src/controllers/feed_controller.dart';
 
 import '../../models/feed_model.dart';
 import '../../widgets/navigation/back_app_bar.dart';
@@ -12,21 +15,25 @@ class PostDetail extends StatelessWidget {
   // final List<String> keywords;
 
   final FeedModel feedModel; // FeedModel을 받기 위한 변수
+  final feedController = Get.put(FeedController());
 
   // 임시로 설정한 키워드 리스트
   final List<String> keywords = ['여행', '음식', '기타', '바보'];
 
   PostDetail({Key? key, required this.feedModel}) : super(key: key);
 
+  void _vote(String choice) {
+    feedController.vote(feedModel.id, choice);
+  }
+
   @override
   Widget build(BuildContext context) {
     // 예시 데이터
-    final String title = "WOWWOWWOW";
-    final String content =
-        "아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보";
-    final String choiceAText = "선택 항목 A 텍스트";
-    final String choiceBText = "선택 항목 B 텍스트";
-    final String? imageAPath = 'assets/images/jjanggu.jpg';
+    final String title = feedModel.title;
+    final String content = feedModel.content;
+    final String choiceAText = feedModel.firstOption;
+    final String choiceBText = feedModel.secondOption;
+    final String? imageAPath = null;
     final String? imageBPath = null; // 이미지 경로가 없는 경우
 
     final bool isMe = feedModel.isMe;
@@ -62,11 +69,15 @@ class PostDetail extends StatelessWidget {
 
                     // 선택 항목 섹션(2가지)
                     // A 섹션
-                    ChoicesSection(
+                    GestureDetector(
+                      onTap: () => _vote('A'),
+                      child: ChoicesSection(
                       choiceText: choiceAText,
                       imagePath: imageAPath,
                       backgroundColor: const Color(0xffFF9B9B),
                     ),
+                    ),
+                    
 
                     // VS Text
                     const Center(
@@ -81,11 +92,15 @@ class PostDetail extends StatelessWidget {
                     ),
 
                     // B 섹션
-                    ChoicesSection(
+                    GestureDetector(
+                      onTap: () => _vote('B'),
+                      child: ChoicesSection(
                       choiceText: choiceBText,
                       imagePath: imageBPath,
                       backgroundColor: const Color(0xff5DB1FF),
                     ),
+                    ),
+                    
 
                     const SizedBox(height: 10),
                     const Divider(color: Color(0xffD9D9D9)),
