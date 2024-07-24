@@ -8,6 +8,21 @@ class FeedController extends GetxController {
   final RxList<FeedModel> feedList = <FeedModel>[].obs;
   final Rx<FeedModel?> currentFeed = Rx<FeedModel?>(null);
 
+  Future<void> vote(int feedId, String choice) async {
+    try {
+      Map response = await feedProvider.vote(feedId, choice);
+      if (response['result'] == 'ok') {
+        await feedShow(feedId);
+      } else {
+        Get.snackbar('투표 에러', response['message'], snackPosition: SnackPosition.BOTTOM);
+      }
+    } catch (e) {
+      Get.snackbar('투표 에러', e.toString(), snackPosition: SnackPosition.BOTTOM);
+
+    }
+
+  }
+
   Future<void> feedIndex({int page = 1}) async {
     Map json = await feedProvider.index(page);
     List<FeedModel> tmp =
