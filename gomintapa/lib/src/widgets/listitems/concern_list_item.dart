@@ -9,6 +9,7 @@ import '../../screens/post/post_detail.dart';
 
 class ConcernListItem extends StatelessWidget {
   final FeedModel item;
+
   const ConcernListItem(this.item, {super.key});
 
   @override
@@ -17,7 +18,7 @@ class ConcernListItem extends StatelessWidget {
       children: [
         CardSection(
           onTap: () {
-            Get.to(() => PostDetail());
+            Get.to(() => PostDetail(feedModel: item)); // FeedModel을 전달
           }, // onTap 콜백 설정
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,

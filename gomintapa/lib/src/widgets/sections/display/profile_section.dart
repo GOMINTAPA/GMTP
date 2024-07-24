@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class ProfileSection extends StatefulWidget {
-  final bool isUserPost; // 사용자 게시물 여부를 판단하는 변수
+  final bool isMe; // 사용자 게시물 여부를 판단하는 변수
 
-  const ProfileSection({super.key, required this.isUserPost});
+  const ProfileSection({super.key, required this.isMe});
 
   @override
   _ProfileSectionState createState() => _ProfileSectionState();
@@ -42,7 +42,7 @@ class _ProfileSectionState extends State<ProfileSection> {
               height: 40,
             ),
           ),
-        if (widget.isUserPost)
+        if (widget.isMe)
           PopupMenuButton<String>(
             color: Colors.white, // 배경색 흰색으로 설정
             onSelected: (value) {
