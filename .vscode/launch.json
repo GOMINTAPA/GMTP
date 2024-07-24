@@ -1,0 +1,28 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "gomintapa",
+            "cwd": "gomintapa",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "gomintapa (profile mode)",
+            "cwd": "gomintapa",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "gomintapa (release mode)",
+            "cwd": "gomintapa",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}

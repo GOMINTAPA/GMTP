@@ -27,8 +27,8 @@ class PostDetail extends StatelessWidget {
         "아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보 아로인 바보";
     final String choiceAText = "선택 항목 A 텍스트";
     final String choiceBText = "선택 항목 B 텍스트";
-    final String imageAPath = 'assets/images/jjanggu.jpg';
-    final String imageBPath = 'assets/images/dog.jpg';
+    final String? imageAPath = 'assets/images/jjanggu.jpg';
+    final String? imageBPath = null; // 이미지 경로가 없는 경우
 
     return Scaffold(
       appBar: BackAppBar(),
@@ -50,12 +50,15 @@ class PostDetail extends StatelessWidget {
                     ProfileSection(),
                     SizedBox(height: 10),
                     Divider(color: Color(0xffD9D9D9)),
+
                     // 고민 내용(제목, 내용) 섹션
                     ContentSection(
                       title: title,
                       content: content,
                     ),
+
                     const Divider(color: Color(0xffD9D9D9)),
+
                     // 선택 항목 섹션(2가지)
                     // A 섹션
                     ChoicesSection(
@@ -63,6 +66,7 @@ class PostDetail extends StatelessWidget {
                       imagePath: imageAPath,
                       backgroundColor: const Color(0xffFF9B9B),
                     ),
+
                     // VS Text
                     const Center(
                       child: Text(
@@ -74,6 +78,7 @@ class PostDetail extends StatelessWidget {
                         ),
                       ),
                     ),
+
                     // B 섹션
                     ChoicesSection(
                       choiceText: choiceBText,

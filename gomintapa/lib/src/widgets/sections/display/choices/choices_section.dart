@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:gomintapa/src/widgets/sections/display/choices/large_text_display.dart';
 import 'package:gomintapa/src/widgets/sections/display/choices/photo_display.dart';
 
 import 'text_display.dart';
 
 class ChoicesSection extends StatelessWidget {
   final String choiceText;
-  final String imagePath;
+  final String? imagePath; // nullable로 변경
   final Color backgroundColor;
 
   const ChoicesSection({
     Key? key,
     required this.choiceText,
-    required this.imagePath,
+    this.imagePath, // nullable로 변경
     required this.backgroundColor,
   }) : super(key: key);
 
@@ -23,11 +24,18 @@ class ChoicesSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 10),
-          PhotoDisplay(imagePath: imagePath),
-          TextDisplay(
-            backgroundColor: backgroundColor,
-            choiceText: choiceText,
-          ),
+          if (imagePath != null) ...[
+            PhotoDisplay(imagePath: imagePath!),
+            TextDisplay(
+              backgroundColor: backgroundColor,
+              choiceText: choiceText,
+            ),
+          ] else ...[
+            LargeTextDisplay(
+              backgroundColor: backgroundColor,
+              choiceText: choiceText,
+            ),
+          ],
         ],
       ),
     );
