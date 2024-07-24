@@ -25,7 +25,7 @@ class BottomWideTrapezoidClipper extends CustomClipper<Path> {
     path.moveTo(0, 0); // 왼쪽 상단 모서리
     path.lineTo(140, 0); // 오른쪽 상단 모서리
     path.lineTo(140, 88); // 오른쪽 하단 모서리
-    path.lineTo(140 - 80, 88); // 왼쪽 하단 모서리
+    path.lineTo(140 - 75, 88); // 왼쪽 하단 모서리
     path.close(); // 경로 닫기
     return path;
   }

@@ -13,23 +13,29 @@ class CardBottomSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+    return Stack(
+      clipBehavior: Clip.none, // Stack의 클리핑 설정
+      //mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        TrapezoidOption(
-          text: option1,
-          color: Color.fromARGB(255, 255, 155, 155),
-          clipper: UpsideDownTrapezoidClipper(),
-          alignment: Alignment.centerLeft,
-          textAlign: TextAlign.left,
+        Padding(
+          padding: const EdgeInsets.only(right: 90.0), // 오른쪽에 10픽셀의 패딩 추가
+          child: TrapezoidOption(
+            text: option1,
+            color: Color.fromARGB(255, 255, 155, 155),
+            clipper: UpsideDownTrapezoidClipper(),
+            alignment: Alignment.centerLeft,
+            textAlign: TextAlign.center,
+          ),
         ),
-        const SizedBox(width: 10),
-        TrapezoidOption(
-          text: option2,
-          color: Color.fromARGB(255, 93, 177, 255),
-          clipper: BottomWideTrapezoidClipper(),
-          alignment: Alignment.centerRight,
-          textAlign: TextAlign.right,
+        Padding(
+          padding: const EdgeInsets.only(left: 90.0), // 왼쪽에 10픽셀의 패딩 추가
+          child: TrapezoidOption(
+            text: option2,
+            color: Color.fromARGB(255, 93, 177, 255),
+            clipper: BottomWideTrapezoidClipper(),
+            alignment: Alignment.centerRight,
+            textAlign: TextAlign.center,
+          ),
         ),
       ],
     );
