@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:gomintapa/src/home.dart';
 import 'package:gomintapa/src/models/user_model.dart';
+import 'package:gomintapa/src/screens/auth/login.dart';
+import 'package:gomintapa/src/screens/shared/global.dart';
 import 'package:gomintapa/src/widgets/buttons/logout.button.dart';
 import 'package:gomintapa/src/widgets/navigation/back_app_bar.dart';
 import 'package:gomintapa/src/widgets/sections/my/bottom_section.dart';
@@ -14,6 +19,8 @@ class MyPage extends StatefulWidget {
 }
 
 class _MyPageState extends State<MyPage> {
+  String? token = GetStorage().read('access_token');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +38,12 @@ class _MyPageState extends State<MyPage> {
           // 하단 고정 영역
           BottomSection(
             buttonWidget: LogoutButton(
-              onPressed: () {},
+              onPressed: () {
+                GetStorage().remove('access_token');
+                if(GetStorage().read('access_token') == null) {
+                  Navigator.pushNamedAndRemoveUntil(context, '/intro', (route)=>false);
+                }
+              },
             ),
           )
         ],

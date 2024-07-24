@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../sections/app_bar_section.dart';
+import '../sections/feed/app_bar_section.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
