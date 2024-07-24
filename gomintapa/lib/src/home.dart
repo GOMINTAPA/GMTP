@@ -4,7 +4,6 @@ import 'widgets/navigation/bottom_navigation_bar.dart';
 
 import 'package:gomintapa/src/screens/feed/mak_feed_index.dart';
 import 'package:gomintapa/src/screens/feed/tang_feed_index.dart';
-import '../src/widgets/navigation/bottom_navigation_bar.dart';
 
 import 'widgets/navigation/home_app_bar.dart';
 import 'screens/feed/feed_index.dart';
