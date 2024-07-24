@@ -25,7 +25,9 @@ class _LoginState extends State<Login> {
       _passwordController.text,
     );
     if (result) {
-      Get.offAll(() => const Home());
+      Navigator.pushNamedAndRemoveUntil(context, '/', (route)=>false);
+
+      // Get.offAll(() => const Home());
     }
   }
 
