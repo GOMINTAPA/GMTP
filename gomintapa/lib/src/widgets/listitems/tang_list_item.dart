@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gomintapa/src/widgets/cards/card_section.dart';
 import 'package:gomintapa/src/widgets/cards/card_top_section.dart';
+import 'package:gomintapa/src/widgets/cards/trapezoid_option.dart';
 
 class TangListItem extends StatelessWidget {
   final VoidCallback onTap; // onTap 콜백 추가
@@ -41,11 +42,11 @@ class TangListItem extends StatelessWidget {
                   // 이미지 아이콘
                   Padding(
                     padding:
-                        const EdgeInsets.only(right: 8.0), // 아이콘과 제목 사이의 간격
+                        const EdgeInsets.only(right: 5.0), // 아이콘과 제목 사이의 간격
                     child: Image.asset(
                       'assets/images/tangtang_selected.png',
-                      width: 45,
-                      height: 45,
+                      width: 42,
+                      height: 42,
                     ),
                   ),
                   // 제목 영역
@@ -56,78 +57,39 @@ class TangListItem extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 5),
               // 선택 항목 영역
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center, // 항목들 사이의 간격을 최소화
+              Stack(
+                //mainAxisAlignment: MainAxisAlignment.center, // 항목들 사이의 간격을 최소화
                 children: [
-                  // 첫 번째 선택 항목
-                  Container(
-                    width: 135,
-                    height: 78,
-                    decoration: BoxDecoration(
+                  Padding(
+                    padding: const EdgeInsets.only(right: 90.0),
+                    // 첫 번째 선택 항목
+                    child: TrapezoidOption(
+                      text: '선택 1 내용',
                       color: isOption1Winner
                           ? Color.fromARGB(255, 255, 155, 155) // 이긴 경우
                           : isOption2Winner
                               ? Color.fromARGB(255, 155, 155, 155) // 진 경우
                               : Color.fromARGB(255, 255, 155, 155), // 기본 색상
-                      borderRadius: BorderRadius.circular(5), // borderRadius 추가
-                    ),
-                    alignment: Alignment.center,
-                    child: Container(
-                      width: 120,
-                      height: 60,
-                      padding: const EdgeInsets.all(5), // 텍스트 주변 여백
-                      alignment: Alignment.center,
-                      child: Text(
-                        '선택 1 내용',
-                        maxLines: 2, // 최대 두 줄
-                        overflow: TextOverflow
-                            .ellipsis, // 텍스트 길이가 영역을 초과할 경우 말 줄임표 처리
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontFamily: 'Roboto',
-                          fontWeight: FontWeight.w700,
-                        ),
-                        softWrap: true, // 줄바꿈을 허용
-                      ),
+                      clipper: UpsideDownTrapezoidClipper(), // 클리퍼 추가
+                      alignment: Alignment.centerLeft,
+                      textAlign: TextAlign.center,
                     ),
                   ),
-                  const SizedBox(width: 10),
                   // 두 번째 선택 항목
-                  Container(
-                    width: 135,
-                    height: 78,
-                    decoration: BoxDecoration(
+                  Padding(
+                    padding: const EdgeInsets.only(left: 90.0),
+                    // 첫 번째 선택 항목
+                    child: TrapezoidOption(
+                      text: '선택 2 내용선택 2 내용선택 2 내용선택 2 내용선택 2 내용',
                       color: isOption2Winner
                           ? Color.fromARGB(255, 93, 177, 255) // 이긴 경우
                           : isOption1Winner
                               ? Color.fromARGB(255, 155, 155, 155) // 진 경우
                               : Color.fromARGB(255, 93, 177, 255), // 기본 색상
-                      borderRadius: BorderRadius.circular(5), // borderRadius 추가
-                    ),
-                    alignment: Alignment.center,
-                    child: Container(
-                      width: 120,
-                      height: 60,
-                      padding: const EdgeInsets.all(5), // 텍스트 주변 여백
-                      alignment: Alignment.center,
-                      child: Text(
-                        '선택 2 내용',
-                        maxLines: 2, // 최대 두 줄
-                        overflow: TextOverflow
-                            .ellipsis, // 텍스트 길이가 영역을 초과할 경우 말 줄임표 처리
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontFamily: 'Roboto',
-                          fontWeight: FontWeight.w700,
-                        ),
-                        softWrap: true, // 줄바꿈을 허용
-                      ),
+                      clipper: BottomWideTrapezoidClipper(), // 클리퍼 추가
+                      alignment: Alignment.centerRight,
+                      textAlign: TextAlign.center,
                     ),
                   ),
                 ],
