@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class KeywordChip extends StatelessWidget {
+class RemovableKeywordChip extends StatelessWidget {
   final String keyword;
   final VoidCallback onRemoved;
 
-  const KeywordChip({
+  const RemovableKeywordChip({
     Key? key,
     required this.keyword,
     required this.onRemoved,

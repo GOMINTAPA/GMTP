@@ -4,8 +4,16 @@ import '../../widgets/navigation/back_app_bar.dart';
 import '../../widgets/sections/display/choices/choices_section.dart';
 import '../../widgets/sections/display/content_section.dart';
 import '../../widgets/sections/display/profile_section.dart';
+import '../../widgets/sections/display/keyword_section.dart';
 
 class PostDetail extends StatelessWidget {
+  // final List<String> keywords; // 선택된 키워드를 저장할 변수
+
+  // const PostDetail({
+  //   Key? key,
+  //   required this.keywords, // 키워드 매개변수 추가
+  // }) : super(key: key);
+
   const PostDetail({super.key});
 
   @override
@@ -18,6 +26,13 @@ class PostDetail extends StatelessWidget {
     final String choiceBText = "선택 항목 B 텍스트";
     final String imageAPath = 'assets/images/jjanggu.jpg';
     final String imageBPath = 'assets/images/dog.jpg';
+
+    // 임시로 설정한 키워드 리스트
+    final List<String> keywords = [
+      '여행',
+      '음식',
+      '기타',
+    ];
 
     return Scaffold(
       appBar: BackAppBar(),
@@ -71,6 +86,9 @@ class PostDetail extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
                     const Divider(color: Color(0xffD9D9D9)),
+                    // 선택된 키워드 섹션 추가
+                    if (keywords.isNotEmpty) // 키워드가 있을 경우만 표시
+                      KeywordSection(keywords: keywords),
                   ],
                 ),
               ),

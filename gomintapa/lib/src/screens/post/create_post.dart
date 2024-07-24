@@ -6,7 +6,7 @@ import '../../utils/dialogs/post_submission_util.dart';
 import '../../utils/dialogs/unsaved_changes_dialog_util.dart';
 import '../../utils/modals/keyword_modal_util.dart';
 
-import '../../widgets/buttons/keyword_chip.dart';
+import '../../widgets/buttons/keyword_chip/removable_keyword_chip.dart';
 import '../../widgets/buttons/keyword_select_button.dart';
 import '../../widgets/navigation/form_action_app_bar.dart';
 import '../../widgets/sections/my/bottom_section.dart';
@@ -121,7 +121,7 @@ class _CreatePostState extends State<CreatePost> {
                         spacing: 5.0,
                         runSpacing: 10.0,
                         children: _selectedKeywords.map((keyword) {
-                          return KeywordChip(
+                          return RemovableKeywordChip(
                             keyword: keyword,
                             onRemoved: () {
                               setState(() {

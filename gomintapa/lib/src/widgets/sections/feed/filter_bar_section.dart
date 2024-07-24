@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../buttons/filter_button.dart';
-import '../../buttons/keyword_chip.dart';
+import '../../buttons/keyword_chip/removable_keyword_chip.dart';
 
 class FilterBarSection extends StatelessWidget {
   final VoidCallback onFilterPressed;
@@ -34,7 +34,7 @@ class FilterBarSection extends StatelessWidget {
               scrollDirection: Axis.horizontal, // 수평 스크롤 설정
               child: Row(
                 children: selectedKeywords.map((keyword) {
-                  return KeywordChip(
+                  return RemovableKeywordChip(
                     keyword: keyword,
                     onRemoved: () => onKeywordRemoved(keyword),
                   );
