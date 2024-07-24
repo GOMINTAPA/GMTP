@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../screens/shared/keyword_data.dart';
-import '../../buttons/filter_sheet_button.dart';
+import '../../buttons/keyword_button.dart';
 
 class KeywordListModal extends StatefulWidget {
   final Set<String> initialSelectedKeywords; // 초기 선택된 키워드
@@ -105,7 +105,6 @@ class _KeywordListModalState extends State<KeywordListModal> {
                     onPressed: () {
                       // 적용 버튼 클릭 시 선택된 키워드를 반환
                       widget.onApply(_selectedKeywords);
-                      Navigator.pop(context); // 바텀 시트 닫기
                     },
                     child: Text(
                       '적용',
@@ -140,7 +139,7 @@ class _KeywordListModalState extends State<KeywordListModal> {
       // 현재 버튼이 선택되었는지 확인
       final bool isSelected = _selectedKeywords.contains(text);
 
-      return FilterSheetButton(
+      return KeywordButton(
         text: text,
         isSelected: isSelected,
         onPressed: () {

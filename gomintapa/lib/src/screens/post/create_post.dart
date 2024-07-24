@@ -4,9 +4,9 @@ import 'package:gomintapa/src/controllers/feed_controller.dart';
 
 import '../../utils/dialogs/post_submission_util.dart';
 import '../../utils/dialogs/unsaved_changes_dialog_util.dart';
+import '../../utils/modals/keyword_modal_util.dart';
 import '../../widgets/buttons/keyword_select_button.dart';
 import '../../widgets/navigation/form_action_app_bar.dart';
-import '../../widgets/sections/keyword/keyword_list_modal.dart';
 import '../../widgets/sections/my/bottom_section.dart';
 import '../../widgets/sections/post/choices_input_section.dart';
 import '../../widgets/sections/post/input_section.dart';
@@ -39,40 +39,6 @@ class _CreatePostState extends State<CreatePost> {
       height: 0, // Divider 위아래의 공간 제거
     ),
   );
-
-  // 키워드 모달
-  void _showKeywordModal(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.transparent, // 바텀 시트의 배경색을 투명으로 설정
-      builder: (BuildContext context) {
-        // KeywordListModal 위젯을 모달로 표시
-        return KeywordListModal(
-          initialSelectedKeywords: _selectedKeywords, // 현재 선택된 키워드 전달
-          onApply: (selectedKeywords) {
-            // '적용' 버튼 클릭 시 호출되는 콜백
-            setState(() {
-              // 선택된 키워드를 상태에 반영
-              _selectedKeywords.clear();
-              _selectedKeywords.addAll(selectedKeywords);
-              // 키워드를 콤마로 연결하여 _keywordController에 설정
-              _keywordController.text = _selectedKeywords.join(', ');
-            });
-          },
-          onClose: () => Navigator.pop(context), // 바텀 시트를 닫기 위한 콜백
-        );
-      },
-    );
-  }
-
-  _submit() async {
-    final result = await feedController.feedCreate(
-        _titleController.text,
-        _contentController.text,
-        _aInputController.text,
-        _bInputController.text,
-        _keywordController.text);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -132,7 +98,7 @@ class _CreatePostState extends State<CreatePost> {
       ),
       bottomNavigationBar: BottomSection(
         buttonWidget: KeywordSelectButton(
-          onPressed: () => _showKeywordModal(context), // 버튼 클릭 시 모달 표시
+          onPressed: () => _showKeywordModal(), // 버튼 클릭 시 모달 표시
         ),
       ),
     );
@@ -140,18 +106,34 @@ class _CreatePostState extends State<CreatePost> {
 
   void _submitPost() async {
     final result = await feedController.feedCreate(
-        _titleController.text,
-        _contentController.text,
-        _aInputController.text,
-        _bInputController.text,
-        _keywordController.text);
+      _titleController.text,
+      _contentController.text,
+      _aInputController.text,
+      _bInputController.text,
+      _keywordController.text,
+    );
 
     handleSubmitPost(
-        context: context,
-        title: _titleController.text,
-        content: _contentController.text,
-        aInput: _aInputController.text,
-        bInput: _bInputController.text);
+      context: context,
+      title: _titleController.text,
+      content: _contentController.text,
+      aInput: _aInputController.text,
+      bInput: _bInputController.text,
+    );
+  }
+
+  void _showKeywordModal() async {
+    final selectedKeywords = await showKeywordModal(
+      context: context,
+      selectedKeywords: _selectedKeywords,
+    );
+    if (selectedKeywords != null) {
+      setState(() {
+        _selectedKeywords.clear();
+        _selectedKeywords.addAll(selectedKeywords);
+        _keywordController.text = _selectedKeywords.join(', ');
+      });
+    }
   }
 
   void _handleClose() {

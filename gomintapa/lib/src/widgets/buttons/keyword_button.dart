@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 // FilterSheet에서 사용되는 버튼 정의
-class FilterSheetButton extends StatelessWidget {
+class KeywordButton extends StatelessWidget {
   final String text; // 버튼에 표시할 텍스트
   final bool isSelected; // 버튼 선택 여부
   final VoidCallback onPressed; // 버튼 클릭 시 호출될 콜백 함수
 
   // 생성자
-  const FilterSheetButton({
+  const KeywordButton({
     Key? key,
     required this.text,
     required this.isSelected,
