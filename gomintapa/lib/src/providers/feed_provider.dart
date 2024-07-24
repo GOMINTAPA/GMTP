@@ -1,4 +1,3 @@
-
 import 'package:get/get.dart';
 import 'package:gomintapa/src/providers/provider.dart';
 
@@ -8,12 +7,12 @@ class FeedProvider extends Provider {
       '/api/feed',
       query: {'page': '$page'},
     );
-    
+
     return response.body;
   }
 
-  Future<Map> store(
-      String title, String content, String firstOption, String secondOption, String keyword) async {
+  Future<Map> store(String title, String content, String firstOption,
+      String secondOption, String keyword) async {
     final Map<String, dynamic> body = {
       'title': title,
       'content': content,

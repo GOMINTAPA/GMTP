@@ -20,7 +20,7 @@ class ConcernTabBar extends StatelessWidget {
       ),
 
       // 탭 미선택 스타일
-      unselectedLabelColor: Color.fromARGB(255, 217, 217, 217),
+      unselectedLabelColor: Color.fromARGB(255, 155, 155, 155),
       unselectedLabelStyle: const TextStyle(
         fontSize: 15,
         fontFamily: 'Roboto',
@@ -30,7 +30,7 @@ class ConcernTabBar extends StatelessWidget {
 
       // 탭 바 클릭시 나오는 splash effect 컬러
       overlayColor: MaterialStatePropertyAll(
-        Colors.white,
+        Color.fromARGB(255, 217, 217, 217),
       ),
 
       // indicator 설정
