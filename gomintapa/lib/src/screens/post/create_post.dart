@@ -124,6 +124,12 @@ class _CreatePostState extends State<CreatePost> {
   }
 
   void _submitPost() {
+    print('Title: ${_titleController.text}');
+    print('Content: ${_contentController.text}');
+    print('A Input: ${_aInputController.text}');
+    print('B Input: ${_bInputController.text}');
+    print('Keywords: ${_keywordController.text}');
+
     handleSubmitPost(
       context: context,
       title: _titleController.text,
