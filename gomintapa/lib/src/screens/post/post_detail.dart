@@ -10,14 +10,14 @@ class PostDetail extends StatelessWidget {
   // final List<String> keywords; // 선택된 키워드를 저장할 변수
 
   // 임시로 설정한 키워드 리스트
-    final List<String> keywords = ['여행', '음식', '기타', '바보'];
+  final List<String> keywords = ['여행', '음식', '기타', '바보'];
 
   // const PostDetail({
   //   Key? key,
   //   required this.keywords, // 키워드 매개변수 추가
   // }) : super(key: key);
 
-  const PostDetail({super.key});
+  PostDetail({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class PostDetail extends StatelessWidget {
     final String choiceAText = "선택 항목 A 텍스트";
     final String choiceBText = "선택 항목 B 텍스트";
     final String imageAPath = 'assets/images/jjanggu.jpg';
-    final String imageBPath = 'assets/images/dog.jpg';111
+    final String imageBPath = 'assets/images/dog.jpg';
 
     return Scaffold(
       appBar: BackAppBar(),
