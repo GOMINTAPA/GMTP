@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gomintapa/src/controllers/feed_controller.dart';
+import 'package:gomintapa/src/controllers/file_controller.dart';
 import 'package:gomintapa/src/widgets/sections/post/removable_keyword_section.dart';
 
 import '../../utils/dialogs/post_submission_util.dart';
@@ -22,6 +23,7 @@ class CreatePost extends StatefulWidget {
 
 class _CreatePostState extends State<CreatePost> {
   final feedController = Get.put(FeedController());
+  final fileController = Get.put(FileController());
   // 제목과 내용을 저장할 컨트롤러
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _contentController = TextEditingController();
@@ -134,7 +136,9 @@ class _CreatePostState extends State<CreatePost> {
         await feedController.feedCreate(
           _titleController.text,
           _contentController.text,
+          fileController.imageId.value,
           _aInputController.text,
+          fileController.imageId.value,
           _bInputController.text,
           _keywordController.text,
         );
