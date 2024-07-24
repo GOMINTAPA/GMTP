@@ -5,6 +5,8 @@ import 'package:gomintapa/src/controllers/feed_controller.dart';
 import '../../utils/dialogs/post_submission_util.dart';
 import '../../utils/dialogs/unsaved_changes_dialog_util.dart';
 import '../../utils/modals/keyword_modal_util.dart';
+
+import '../../widgets/buttons/keyword_chip.dart';
 import '../../widgets/buttons/keyword_select_button.dart';
 import '../../widgets/navigation/form_action_app_bar.dart';
 import '../../widgets/sections/my/bottom_section.dart';
@@ -61,8 +63,10 @@ class _CreatePostState extends State<CreatePost> {
                 titleController: _titleController,
                 contentController: _contentController,
               ),
+
               // 공통 Divider
               commonDivider,
+
               // A 입력 및 사진첨부 섹션
               ChoicesInputSection(
                 inputController: _aInputController,
@@ -70,6 +74,7 @@ class _CreatePostState extends State<CreatePost> {
                 backgroundColor: const Color(0xffFF9B9B),
                 containerWidth: containerWidth, // containerWidth 전달
               ),
+
               // VS Text
               const Center(
                 child: Text(
@@ -81,6 +86,7 @@ class _CreatePostState extends State<CreatePost> {
                   ),
                 ),
               ),
+
               // B 입력 및 사진 첨부 섹션
               ChoicesInputSection(
                 inputController: _bInputController,
@@ -88,9 +94,48 @@ class _CreatePostState extends State<CreatePost> {
                 backgroundColor: const Color(0xff5DB1FF),
                 containerWidth: containerWidth, // containerWidth 전달
               ),
+
               // 공통 Divider
               const SizedBox(height: 10),
               commonDivider,
+              const SizedBox(height: 30),
+
+              // 선택된 키워드를 표시하는 섹션
+              Container(
+                width: containerWidth, // 키워드 섹션의 너비 설정
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    if (_selectedKeywords.isEmpty)
+                      const Text(
+                        '키워드를 선택해주세요',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Color(0xffA7A7A7),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )
+                    else
+                      Wrap(
+                        spacing: 5.0,
+                        runSpacing: 10.0,
+                        children: _selectedKeywords.map((keyword) {
+                          return KeywordChip(
+                            keyword: keyword,
+                            onRemoved: () {
+                              setState(() {
+                                _selectedKeywords.remove(keyword);
+                                _keywordController.text =
+                                    _selectedKeywords.join(', ');
+                              });
+                            },
+                          );
+                        }).toList(),
+                      ),
+                  ],
+                ),
+              ),
               const SizedBox(height: 30),
             ],
           ),
