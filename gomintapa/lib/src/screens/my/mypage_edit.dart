@@ -20,7 +20,8 @@ class _MypageEditState extends State<MypageEdit> {
   final _passwordController = TextEditingController();
 
   _submit() async {
-    bool result = await userController.updateInfo(_idController.text, _nameController.text, _passwordController.text);
+    bool result = await userController.updateInfo(
+        _idController.text, _nameController.text, _passwordController.text);
     if (result) {
       Get.back();
     }
@@ -31,7 +32,7 @@ class _MypageEditState extends State<MypageEdit> {
     super.initState();
     _nameController.text = userController.my.value!.name;
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -46,7 +47,7 @@ class _MypageEditState extends State<MypageEdit> {
                 padding:
                     const EdgeInsets.only(left: 156), // 이미지 왼쪽에 156픽셀 패딩 추가
                 child: Image.asset(
-                  'assets/images/gmtp_logo_big.png',
+                  'assets/images/gomintapa_logo.png',
                   width: 130,
                   height: 130,
                 ),

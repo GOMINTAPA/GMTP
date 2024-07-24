@@ -45,7 +45,7 @@ class _RegisterState extends State<Register> {
                 padding:
                     const EdgeInsets.only(left: 156), // 이미지 왼쪽에 156픽셀 패딩 추가
                 child: Image.asset(
-                  'assets/images/gmtp_logo_big.png',
+                  'assets/images/gomintapa_logo.png',
                   width: 130,
                   height: 130,
                 ),

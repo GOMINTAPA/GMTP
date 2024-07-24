@@ -25,7 +25,7 @@ class _LoginState extends State<Login> {
       _passwordController.text,
     );
     if (result) {
-      Navigator.pushNamedAndRemoveUntil(context, '/', (route)=>false);
+      Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
 
       // Get.offAll(() => const Home());
     }
@@ -45,7 +45,7 @@ class _LoginState extends State<Login> {
                 padding:
                     const EdgeInsets.only(left: 156), // 이미지 왼쪽에 156픽셀 패딩 추가
                 child: Image.asset(
-                  'assets/images/gmtp_logo_big.png',
+                  'assets/images/gomintapa_logo.png',
                   width: 130,
                   height: 130,
                 ),
