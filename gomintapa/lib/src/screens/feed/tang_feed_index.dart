@@ -56,58 +56,58 @@ class _TangFeedIndexState extends State<TangFeedIndex> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      body: Stack(
         children: [
-          Container(
-            color: Colors.white, // 배경색
-            child: Column(
-              children: [
-                // 필터 버튼과 선택된 키워드를 표시하는 섹션
-                FilterBarSection(
+          Column(
+            children: [
+              Container(
+                color: Colors.white, // 배경색
+                child: FilterBarSection(
                   onFilterPressed: _showKeywordModal, // 필터 버튼 클릭 시 필터 모달 표시
                   selectedKeywords: _selectedKeywords, // 현재 선택된 키워드 전달
                   onKeywordRemoved: _removeKeyword, // 키워드 삭제 콜백 함수
                 ),
-              ],
-            ),
+              ),
+              Expanded(
+                child: ListView(
+                  children: [
+                    TangListItem(
+                      onTap: () => _navigateToMyPage(context),
+                      isOption1Winner: true, // 첫 번째 옵션이 이긴 경우
+                      isOption2Winner: false,
+                    ),
+                    TangListItem(
+                      onTap: () => _navigateToMyPage(context),
+                      isOption1Winner: false, // 두 번째 옵션이 이긴 경우
+                      isOption2Winner: true,
+                    ),
+                    TangListItem(
+                      onTap: () => _navigateToMyPage(context),
+                      isOption1Winner: true, // 첫 번째 옵션이 이긴 경우
+                      isOption2Winner: false,
+                    ),
+                    TangListItem(
+                      onTap: () => _navigateToMyPage(context),
+                      isOption1Winner: false, // 두 번째 옵션이 이긴 경우
+                      isOption2Winner: true,
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
-          const SizedBox(height: 30),
-
-          Expanded(
-            child: ListView(
-              children: [
-                TangListItem(
-                  onTap: () => _navigateToMyPage(context),
-                  isOption1Winner: true, // 첫 번째 옵션이 이긴 경우
-                  isOption2Winner: false,
-                ), // 임시 설정
-                TangListItem(
-                  onTap: () => _navigateToMyPage(context),
-                  isOption1Winner: false, // 두 번째 옵션이 이긴 경우
-                  isOption2Winner: true,
-                ),
-                TangListItem(
-                  onTap: () => _navigateToMyPage(context),
-                  isOption1Winner: true, // 첫 번째 옵션이 이긴 경우
-                  isOption2Winner: false,
-                ),
-                TangListItem(
-                  onTap: () => _navigateToMyPage(context),
-                  isOption1Winner: false, // 두 번째 옵션이 이긴 경우
-                  isOption2Winner: true,
-                ),
-              ],
-            ),
-          ),
-          //),
           // 하단 중앙에 위치한 '고민 작성' 버튼
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: CreatePostButton(
-              onPressed: () {
-                // 버튼 클릭 시 고민 작성 페이지로 이동
-                Navigator.pushNamed(context, '/create_post');
-              },
+          Positioned(
+            bottom: 20,
+            left: 0,
+            right: 0,
+            child: Center(
+              child: CreatePostButton(
+                onPressed: () {
+                  // 버튼 클릭 시 고민 작성 페이지로 이동
+                  Navigator.pushNamed(context, '/create_post');
+                },
+              ),
             ),
           ),
         ],
