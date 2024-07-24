@@ -3,7 +3,8 @@ import 'package:gomintapa/src/screens/my/mypage.dart';
 import 'package:gomintapa/src/widgets/buttons/create_post_button.dart';
 import 'package:gomintapa/src/widgets/listitems/mak_list_item.dart';
 import 'package:gomintapa/src/widgets/sections/feed/filter_bar_section.dart';
-import 'package:gomintapa/src/widgets/sections/keyword/keyword_list_modal.dart';
+
+import '../../utils/modals/keyword_modal_util.dart';
 
 class MakFeedIndex extends StatefulWidget {
   const MakFeedIndex({super.key});
@@ -16,34 +17,30 @@ class _MakFeedIndexState extends State<MakFeedIndex> {
   // 선택된 키워드를 저장할 Set
   final Set<String> _selectedKeywords = {};
 
-  // 필터 모달
-  void _showFilterModal(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.transparent, // 바텀 시트의 배경색을 투명으로 설정
-      builder: (BuildContext context) {
-        // FilterSheet 위젯을 모달로 표시
-        return KeywordListModal(
-          initialSelectedKeywords: _selectedKeywords, // 현재 선택된 키워드 전달
-          onApply: (selectedKeywords) {
-            // '적용' 버튼 클릭 시 호출되는 콜백
-            setState(() {
-              // 선택된 키워드를 상태에 반영
-              _selectedKeywords.clear();
-              _selectedKeywords.addAll(selectedKeywords);
-            });
-          },
-          onClose: () => Navigator.pop(context), // 바텀 시트를 닫기 위한 콜백
-        );
-      },
-    );
-  }
-
   // 키워드를 삭제하는 메서드
   void _removeKeyword(String keyword) {
     setState(() {
       _selectedKeywords.remove(keyword); // 키워드를 선택된 키워드 집합에서 제거
     });
+  }
+
+  // 키워드 선택 모달을 표시하고, 사용자가 선택한 키워드를 처리
+  void _showKeywordModal() async {
+    // showKeywordModal을 호출하여 키워드 선택 모달 표시
+    // 사용자가 선택한 키워드 목록 반환
+    final selectedKeywords = await showKeywordModal(
+      context: context, // 현재 context를 전달하여 모달 표시
+      selectedKeywords: _selectedKeywords, // 현재 선택된 키워드 집합을 전달하여 초기 선택 상태 설정
+    );
+    // 사용자가 키워드를 선택했을 경우
+    if (selectedKeywords != null) {
+      setState(() {
+        // 현재 선택된 키워드 모두 제거
+        _selectedKeywords.clear();
+        // 새로 선택한 키워드를 _selectedKeywords에 추가
+        _selectedKeywords.addAll(selectedKeywords);
+      });
+    }
   }
 
   // 페이지 이동 메서드 : 이동만 확인하려고 임시로 MyPage로 설정해둠
@@ -67,8 +64,7 @@ class _MakFeedIndexState extends State<MakFeedIndex> {
               children: [
                 // 필터 버튼과 선택된 키워드를 표시하는 섹션
                 FilterBarSection(
-                  onFilterPressed: () =>
-                      _showFilterModal(context), // 필터 버튼 클릭 시 필터 모달 표시
+                  onFilterPressed: _showKeywordModal, // 버튼 클릭 시 필터 모달 표시
                   selectedKeywords: _selectedKeywords, // 현재 선택된 키워드 전달
                   onKeywordRemoved: _removeKeyword, // 키워드 삭제 콜백 함수
                 ),
@@ -94,7 +90,8 @@ class _MakFeedIndexState extends State<MakFeedIndex> {
             alignment: Alignment.bottomCenter,
             child: CreatePostButton(
               onPressed: () {
-                // 고민 작성 버튼 클릭 시 동작
+                // 버튼 클릭 시 고민 작성 페이지로 이동
+                Navigator.pushNamed(context, '/create_post');
               },
             ),
           ),

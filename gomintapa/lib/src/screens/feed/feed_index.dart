@@ -41,14 +41,20 @@ class _FeedIndexState extends State<FeedIndex> {
     });
   }
 
+  // 키워드 선택 모달을 표시하고, 사용자가 선택한 키워드를 처리
   void _showKeywordModal() async {
+    // showKeywordModal을 호출하여 키워드 선택 모달 표시
+    // 사용자가 선택한 키워드 목록 반환
     final selectedKeywords = await showKeywordModal(
-      context: context,
-      selectedKeywords: _selectedKeywords,
+      context: context, // 현재 context를 전달하여 모달 표시
+      selectedKeywords: _selectedKeywords, // 현재 선택된 키워드 집합을 전달하여 초기 선택 상태 설정
     );
+    // 사용자가 키워드를 선택했을 경우
     if (selectedKeywords != null) {
       setState(() {
+        // 현재 선택된 키워드 모두 제거
         _selectedKeywords.clear();
+        // 새로 선택한 키워드를 _selectedKeywords에 추가
         _selectedKeywords.addAll(selectedKeywords);
       });
     }
@@ -96,7 +102,7 @@ class _FeedIndexState extends State<FeedIndex> {
             alignment: Alignment.bottomCenter,
             child: CreatePostButton(
               onPressed: () {
-                // 고민 작성 버튼 클릭 시 고민 작성 페이지로 이동
+                // 버튼 클릭 시 고민 작성 페이지로 이동
                 Navigator.pushNamed(context, '/create_post');
               },
             ),
