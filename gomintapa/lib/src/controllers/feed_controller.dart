@@ -14,10 +14,10 @@ class FeedController extends GetxController {
       if (response['result'] == 'ok') {
         await feedShow(feedId);
       } else {
-        Get.snackbar('투표 에러', response['message'], snackPosition: SnackPosition.BOTTOM);
+        // Get.snackbar('투표 에러', response['message'], snackPosition: SnackPosition.BOTTOM);
       }
     } catch (e) {
-      Get.snackbar('투표 에러', e.toString(), snackPosition: SnackPosition.BOTTOM);
+      // Get.snackbar('투표 에러', e.toString(), snackPosition: SnackPosition.BOTTOM);
 
     }
 
