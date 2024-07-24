@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:gomintapa/src/screens/my/mypage.dart';
+import 'package:gomintapa/src/screens/search.dart';
 
 import 'home.dart';
 import 'screens/auth/login.dart';
@@ -27,6 +28,7 @@ class MyWidget extends StatelessWidget {
         '/mypage': (context) => Mypage(),
         '/intro': (context) => Login(),
         '/register': (context) => Register(),
+        '/serach': (context) => Search(),
         // GetMaterialApp의 routes에서는 인자를 전달하지 않기 때문에 주석 처리
         // '/post_detail': (context) => PostDetail(),
       },
