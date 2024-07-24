@@ -123,21 +123,22 @@ class _CreatePostState extends State<CreatePost> {
     );
   }
 
-  void _submitPost() async {
-    final result = await feedController.feedCreate(
-      _titleController.text,
-      _contentController.text,
-      _aInputController.text,
-      _bInputController.text,
-      _keywordController.text,
-    );
-
+  void _submitPost() {
     handleSubmitPost(
       context: context,
       title: _titleController.text,
       content: _contentController.text,
       aInput: _aInputController.text,
       bInput: _bInputController.text,
+      onSubmit: () async {
+        await feedController.feedCreate(
+          _titleController.text,
+          _contentController.text,
+          _aInputController.text,
+          _bInputController.text,
+          _keywordController.text,
+        );
+      },
     );
   }
 
