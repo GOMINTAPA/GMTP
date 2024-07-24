@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gomintapa/src/widgets/sections/app_bar_section.dart';
+import 'package:gomintapa/src/widgets/sections/feed/app_bar_section.dart';
 
 class BackAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
