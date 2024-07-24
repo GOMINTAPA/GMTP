@@ -68,7 +68,6 @@ class _TangFeedIndexState extends State<TangFeedIndex> {
                   onKeywordRemoved: _removeKeyword, // 키워드 삭제 콜백 함수
                 ),
               ),
-              const SizedBox(height: 30),
               Expanded(
                 child: ListView(
                   children: [
