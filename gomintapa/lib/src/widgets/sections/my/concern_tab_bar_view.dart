@@ -19,7 +19,7 @@ class ConcernTabBarView extends StatelessWidget {
     return Obx(() {
       final writtenConcerns =
           feedController.feedList.where((feed) => feed.isMe).toList(); // 작성한 고민
-      final commentedConcerns = <FeedModel>[]; // 참견한 고민 리스트는 빈 리스트로 설정
+      final votedConcerns = <FeedModel>[]; // 참견한 고민 리스트는 빈 리스트로 설정
 
       return TabBarView(
         controller: controller,
@@ -56,7 +56,7 @@ class ConcernTabBarView extends StatelessWidget {
           // 참견한 고민 탭
           ListView(
             padding: const EdgeInsets.all(30),
-            children: commentedConcerns.isEmpty
+            children: votedConcerns.isEmpty
                 ? [
                     Column(
                       mainAxisSize: MainAxisSize.min,
@@ -78,7 +78,7 @@ class ConcernTabBarView extends StatelessWidget {
                       ],
                     ),
                   ]
-                : commentedConcerns
+                : votedConcerns
                     .map((concern) => ConcernListItem(concern))
                     .toList(),
           ),
