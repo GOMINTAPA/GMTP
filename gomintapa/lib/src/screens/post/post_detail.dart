@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../models/feed_model.dart';
 import '../../widgets/navigation/back_app_bar.dart';
 import '../../widgets/sections/display/choices/choices_section.dart';
 import '../../widgets/sections/display/content_section.dart';
@@ -7,17 +8,15 @@ import '../../widgets/sections/display/profile_section.dart';
 import '../../widgets/sections/display/keyword_section.dart';
 
 class PostDetail extends StatelessWidget {
-  // final List<String> keywords; // 선택된 키워드를 저장할 변수
+  // 선택된 키워드를 저장할 변수
+  // final List<String> keywords;
+
+  final FeedModel feedModel; // FeedModel을 받기 위한 변수
 
   // 임시로 설정한 키워드 리스트
   final List<String> keywords = ['여행', '음식', '기타', '바보'];
 
-  // const PostDetail({
-  //   Key? key,
-  //   required this.keywords, // 키워드 매개변수 추가
-  // }) : super(key: key);
-
-  PostDetail({super.key});
+  PostDetail({Key? key, required this.feedModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +28,8 @@ class PostDetail extends StatelessWidget {
     final String choiceBText = "선택 항목 B 텍스트";
     final String? imageAPath = 'assets/images/jjanggu.jpg';
     final String? imageBPath = null; // 이미지 경로가 없는 경우
+
+    final bool isMe = feedModel.isMe;
 
     return Scaffold(
       appBar: BackAppBar(),
@@ -47,7 +48,7 @@ class PostDetail extends StatelessWidget {
                 child: Column(
                   children: [
                     // 프로필 섹션
-                    ProfileSection(),
+                    ProfileSection(isMe: isMe), // 사용자 게시물 여부 전달
                     SizedBox(height: 10),
                     Divider(color: Color(0xffD9D9D9)),
 
@@ -85,6 +86,7 @@ class PostDetail extends StatelessWidget {
                       imagePath: imageBPath,
                       backgroundColor: const Color(0xff5DB1FF),
                     ),
+
                     const SizedBox(height: 10),
                     const Divider(color: Color(0xffD9D9D9)),
                     const SizedBox(height: 10),

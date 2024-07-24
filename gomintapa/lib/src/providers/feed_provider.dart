@@ -1,4 +1,3 @@
-
 import 'package:get/get.dart';
 import 'package:gomintapa/src/providers/provider.dart';
 
@@ -9,7 +8,7 @@ class FeedProvider extends Provider {
       '/api/feed',
       query: {'page': '$page'},
     );
-    
+
     return response.body;
   }
 

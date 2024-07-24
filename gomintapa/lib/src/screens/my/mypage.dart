@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:gomintapa/src/controllers/user_controller.dart';
 import 'package:gomintapa/src/home.dart';
+import 'package:get/get.dart';
+import 'package:gomintapa/src/controllers/user_controller.dart';
 import 'package:gomintapa/src/models/user_model.dart';
 import 'package:gomintapa/src/screens/auth/login.dart';
 import 'package:gomintapa/src/screens/shared/global.dart';
@@ -25,16 +27,14 @@ class Mypage extends StatelessWidget {
       body: Column(
         children: [
           // 계정 정보 영역
-          // UserSection(UserModel(id: 1, name: '노는게젤조아')),
-          Obx(
-            () {
-              if (userController.my.value == null) {
-                return const CircularProgressIndicator();
-              } else {
-                return UserSection(userController.my.value!);
-              }
+          //UserSection(UserModel(id: 1, name: '노는게젤조아')),
+          Obx(() {
+            if (userController.my.value == null) {
+              return const CircularProgressIndicator();
+            } else {
+              return UserSection(userController.my.value!);
             }
-          ),
+          }),
           const SizedBox(height: 25),
           // 고민 정보 영역
           const Expanded(
@@ -45,8 +45,9 @@ class Mypage extends StatelessWidget {
             buttonWidget: LogoutButton(
               onPressed: () {
                 GetStorage().remove('access_token');
-                if(GetStorage().read('access_token') == null) {
-                  Navigator.pushNamedAndRemoveUntil(context, '/intro', (route)=>false);
+                if (GetStorage().read('access_token') == null) {
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, '/intro', (route) => false);
                 }
               },
             ),
