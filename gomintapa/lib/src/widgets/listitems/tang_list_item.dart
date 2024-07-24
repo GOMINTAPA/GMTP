@@ -28,6 +28,7 @@ class TangListItem extends StatelessWidget {
 
     return Column(
       children: [
+        const SizedBox(height: 25),
         CardSection(
           onTap: onTap,
           backgroundColor: containerColor, // 배경 색상 전달
@@ -134,7 +135,7 @@ class TangListItem extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(height: 25), // ConcernListItem들 사이의 간격 추가
+        const SizedBox(height: 10), // ConcernListItem들 사이의 간격 추가
       ],
     );
   }
