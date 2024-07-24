@@ -7,7 +7,8 @@ import '../../widgets/sections/display/profile_section.dart';
 import '../../widgets/sections/display/keyword_section.dart';
 
 class PostDetail extends StatelessWidget {
-  // final List<String> keywords; // 선택된 키워드를 저장할 변수
+  // 선택된 키워드를 저장할 변수
+  // final List<String> keywords;
 
   // 임시로 설정한 키워드 리스트
   final List<String> keywords = ['여행', '음식', '기타', '바보'];
@@ -30,6 +31,9 @@ class PostDetail extends StatelessWidget {
     final String? imageAPath = 'assets/images/jjanggu.jpg';
     final String? imageBPath = null; // 이미지 경로가 없는 경우
 
+    // 실제로는 로그인한 사용자와 게시물 작성자 정보를 비교하여 설정
+    final bool isUserPost = true;
+
     return Scaffold(
       appBar: BackAppBar(),
       body: Container(
@@ -47,7 +51,7 @@ class PostDetail extends StatelessWidget {
                 child: Column(
                   children: [
                     // 프로필 섹션
-                    ProfileSection(),
+                    ProfileSection(isUserPost: isUserPost),
                     SizedBox(height: 10),
                     Divider(color: Color(0xffD9D9D9)),
 
@@ -85,6 +89,7 @@ class PostDetail extends StatelessWidget {
                       imagePath: imageBPath,
                       backgroundColor: const Color(0xff5DB1FF),
                     ),
+
                     const SizedBox(height: 10),
                     const Divider(color: Color(0xffD9D9D9)),
                     const SizedBox(height: 10),
