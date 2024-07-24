@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:gomintapa/src/controllers/user_controller.dart';
 
 import 'widgets/navigation/bottom_navigation_bar.dart';
 
@@ -22,6 +24,7 @@ class _HomeState extends State<Home> {
   // 현재 선택된 인덱스
   int _selectedIndex = 1;
   PageController _pageController = PageController(initialPage: 1);
+  final userController = Get.put(UserController());
 
   // 바텀 네비게이션 바의 아이템이 클릭되었을 때
   void _onItemTapped(int index) {
@@ -31,6 +34,13 @@ class _HomeState extends State<Home> {
       _pageController.animateToPage(index,
           duration: Duration(milliseconds: 300), curve: Curves.easeInOut);
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    userController.myInfo();
+    print('userController');
   }
 
   @override
