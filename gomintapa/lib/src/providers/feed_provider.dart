@@ -2,6 +2,15 @@ import 'package:get/get.dart';
 import 'package:gomintapa/src/providers/provider.dart';
 
 class FeedProvider extends Provider {
+
+  Future<Map> vote(int feedId, String choice) async {
+    final Map<String, dynamic> body = {
+      'choice': choice,
+    };
+
+    final response = await post('/api/feed/$feedId/vote', body);
+    return response.body;
+  }
   
   Future<Map> index([int page = 1]) async {
     Response response = await get(
