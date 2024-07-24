@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-import '../../screens/shared/keyword_data.dart';
-import '../buttons/filter_sheet_button.dart';
+import '../../../screens/shared/keyword_data.dart';
+import '../../buttons/filter_sheet_button.dart';
 
-class FilterSheet extends StatefulWidget {
+class KeywordListModal extends StatefulWidget {
   final Set<String> initialSelectedKeywords; // 초기 선택된 키워드
   final ValueChanged<Set<String>> onApply; // 적용 버튼 클릭 시 호출될 콜백 함수
   final VoidCallback onClose; // 바텀 시트를 닫을 때 호출될 콜백 함수
 
   // 생성자
-  const FilterSheet({
+  const KeywordListModal({
     Key? key,
     required this.initialSelectedKeywords,
     required this.onApply,
@@ -17,10 +17,10 @@ class FilterSheet extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _FilterSheetState createState() => _FilterSheetState();
+  _KeywordListModalState createState() => _KeywordListModalState();
 }
 
-class _FilterSheetState extends State<FilterSheet> {
+class _KeywordListModalState extends State<KeywordListModal> {
   late Set<String> _selectedKeywords;
 
   @override

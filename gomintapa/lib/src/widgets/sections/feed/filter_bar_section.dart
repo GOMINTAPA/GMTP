@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../buttons/filter_button.dart';
+import '../../buttons/filter_button.dart';
 
 class FilterBarSection extends StatelessWidget {
   final VoidCallback onFilterPressed;

@@ -4,8 +4,8 @@ import 'package:gomintapa/src/controllers/feed_controller.dart';
 import 'package:gomintapa/src/widgets/listitems/concern_list_item.dart';
 
 import '../../widgets/buttons/create_post_button.dart';
-import '../../widgets/sections/filter_bar_section.dart';
-import '../../widgets/sections/filter_sheet.dart';
+import '../../widgets/sections/feed/filter_bar_section.dart';
+import '../../widgets/sections/keyword/keyword_list_modal.dart';
 
 class FeedIndex extends StatefulWidget {
   const FeedIndex({super.key});
@@ -41,7 +41,7 @@ class _FeedIndexState extends State<FeedIndex> {
       backgroundColor: Colors.transparent, // 바텀 시트의 배경색을 투명으로 설정
       builder: (BuildContext context) {
         // FilterSheet 위젯을 모달로 표시
-        return FilterSheet(
+        return KeywordListModal(
           initialSelectedKeywords: _selectedKeywords, // 현재 선택된 키워드 전달
           onApply: (selectedKeywords) {
             // '적용' 버튼 클릭 시 호출되는 콜백

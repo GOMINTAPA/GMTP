@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:gomintapa/src/screens/my/mypage.dart';
 import 'package:gomintapa/src/widgets/buttons/create_post_button.dart';
 import 'package:gomintapa/src/widgets/listitems/mak_list_item.dart';
-import 'package:gomintapa/src/widgets/sections/filter_bar_section.dart';
-import 'package:gomintapa/src/widgets/sections/filter_sheet.dart';
+import 'package:gomintapa/src/widgets/sections/feed/filter_bar_section.dart';
+import 'package:gomintapa/src/widgets/sections/keyword/keyword_list_modal.dart';
 
 class MakFeedIndex extends StatefulWidget {
   const MakFeedIndex({super.key});
@@ -23,7 +23,7 @@ class _MakFeedIndexState extends State<MakFeedIndex> {
       backgroundColor: Colors.transparent, // 바텀 시트의 배경색을 투명으로 설정
       builder: (BuildContext context) {
         // FilterSheet 위젯을 모달로 표시
-        return FilterSheet(
+        return KeywordListModal(
           initialSelectedKeywords: _selectedKeywords, // 현재 선택된 키워드 전달
           onApply: (selectedKeywords) {
             // '적용' 버튼 클릭 시 호출되는 콜백

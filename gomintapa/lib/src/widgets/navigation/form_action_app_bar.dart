@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../sections/app_bar_section.dart';
+import '../sections/feed/app_bar_section.dart';
 
 class FormActionAppBar extends StatelessWidget implements PreferredSizeWidget {
   final VoidCallback onClose; // 닫기 버튼 콜백
