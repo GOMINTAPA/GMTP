@@ -7,7 +7,7 @@ class CardTopSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 285,
+      width: 235,
       height: 20,
       alignment: Alignment.center,
       child: Text(
@@ -17,7 +17,7 @@ class CardTopSection extends StatelessWidget {
         textAlign: TextAlign.center,
         style: TextStyle(
           color: Colors.black,
-          fontSize: 16,
+          fontSize: 20,
           fontFamily: 'Roboto',
           fontWeight: FontWeight.w800,
         ),
