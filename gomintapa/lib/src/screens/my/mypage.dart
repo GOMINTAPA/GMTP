@@ -16,12 +16,12 @@ class MyPage extends StatefulWidget {
 }
 
 class _MyPageState extends State<MyPage> {
-  @override
+/*   @override
   void initState() {
     super.initState();
     final userController = Get.find<UserController>();
     userController.myInfo(); // 사용자 정보 로드 호출
-  }
+  } */
 
   @override
   Widget build(BuildContext context) {
