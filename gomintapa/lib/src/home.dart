@@ -21,14 +21,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final userController = Get.put(UserController()); // 사용자 정보
-  // 사용자 정보를 초기에 로드
-  @override
-  void initState() {
-    super.initState();
-    userController.myInfo();
-  }
-
   // 현재 선택된 인덱스
   int _selectedIndex = 1;
   PageController _pageController = PageController(initialPage: 1);
