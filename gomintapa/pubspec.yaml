@@ -1,6 +1,6 @@
 name: gomintapa
 description: 'A new Flutter project.'
-publish_to: 'none' 
+publish_to: 'none'
 version: 1.0.0+1
 
 environment:
@@ -13,6 +13,7 @@ dependencies:
     mysql_client: ^0.0.27
     shared_preferences: ^2.2.3
     get_storage: ^2.1.1
+    image_picker: ^1.1.2
 
 dev_dependencies:
     flutter_test:
