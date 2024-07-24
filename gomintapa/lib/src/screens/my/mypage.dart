@@ -17,8 +17,16 @@ class MyPage extends StatefulWidget {
 
 class _MyPageState extends State<MyPage> {
   @override
+  void initState() {
+    super.initState();
+    final userController = Get.find<UserController>();
+    userController.myInfo(); // 사용자 정보 로드 호출
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final userController = Get.put(UserController());
+    final userController = Get.find<UserController>();
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: BackAppBar(),
