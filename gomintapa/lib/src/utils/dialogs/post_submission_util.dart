@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'field_validation_util.dart';
-import '../utils/dialog_util.dart';
+import 'dialog_util.dart';
 
 // 제출 로직 처리
 void handleSubmitPost({
