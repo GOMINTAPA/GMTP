@@ -17,5 +17,8 @@ class UserModel {
     id = m['id'];
     name = m['nick_name'];
     profile = m['profile_id'];
+    profileImage = AssetImage(
+      m['profile_image_path'] ?? 'assets/images/default_profile.png',
+    );
   }
 }

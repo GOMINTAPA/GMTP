@@ -17,6 +17,9 @@ class MyWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      theme: ThemeData(
+        scaffoldBackgroundColor: Colors.white,
+      ),
       debugShowCheckedModeBanner: false, // 디버그 배너 삭제
       routes: {
         '/': (context) => Home(),
@@ -24,7 +27,8 @@ class MyWidget extends StatelessWidget {
         '/mypage': (context) => Mypage(),
         '/intro': (context) => Login(),
         '/register': (context) => Register(),
-        '/post_detail': (context) => PostDetail(),
+        // GetMaterialApp의 routes에서는 인자를 전달하지 않기 때문에 주석 처리
+        // '/post_detail': (context) => PostDetail(),
       },
       initialRoute: isLogin ? '/' : '/intro',
     );

@@ -9,15 +9,17 @@ import '../../screens/post/post_detail.dart';
 
 class ConcernListItem extends StatelessWidget {
   final FeedModel item;
+
   const ConcernListItem(this.item, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
+        const SizedBox(height: 25), // ConcernListItem들 사이의 간격 추가
         CardSection(
           onTap: () {
-            Get.to(() => PostDetail());
+            Get.to(() => PostDetail(feedModel: item)); // FeedModel을 전달
           }, // onTap 콜백 설정
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -26,7 +28,7 @@ class ConcernListItem extends StatelessWidget {
               CardTopSection(
                 title: item.title,
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
               // 선택 항목 영역
               CardBottomSection(
                 option1: item.firstOption,
@@ -35,7 +37,7 @@ class ConcernListItem extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(height: 25), // ConcernListItem들 사이의 간격 추가
+        const SizedBox(height: 10), // ConcernListItem들 사이의 간격 추가
       ],
     );
   }
