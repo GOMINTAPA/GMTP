@@ -118,8 +118,7 @@ class _CreatePostState extends State<CreatePost> {
                       )
                     else
                       Wrap(
-                        spacing: 5.0,
-                        runSpacing: 10.0,
+                        runSpacing: 15.0,
                         children: _selectedKeywords.map((keyword) {
                           return RemovableKeywordChip(
                             keyword: keyword,
