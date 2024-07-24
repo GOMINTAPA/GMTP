@@ -9,7 +9,6 @@ import '../../screens/post/post_detail.dart';
 
 class ConcernListItem extends StatelessWidget {
   final FeedModel item;
-
   const ConcernListItem(this.item, {super.key});
 
   @override
