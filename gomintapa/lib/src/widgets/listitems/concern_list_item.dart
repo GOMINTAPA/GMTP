@@ -23,6 +23,9 @@ class ConcernListItem extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              SizedBox(
+                height: 5,
+              ),
               // 제목 영역
               CardTopSection(
                 title: item.title,

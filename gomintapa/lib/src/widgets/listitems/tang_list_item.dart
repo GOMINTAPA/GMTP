@@ -38,6 +38,7 @@ class TangListItem extends StatelessWidget {
             children: [
               // 이미지 아이콘과 제목 영역을 포함하는 Row
               Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // 이미지 아이콘
                   Padding(
@@ -59,7 +60,6 @@ class TangListItem extends StatelessWidget {
               ),
               // 선택 항목 영역
               Stack(
-                //mainAxisAlignment: MainAxisAlignment.center, // 항목들 사이의 간격을 최소화
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(right: 90.0),

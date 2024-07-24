@@ -44,6 +44,9 @@ class _MakListItemState extends State<MakListItem> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              const SizedBox(
+                height: 5,
+              ),
               // 제목 영역
               const CardTopSection(
                 title: '고민 제목',
