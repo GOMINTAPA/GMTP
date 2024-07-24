@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gomintapa/src/controllers/feed_controller.dart';
 
-import '../../utils/post_submission_util.dart';
-import '../../utils/unsaved_changes_dialog_util.dart';
+import '../../utils/dialogs/post_submission_util.dart';
+import '../../utils/dialogs/unsaved_changes_dialog_util.dart';
 import '../../widgets/buttons/keyword_select_button.dart';
 import '../../widgets/navigation/form_action_app_bar.dart';
 import '../../widgets/sections/keyword/keyword_list_modal.dart';
