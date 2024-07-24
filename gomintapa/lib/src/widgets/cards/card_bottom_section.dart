@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gomintapa/src/widgets/cards/trapezoid_option.dart';
 
 class CardBottomSection extends StatelessWidget {
   final String option1;
@@ -12,44 +13,31 @@ class CardBottomSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+    return Stack(
+      clipBehavior: Clip.none, // Stack의 클리핑 설정
+      //mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        _buildOptionContainer(option1, Color.fromARGB(255, 255, 155, 155)),
-        const SizedBox(width: 10),
-        _buildOptionContainer(option2, Color.fromARGB(255, 93, 177, 255)),
-      ],
-    );
-  }
-
-  Widget _buildOptionContainer(String text, Color color) {
-    return Container(
-      width: 135,
-      height: 88,
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(5),
-      ),
-      alignment: Alignment.center,
-      child: Container(
-        width: 120,
-        height: 60,
-        padding: const EdgeInsets.all(5),
-        alignment: Alignment.center,
-        child: Text(
-          text,
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 16,
-            fontFamily: 'Roboto',
-            fontWeight: FontWeight.w700,
+        Padding(
+          padding: const EdgeInsets.only(right: 90.0), // 오른쪽에 10픽셀의 패딩 추가
+          child: TrapezoidOption(
+            text: option1,
+            color: Color.fromARGB(255, 255, 155, 155),
+            clipper: UpsideDownTrapezoidClipper(),
+            alignment: Alignment.centerLeft,
+            textAlign: TextAlign.center,
           ),
-          softWrap: true,
         ),
-      ),
+        Padding(
+          padding: const EdgeInsets.only(left: 90.0), // 왼쪽에 10픽셀의 패딩 추가
+          child: TrapezoidOption(
+            text: option2,
+            color: Color.fromARGB(255, 93, 177, 255),
+            clipper: BottomWideTrapezoidClipper(),
+            alignment: Alignment.centerRight,
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ],
     );
   }
 }

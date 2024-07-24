@@ -18,7 +18,7 @@ class CardSection extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        width: 300,
+        width: 285,
         height: 150,
         decoration: BoxDecoration(
           color: backgroundColor,
