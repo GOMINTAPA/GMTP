@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import '../providers/auth_provider.dart';
 import '../screens/shared/global.dart';
@@ -14,6 +15,7 @@ class AuthController extends GetxController {
   final RxString buttonText = "인증문자 받기".obs;
   // String? id;
   Timer? countdownTimer;
+  final box = GetStorage();
 
   Future<bool> register(String id, String password, String name) async {
     Map body = 
@@ -21,7 +23,8 @@ class AuthController extends GetxController {
     if (body['result'] == 'ok') {
       String token = body['access_token'];
       log("token : $token"); // 'dart:developer' 패키지 내의 log 함수
-      Global.accessToken = token;
+      // Global.accessToken = token;
+      await box.write('access_token', token);
       return true;
     }
     Get.snackbar('회원가입 에러', body['message'],
@@ -54,7 +57,8 @@ class AuthController extends GetxController {
     if (body['result'] == 'ok') {
       String token = body['access_token'];
       log("token : $token"); // 'dart:developer' 패키지 내의 log 함수
-      Global.accessToken = token;
+      // Global.accessToken = token;
+      await box.write('access_token', token);
       return true;
     }
     Get.snackbar('로그인 에러', body['message'],
