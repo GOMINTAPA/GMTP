@@ -13,6 +13,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
         IconButton(
           onPressed: () {
             // 검색 버튼 클릭 시 동작
+            Navigator.pushNamed(context, '/search');
           },
           icon: Icon(Icons.search_rounded, size: 30),
         ),
