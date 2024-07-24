@@ -4,10 +4,35 @@ import 'package:gomintapa/src/widgets/cards/card_section.dart';
 import 'package:gomintapa/src/widgets/cards/card_top_section.dart';
 import 'package:gomintapa/src/widgets/texts/custom_text.dart';
 
-class MakListItem extends StatelessWidget {
-  final VoidCallback onTap; // onTap 콜백 추가
+class MakListItem extends StatefulWidget {
+  final VoidCallback onTap;
+  final int initialVoteDifference; // 초기 투표 차이 값
 
-  const MakListItem({super.key, required this.onTap});
+  const MakListItem({
+    super.key,
+    required this.onTap,
+    required this.initialVoteDifference,
+  });
+
+  @override
+  _MakListItemState createState() => _MakListItemState();
+}
+
+class _MakListItemState extends State<MakListItem> {
+  late int voteDifference; // 투표 차이 값을 저장할 상태 변수
+
+  @override
+  void initState() {
+    super.initState();
+    voteDifference = widget.initialVoteDifference; // 초기 투표 차이 값 설정
+  }
+
+  // 투표 차이 값을 업데이트하는 메서드
+  void updateVoteDifference(int newDifference) {
+    setState(() {
+      voteDifference = newDifference;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,12 +40,12 @@ class MakListItem extends StatelessWidget {
       children: [
         const SizedBox(height: 25),
         CardSection(
-          onTap: onTap, // onTap 콜백 설정
+          onTap: widget.onTap,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               // 제목 영역
-              CardTopSection(
+              const CardTopSection(
                 title: '고민 제목',
               ),
               const SizedBox(height: 20),
@@ -28,7 +53,7 @@ class MakListItem extends StatelessWidget {
               Stack(
                 clipBehavior: Clip.none, // Stack의 클리핑 설정
                 children: [
-                  CardBottomSection(
+                  const CardBottomSection(
                     option1: '선택 1 내용',
                     option2: '선택 2 내용',
                   ),
@@ -45,7 +70,7 @@ class MakListItem extends StatelessWidget {
                         solidColorForMainText: Colors.red,
                         strokeColorForBorderText: Colors.white,
                         solidColorForBorderText: Colors.black,
-                        mainText: '0%',
+                        mainText: '${voteDifference}%', // 투표 차이 값을 전달
                         borderText: '차이',
                       ),
                     ),
