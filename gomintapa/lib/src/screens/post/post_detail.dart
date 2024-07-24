@@ -10,6 +10,9 @@ class PostDetail extends StatelessWidget {
   // 선택된 키워드를 저장할 변수
   // final List<String> keywords;
 
+  // 현재 게시물이 사용자 작성 게시물인지 여부
+  final bool isUserPost;
+
   // 임시로 설정한 키워드 리스트
   final List<String> keywords = ['여행', '음식', '기타', '바보'];
 
@@ -18,7 +21,7 @@ class PostDetail extends StatelessWidget {
   //   required this.keywords, // 키워드 매개변수 추가
   // }) : super(key: key);
 
-  PostDetail({super.key});
+  PostDetail({super.key, required this.isUserPost});
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +33,6 @@ class PostDetail extends StatelessWidget {
     final String choiceBText = "선택 항목 B 텍스트";
     final String? imageAPath = 'assets/images/jjanggu.jpg';
     final String? imageBPath = null; // 이미지 경로가 없는 경우
-
-    // 실제로는 로그인한 사용자와 게시물 작성자 정보를 비교하여 설정
-    final bool isUserPost = true;
 
     return Scaffold(
       appBar: BackAppBar(),
@@ -51,7 +51,7 @@ class PostDetail extends StatelessWidget {
                 child: Column(
                   children: [
                     // 프로필 섹션
-                    ProfileSection(isUserPost: isUserPost),
+                    ProfileSection(isUserPost: isUserPost), // 사용자 게시물 여부 전달
                     SizedBox(height: 10),
                     Divider(color: Color(0xffD9D9D9)),
 
