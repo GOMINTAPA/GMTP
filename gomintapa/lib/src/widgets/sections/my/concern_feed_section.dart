@@ -41,7 +41,17 @@ class _ConcernFeedSectionState extends State<ConcernFeedSection>
       backgroundColor: Colors.white,
       body: Column(
         children: [
-          ConcernTabBar(controller: tabController), // TabBar
+          Obx(() {
+            final writtenConcernsCount =
+                feedController.feedList.where((feed) => feed.isMe).length;
+            final votedConcernsCount = 0; // 참견한 고민 기능이 구현되지 않았으므로 0으로 설정
+
+            return ConcernTabBar(
+              controller: tabController,
+              writtenConcernsCount: writtenConcernsCount,
+              votedConcernsCount: votedConcernsCount,
+            );
+          }),
           // Expanded 없으면 오류 발생
           Expanded(
               child: ConcernTabBarView(
