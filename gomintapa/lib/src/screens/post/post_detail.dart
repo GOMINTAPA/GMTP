@@ -20,13 +20,8 @@ class PostDetail extends StatefulWidget {
 }
 
 class _PostDetailState extends State<PostDetail> {
-  // 선택된 키워드를 저장할 변수
-  // final List<String> keywords;
   final FeedController feedController = Get.put(FeedController());
   String? _selectedChoice;
-
-  // 임시로 설정한 키워드 리스트
-  final List<String> keywords = ['여행', '음식', '기타', '바보'];
 
   void _vote(String choice) {
     setState(() {
@@ -37,7 +32,6 @@ class _PostDetailState extends State<PostDetail> {
 
   @override
   Widget build(BuildContext context) {
-    // 예시 데이터
     final String title = widget.feedModel.title;
     final String content = widget.feedModel.content;
     final String choiceAText = widget.feedModel.firstOption;
@@ -46,8 +40,12 @@ class _PostDetailState extends State<PostDetail> {
         widget.feedModel.imageId != null ? widget.feedModel.imageUrl : null;
     final String? imageBPath =
         widget.feedModel.imageId != null ? widget.feedModel.imageUrl : null;
-
     final bool isMe = widget.feedModel.isMe;
+    // 키워드 리스트를 가져옴
+    final List<String> keywords = widget.feedModel.keyword
+        .split(', ')
+        .where((keyword) => keyword.isNotEmpty) // 빈 문자열 필터링
+        .toList();
 
     return Scaffold(
       appBar: BackAppBar(),
