@@ -53,7 +53,7 @@ class TangListItem extends StatelessWidget {
                   // 제목 영역
                   Expanded(
                     child: CardTopSection(
-                      title: '고민 제목',
+                      title: '5살 조카 생일선물로 뭘 사줄까요',
                     ),
                   ),
                 ],
@@ -65,7 +65,7 @@ class TangListItem extends StatelessWidget {
                     padding: const EdgeInsets.only(right: 90.0),
                     // 첫 번째 선택 항목
                     child: TrapezoidOption(
-                      text: '선택 1 내용',
+                      text: '티니핑 인형',
                       color: isOption1Winner
                           ? Color.fromARGB(255, 255, 155, 155) // 이긴 경우
                           : isOption2Winner
@@ -79,9 +79,8 @@ class TangListItem extends StatelessWidget {
                   // 두 번째 선택 항목
                   Padding(
                     padding: const EdgeInsets.only(left: 90.0),
-                    // 첫 번째 선택 항목
                     child: TrapezoidOption(
-                      text: '선택 2 내용선택 2 내용선택 2 내용선택 2 내용선택 2 내용',
+                      text: '시나몬롤 인형',
                       color: isOption2Winner
                           ? Color.fromARGB(255, 93, 177, 255) // 이긴 경우
                           : isOption1Winner

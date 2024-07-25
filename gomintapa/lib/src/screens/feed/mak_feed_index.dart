@@ -35,22 +35,6 @@ class _MakFeedIndexState extends State<MakFeedIndex> {
                       onTap: () => _navigateToMyPage(context),
                       initialVoteDifference: 1,
                     ), // 임시 설정
-                    MakListItem(
-                      onTap: () => _navigateToMyPage(context),
-                      initialVoteDifference: 2,
-                    ),
-                    MakListItem(
-                      onTap: () => _navigateToMyPage(context),
-                      initialVoteDifference: 3,
-                    ),
-                    MakListItem(
-                      onTap: () => _navigateToMyPage(context),
-                      initialVoteDifference: 1,
-                    ),
-                    MakListItem(
-                      onTap: () => _navigateToMyPage(context),
-                      initialVoteDifference: 1,
-                    ),
                   ],
                 ),
               ),
