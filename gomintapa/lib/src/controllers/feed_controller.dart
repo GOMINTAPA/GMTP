@@ -18,9 +18,7 @@ class FeedController extends GetxController {
       }
     } catch (e) {
       // Get.snackbar('투표 에러', e.toString(), snackPosition: SnackPosition.BOTTOM);
-
     }
-
   }
 
   Future<void> feedIndex({int page = 1}) async {

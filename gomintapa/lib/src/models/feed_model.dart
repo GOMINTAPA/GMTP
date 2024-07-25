@@ -11,9 +11,11 @@ class FeedModel {
   DateTime? createdAt;
   bool isMe = false;
   UserModel? writer;
+  late String keyword;
 
   get imageUrl => (imageId != null)
-    ? "${Global.baseUrl}/file/$imageId" : "https://example.com/image.jpg";
+      ? "${Global.baseUrl}/file/$imageId"
+      : "https://example.com/image.jpg";
 
   FeedModel({
     required this.id,
@@ -22,22 +24,25 @@ class FeedModel {
     required this.firstOption,
     required this.secondOption,
     this.imageId,
-    required this.createdAt, required this.isMe,
+    required this.createdAt,
+    required this.isMe,
     this.writer,
+    this.keyword = '', // 기본값 설정
   });
-  
+
   FeedModel.parse(Map m) {
-    id =m['id'];
-    title =m['title'];
-    content =m['content'];
+    id = m['id'];
+    title = m['title'];
+    content = m['content'];
     firstOption = m['first_option'];
     secondOption = m['second_option'];
-    imageId =m['image_id'];
+    imageId = m['image_id'];
     createdAt = DateTime.parse(m['created_at']);
     isMe = m['is_me'] ?? false;
     writer = (m['writer'] != null) ? UserModel.parse(m['writer']) : null;
+    keyword = m['keyword'] ?? ''; // null 체크 및 기본값 설정
   }
-  
+
   FeedModel copyWith({
     int? id,
     String? title,
@@ -45,7 +50,10 @@ class FeedModel {
     String? firstOption,
     String? secondOption,
     int? imageId,
-    DateTime? createdAt, bool? isMe, UserModel? writer,
+    DateTime? createdAt,
+    bool? isMe,
+    UserModel? writer,
+    String? keyword,
   }) {
     return FeedModel(
       id: id ?? this.id,
@@ -57,6 +65,7 @@ class FeedModel {
       createdAt: createdAt ?? this.createdAt,
       isMe: isMe ?? this.isMe,
       writer: writer ?? this.writer,
+      keyword: keyword ?? this.keyword,
     );
   }
 }

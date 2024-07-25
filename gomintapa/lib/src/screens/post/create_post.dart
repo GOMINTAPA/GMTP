@@ -124,6 +124,7 @@ class _CreatePostState extends State<CreatePost> {
   }
 
   void _submitPost() {
+    // 제출 버튼 클릭 시 데이터 출력 (디버깅용)
     print('Title: ${_titleController.text}');
     print('Content: ${_contentController.text}');
     print('A Input: ${_aInputController.text}');
@@ -137,6 +138,7 @@ class _CreatePostState extends State<CreatePost> {
       aInput: _aInputController.text,
       bInput: _bInputController.text,
       onSubmit: () async {
+        // 피드 데이터를 제출하고 성공 여부를 체크
         await feedController.feedCreate(
           _titleController.text,
           _contentController.text,
