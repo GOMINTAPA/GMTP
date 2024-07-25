@@ -8,12 +8,14 @@ class ChoicesSection extends StatelessWidget {
   final String choiceText;
   final String? imagePath; // nullable로 변경
   final Color backgroundColor;
+  final bool isSelected;
 
   const ChoicesSection({
     Key? key,
     required this.choiceText,
     this.imagePath, // nullable로 변경
     required this.backgroundColor,
+    required this.isSelected,
   }) : super(key: key);
 
   @override
@@ -25,15 +27,35 @@ class ChoicesSection extends StatelessWidget {
         children: [
           const SizedBox(height: 10),
           if (imagePath != null) ...[
-            PhotoDisplay(imagePath: imagePath!),
+            Stack(
+              children: [
+                PhotoDisplay(imagePath: imagePath!),
+                if (isSelected)
+                  Positioned(
+                    top: 10,
+                    right: 10,
+                    child: Icon(Icons.check, color: Colors.green, size: 30),
+                  ),
+              ],
+            ),
             TextDisplay(
               backgroundColor: backgroundColor,
               choiceText: choiceText,
             ),
           ] else ...[
-            LargeTextDisplay(
-              backgroundColor: backgroundColor,
-              choiceText: choiceText,
+            Stack(
+              children: [
+                LargeTextDisplay(
+                  backgroundColor: backgroundColor,
+                  choiceText: choiceText,
+                ),
+                if (isSelected)
+                  Positioned(
+                    top: 20,
+                    right: 10,
+                    child: Icon(Icons.check, color: Colors.green, size: 35),
+                  ),
+              ],
             ),
           ],
         ],

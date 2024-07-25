@@ -10,33 +10,44 @@ import '../../widgets/sections/display/content_section.dart';
 import '../../widgets/sections/display/profile_section.dart';
 import '../../widgets/sections/display/keyword_section.dart';
 
-class PostDetail extends StatelessWidget {
+class PostDetail extends StatefulWidget {
+  final FeedModel feedModel;
+
+  const PostDetail({Key? key, required this.feedModel}) : super(key: key);
+
+  @override
+  _PostDetailState createState() => _PostDetailState();
+}
+
+class _PostDetailState extends State<PostDetail> {
   // 선택된 키워드를 저장할 변수
   // final List<String> keywords;
-
-  final FeedModel feedModel; // FeedModel을 받기 위한 변수
-  final feedController = Get.put(FeedController());
+  final FeedController feedController = Get.put(FeedController());
+  String? _selectedChoice;
 
   // 임시로 설정한 키워드 리스트
   final List<String> keywords = ['여행', '음식', '기타', '바보'];
 
-  PostDetail({Key? key, required this.feedModel}) : super(key: key);
-
   void _vote(String choice) {
-    feedController.vote(feedModel.id, choice);
+    setState(() {
+      _selectedChoice = choice;
+    });
+    feedController.vote(widget.feedModel.id, choice);
   }
 
   @override
   Widget build(BuildContext context) {
     // 예시 데이터
-    final String title = feedModel.title;
-    final String content = feedModel.content;
-    final String choiceAText = feedModel.firstOption;
-    final String choiceBText = feedModel.secondOption;
-    final String? imageAPath = null;
-    final String? imageBPath = null; // 이미지 경로가 없는 경우
+    final String title = widget.feedModel.title;
+    final String content = widget.feedModel.content;
+    final String choiceAText = widget.feedModel.firstOption;
+    final String choiceBText = widget.feedModel.secondOption;
+    final String? imageAPath =
+        widget.feedModel.imageId != null ? widget.feedModel.imageUrl : null;
+    final String? imageBPath =
+        widget.feedModel.imageId != null ? widget.feedModel.imageUrl : null;
 
-    final bool isMe = feedModel.isMe;
+    final bool isMe = widget.feedModel.isMe;
 
     return Scaffold(
       appBar: BackAppBar(),
@@ -72,12 +83,14 @@ class PostDetail extends StatelessWidget {
                     GestureDetector(
                       onTap: () => _vote('A'),
                       child: ChoicesSection(
-                      choiceText: choiceAText,
-                      imagePath: imageAPath,
-                      backgroundColor: const Color(0xffFF9B9B),
+                        choiceText: choiceAText,
+                        imagePath: imageAPath,
+                        backgroundColor: _selectedChoice == 'A'
+                            ? Colors.grey.shade400
+                            : const Color(0xffFF9B9B),
+                        isSelected: _selectedChoice == 'A',
+                      ),
                     ),
-                    ),
-                    
 
                     // VS Text
                     const Center(
@@ -95,12 +108,14 @@ class PostDetail extends StatelessWidget {
                     GestureDetector(
                       onTap: () => _vote('B'),
                       child: ChoicesSection(
-                      choiceText: choiceBText,
-                      imagePath: imageBPath,
-                      backgroundColor: const Color(0xff5DB1FF),
+                        choiceText: choiceBText,
+                        imagePath: imageBPath,
+                        backgroundColor: _selectedChoice == 'B'
+                            ? Colors.grey.shade400
+                            : const Color(0xff5DB1FF),
+                        isSelected: _selectedChoice == 'B',
+                      ),
                     ),
-                    ),
-                    
 
                     const SizedBox(height: 10),
                     const Divider(color: Color(0xffD9D9D9)),
