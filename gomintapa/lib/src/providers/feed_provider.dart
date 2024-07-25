@@ -21,12 +21,14 @@ class FeedProvider extends Provider {
     return response.body;
   }
 
-  Future<Map> store(String title, String content, String firstOption,
-      String secondOption, String keyword) async {
+  Future<Map> store(String title, String content, int?firstImage, String firstOption,
+      int?secondImage, String secondOption, String keyword) async {
     final Map<String, dynamic> body = {
       'title': title,
       'content': content,
+      'first_image':firstImage,
       'first_option': firstOption,
+      'second_image': secondImage,
       'second_option': secondOption,
       'keyword': keyword,
     };

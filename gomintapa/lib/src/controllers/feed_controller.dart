@@ -30,10 +30,10 @@ class FeedController extends GetxController {
     (page == 1) ? feedList.assignAll(tmp) : feedList.addAll(tmp);
   }
 
-  Future<bool> feedCreate(String title, String content, String firstOption,
-      String secondOption, String keyword) async {
+  Future<bool> feedCreate(String title, String content, int? firstImage, String firstOption,
+      int? secondImage, String secondOption, String keyword) async {
     Map body = await feedProvider.store(
-        title, content, firstOption, secondOption, keyword);
+        title, content, firstImage, firstOption, secondImage, secondOption, keyword);
 
     if (body['result'] == 'ok') {
       await feedIndex();

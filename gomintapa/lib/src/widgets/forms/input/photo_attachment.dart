@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:gomintapa/src/controllers/file_controller.dart';
 import 'package:image_picker/image_picker.dart';
 
 class PhotoAttachment extends StatefulWidget {
@@ -17,6 +19,7 @@ class PhotoAttachment extends StatefulWidget {
 
 class _PhotoAttachmentState extends State<PhotoAttachment> {
   File? _selectedImage;
+  final fileController = Get.put(FileController());
 
   Future<void> _pickImage() async {
     final ImagePicker _picker = ImagePicker();
@@ -27,6 +30,7 @@ class _PhotoAttachmentState extends State<PhotoAttachment> {
       setState(() {
         _selectedImage = File(pickedFile.path);
       });
+      fileController.upload(pickedFile);
       print('Selected image: ${pickedFile.path}'); // 디버깅 로그 추가
     }
   }
