@@ -29,8 +29,9 @@ class _ProfileSectionState extends State<ProfileSection> {
         const Text(
           'username', // 실제 사용자 이름으로 대체
           style: TextStyle(
+            fontFamily: 'NanumSquare_ac',
             fontSize: 16,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w800,
           ),
         ),
         Spacer(), // 남은 공간을 차지하여 우측 정렬

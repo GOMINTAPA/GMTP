@@ -22,7 +22,7 @@ class LogoutButton extends StatelessWidget {
         style: TextStyle(
           color: Colors.white, // 텍스트 색상을 흰색으로 설정
           fontSize: 16,
-          fontFamily: 'Roboto',
+          fontFamily: 'NanumSquare_ac',
           fontWeight: FontWeight.w700,
         ),
       ),

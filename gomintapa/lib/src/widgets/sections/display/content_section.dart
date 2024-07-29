@@ -21,14 +21,16 @@ class ContentSection extends StatelessWidget {
           Text(
             title,
             style: const TextStyle(
+              fontFamily: 'NanumSquare_ac',
               fontSize: 20,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w800,
             ),
           ),
           const SizedBox(height: 10),
           Text(
             content,
             style: const TextStyle(
+              fontFamily: 'NanumSquare_ac',
               fontSize: 15,
             ),
           ),

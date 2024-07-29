@@ -32,7 +32,7 @@ class CustomTextWidget extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w800,
-                  fontFamily: 'Roboto',
+                  fontFamily: 'NanumSquare_ac',
                   foreground: Paint()
                     ..style = PaintingStyle.stroke
                     ..strokeWidth = 6
@@ -44,7 +44,7 @@ class CustomTextWidget extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w800,
-                  fontFamily: 'Roboto',
+                  fontFamily: 'NanumSquare_ac',
                   color: solidColorForMainText,
                 ),
               ),
@@ -58,7 +58,7 @@ class CustomTextWidget extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w800,
-                  fontFamily: 'Roboto',
+                  fontFamily: 'NanumSquare_ac',
                   foreground: Paint()
                     ..style = PaintingStyle.stroke
                     ..strokeWidth = 6
@@ -70,7 +70,7 @@ class CustomTextWidget extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w800,
-                  fontFamily: 'Roboto',
+                  fontFamily: 'NanumSquare_ac',
                   color: solidColorForBorderText,
                 ),
               ),

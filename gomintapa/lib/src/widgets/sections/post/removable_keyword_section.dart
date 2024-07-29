@@ -24,9 +24,10 @@ class RemovableKeywordSection extends StatelessWidget {
             const Text(
               '키워드를 선택해주세요',
               style: TextStyle(
+                fontFamily: 'NanumSquare_ac',
                 fontSize: 16,
                 color: Color(0xffA7A7A7),
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w800,
               ),
             )
           else

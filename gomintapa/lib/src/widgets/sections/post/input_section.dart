@@ -28,8 +28,9 @@ class InputSection extends StatelessWidget {
             decoration: InputDecoration(
               hintText: '제목',
               hintStyle: TextStyle(
+                fontFamily: 'NanumSquare_ac',
                 fontSize: 16,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w800,
                 color: Color(0xff9B9B9B),
               ),
               enabledBorder: OutlineInputBorder(
@@ -50,8 +51,9 @@ class InputSection extends StatelessWidget {
             decoration: InputDecoration(
               hintText: '내용을 입력하세요.',
               hintStyle: TextStyle(
+                fontFamily: 'NanumSquare_ac',
                 fontSize: 16,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w800,
                 color: Color(0xff9B9B9B),
               ),
               enabledBorder: OutlineInputBorder(
@@ -62,7 +64,7 @@ class InputSection extends StatelessWidget {
                     color: Color(0xff0E83EF), width: 1), // 포커스 시 경계선 설정
               ),
             ),
-            style: TextStyle(fontSize: 14),
+            style: TextStyle(fontFamily: 'NanumSquare_ac', fontSize: 14),
             maxLines: 10,
             // maxLength: 1000, // 내용 최대 길이
             keyboardType: TextInputType.multiline, // 멀티 라인 입력 설정

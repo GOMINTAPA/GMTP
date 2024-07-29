@@ -27,9 +27,10 @@ class KeywordChip extends StatelessWidget {
           Text(
             keyword,
             style: const TextStyle(
+              fontFamily: 'NanumSquare_ac',
               fontSize: 13,
               color: Colors.black,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w800,
             ),
           ),
         ],
