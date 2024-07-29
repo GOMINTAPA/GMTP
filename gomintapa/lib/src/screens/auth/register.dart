@@ -57,7 +57,7 @@ class _RegisterState extends State<Register> {
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 32,
-                  fontFamily: 'Roboto',
+                  fontFamily: 'NanumSquare_ac',
                   fontWeight: FontWeight.w400,
                   letterSpacing: 0.50,
                 ),
