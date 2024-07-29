@@ -73,7 +73,7 @@ class UserSection extends StatelessWidget {
                       fontWeight: FontWeight.w700,
                       fontSize: 16,
                       letterSpacing: 0.50,
-                      fontFamily: 'Roboto'),
+                      fontFamily: 'NanumSquare_ac'),
                   minimumSize: const Size(280, 40),
                   shape: RoundedRectangleBorder(
                     side: BorderSide(
@@ -84,7 +84,7 @@ class UserSection extends StatelessWidget {
                   foregroundColor: Color.fromARGB(255, 155, 155, 155),
                 ),
                 onPressed: () {
-                  Get.to(() => const MypageEdit());                
+                  Get.to(() => const MypageEdit());
                 },
                 child: const Text('정보 수정'))
           ],
