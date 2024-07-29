@@ -35,3 +35,15 @@ flutter:
         - assets/images/dog.jpg
         - assets/images/jjanggu.jpg
         - assets/images/none_post.png
+
+    fonts:
+      - family: NanumSquare_ac
+        fonts:
+          - asset: assets/fonts/NanumSquare_acB.ttf
+            weight: 700
+          - asset: assets/fonts/NanumSquare_acEB.ttf
+            weight: 800
+          - asset: assets/fonts/NanumSquare_acL.ttf
+            weight: 200
+          - asset: assets/fonts/NanumSquare_acR.ttf
+            weight: 400
