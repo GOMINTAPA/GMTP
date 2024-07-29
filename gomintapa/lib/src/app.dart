@@ -17,13 +17,13 @@ class MyWidget extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false, // 디버그 배너 삭제
       routes: {
-        '/': (context) => Home(),
+        '/': (context) => Login(),
         '/create_post': (context) => CreatePost(),
         '/mypage': (context) => MyPage(),
         '/intro': (context) => Login(),
         '/register': (context) => Register(),
       },
-      initialRoute: isLogin ? '/' : '/intro',
+      //initialRoute: isLogin ? '/' : '/intro',
     );
   }
 }
