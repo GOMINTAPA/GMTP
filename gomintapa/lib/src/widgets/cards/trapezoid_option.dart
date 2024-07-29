@@ -71,7 +71,7 @@ class TrapezoidOption extends StatelessWidget {
             style: TextStyle(
               color: Colors.white,
               fontSize: 16,
-              fontFamily: 'Roboto',
+              fontFamily: 'NanumSquare_ac',
               fontWeight: FontWeight.w700,
             ),
             softWrap: true, // 줄바꿈을 허용

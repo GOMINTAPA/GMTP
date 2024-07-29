@@ -22,7 +22,7 @@ class MyWidget extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false, // 디버그 배너 삭제
       routes: {
-        '/': (context) => Login(),
+        '/': (context) => Home(),
         '/create_post': (context) => CreatePost(),
         '/mypage': (context) => Mypage(),
         '/intro': (context) => Login(),

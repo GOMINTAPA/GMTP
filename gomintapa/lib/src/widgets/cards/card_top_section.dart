@@ -8,7 +8,7 @@ class CardTopSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 235,
-      height: 20,
+      height: 25,
       alignment: Alignment.center,
       child: Text(
         title,
@@ -18,7 +18,7 @@ class CardTopSection extends StatelessWidget {
         style: TextStyle(
           color: Colors.black,
           fontSize: 20,
-          fontFamily: 'Roboto',
+          fontFamily: 'NanumSquare_ac',
           fontWeight: FontWeight.w800,
         ),
         softWrap: false, // 줄바꿈을 하지 않음
