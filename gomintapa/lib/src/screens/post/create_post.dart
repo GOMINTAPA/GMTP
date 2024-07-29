@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:gomintapa/src/controllers/feed_controller.dart';
+import 'package:gomintapa/src/widgets/sections/post/removable_keyword_section.dart';
 
-import '../../utils/post_submission_util.dart';
-import '../../utils/unsaved_changes_dialog_util.dart';
+import '../../utils/dialogs/post_submission_util.dart';
+import '../../utils/dialogs/unsaved_changes_dialog_util.dart';
+import '../../utils/modals/keyword_modal_util.dart';
+
 import '../../widgets/buttons/keyword_select_button.dart';
 import '../../widgets/navigation/form_action_app_bar.dart';
 import '../../widgets/sections/my/bottom_section.dart';
-import '../../widgets/sections/post/choices_section.dart';
+import '../../widgets/sections/post/choices_input_section.dart';
 import '../../widgets/sections/post/input_section.dart';
 
 class CreatePost extends StatefulWidget {
@@ -16,21 +21,26 @@ class CreatePost extends StatefulWidget {
 }
 
 class _CreatePostState extends State<CreatePost> {
+  final feedController = Get.put(FeedController());
   // 제목과 내용을 저장할 컨트롤러
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _contentController = TextEditingController();
   final TextEditingController _aInputController = TextEditingController();
   final TextEditingController _bInputController = TextEditingController();
+  final TextEditingController _keywordController = TextEditingController();
 
-  @override
-  void dispose() {
-    // 컨트롤러 해제
-    _titleController.dispose();
-    _contentController.dispose();
-    _aInputController.dispose();
-    _bInputController.dispose();
-    super.dispose();
-  }
+  // 선택된 키워드를 저장할 Set
+  final Set<String> _selectedKeywords = {};
+
+  // 공통 Divider를 변수로 정의
+  final Widget commonDivider = const Padding(
+    padding: EdgeInsets.symmetric(horizontal: 40),
+    child: Divider(
+      thickness: 1,
+      color: Color(0xffA7A7A7),
+      height: 0, // Divider 위아래의 공간 제거
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -53,36 +63,53 @@ class _CreatePostState extends State<CreatePost> {
                 titleController: _titleController,
                 contentController: _contentController,
               ),
+
               // 공통 Divider
               commonDivider,
+
               // A 입력 및 사진첨부 섹션
-              ChoicesSection(
+              ChoicesInputSection(
                 inputController: _aInputController,
                 hintText: 'A 입력',
                 backgroundColor: const Color(0xffFF9B9B),
                 containerWidth: containerWidth, // containerWidth 전달
               ),
+
               // VS Text
               const Center(
                 child: Text(
                   'vs',
                   style: TextStyle(
                     fontSize: 30,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w600,
                     color: Color(0xff9B9B9B),
                   ),
                 ),
               ),
+
               // B 입력 및 사진 첨부 섹션
-              ChoicesSection(
+              ChoicesInputSection(
                 inputController: _bInputController,
                 hintText: 'B 입력',
                 backgroundColor: const Color(0xff5DB1FF),
                 containerWidth: containerWidth, // containerWidth 전달
               ),
+
               // 공통 Divider
               const SizedBox(height: 10),
               commonDivider,
+              const SizedBox(height: 30),
+
+              // 선택된 키워드를 표시하는 섹션
+              RemovableKeywordSection(
+                selectedKeywords: _selectedKeywords,
+                onKeywordRemoved: (keyword) {
+                  setState(() {
+                    _selectedKeywords.remove(keyword);
+                    _keywordController.text = _selectedKeywords.join(', ');
+                  });
+                },
+              ),
               const SizedBox(height: 30),
             ],
           ),
@@ -90,26 +117,56 @@ class _CreatePostState extends State<CreatePost> {
       ),
       bottomNavigationBar: BottomSection(
         buttonWidget: KeywordSelectButton(
-          onPressed: () {}, // 버튼 클릭 시 호출되는 메서드
+          onPressed: () => _showKeywordModal(), // 버튼 클릭 시 모달 표시
         ),
       ),
     );
   }
 
   void _submitPost() {
-    final String title = _titleController.text;
-    final String content = _contentController.text;
-    final String aInput = _aInputController.text;
-    final String bInput = _bInputController.text;
+    // 제출 버튼 클릭 시 데이터 출력 (디버깅용)
+    print('Title: ${_titleController.text}');
+    print('Content: ${_contentController.text}');
+    print('A Input: ${_aInputController.text}');
+    print('B Input: ${_bInputController.text}');
+    print('Keywords: ${_keywordController.text}');
 
-    // 제출 로직 처리
     handleSubmitPost(
       context: context,
-      title: title,
-      content: content,
-      aInput: aInput,
-      bInput: bInput,
+      title: _titleController.text,
+      content: _contentController.text,
+      aInput: _aInputController.text,
+      bInput: _bInputController.text,
+      onSubmit: () async {
+        // 피드 데이터를 제출하고 성공 여부를 체크
+        await feedController.feedCreate(
+          _titleController.text,
+          _contentController.text,
+          _aInputController.text,
+          _bInputController.text,
+          _keywordController.text,
+        );
+      },
     );
+  }
+
+  // 키워드 선택 모달을 표시하고, 사용자가 선택한 키워드를 처리 후 업데이트
+  void _showKeywordModal() async {
+    final selectedKeywords = await showKeywordModal(
+      context: context, // 현재 context를 전달하여 모달 표시
+      selectedKeywords: _selectedKeywords, // 현재 선택된 키워드 집합을 전달하여 초기 선택 상태 설정
+    );
+    // 사용자가 키워드를 선택했을 경우
+    if (selectedKeywords != null) {
+      setState(() {
+        // 현재 선택된 키워드 모두 제거
+        _selectedKeywords.clear();
+        // 새로 선택한 키워드를 _selectedKeywords에 추가
+        _selectedKeywords.addAll(selectedKeywords);
+        // 선택된 키워드를 쉼표로 구분하여 컨트롤러의 텍스트를 업데이트
+        _keywordController.text = _selectedKeywords.join(', ');
+      });
+    }
   }
 
   void _handleClose() {
@@ -133,14 +190,4 @@ class _CreatePostState extends State<CreatePost> {
       Navigator.pop(context);
     }
   }
-
-  // 공통 Divider를 변수로 정의
-  final Widget commonDivider = const Padding(
-    padding: EdgeInsets.symmetric(horizontal: 40),
-    child: Divider(
-      thickness: 1,
-      color: Color(0xffA7A7A7),
-      height: 0, // Divider 위아래의 공간 제거
-    ),
-  );
 }

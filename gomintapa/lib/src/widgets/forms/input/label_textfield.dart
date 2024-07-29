@@ -26,7 +26,7 @@ class LabelTextField extends StatelessWidget {
         TextField(
           controller: controller,
           obscureText: isObscure,
-          keyboardType: TextInputType.phone,
+          keyboardType: TextInputType.text,
           style: const TextStyle(fontSize: 12),
           decoration: InputDecoration(
             filled: true, // 배경색 적용을 위해 true로 설정

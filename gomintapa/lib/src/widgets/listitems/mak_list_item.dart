@@ -4,32 +4,61 @@ import 'package:gomintapa/src/widgets/cards/card_section.dart';
 import 'package:gomintapa/src/widgets/cards/card_top_section.dart';
 import 'package:gomintapa/src/widgets/texts/custom_text.dart';
 
-class MakListItem extends StatelessWidget {
-  final VoidCallback onTap; // onTap 콜백 추가
+class MakListItem extends StatefulWidget {
+  final VoidCallback onTap;
+  final int initialVoteDifference; // 초기 투표 차이 값
 
-  const MakListItem({super.key, required this.onTap});
+  const MakListItem({
+    super.key,
+    required this.onTap,
+    required this.initialVoteDifference,
+  });
+
+  @override
+  _MakListItemState createState() => _MakListItemState();
+}
+
+class _MakListItemState extends State<MakListItem> {
+  late int voteDifference; // 투표 차이 값을 저장할 상태 변수
+
+  @override
+  void initState() {
+    super.initState();
+    voteDifference = widget.initialVoteDifference; // 초기 투표 차이 값 설정
+  }
+
+  // 투표 차이 값을 업데이트하는 메서드
+  void updateVoteDifference(int newDifference) {
+    setState(() {
+      voteDifference = newDifference;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
+        const SizedBox(height: 25),
         CardSection(
-          onTap: onTap, // onTap 콜백 설정
+          onTap: widget.onTap,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // 제목 영역
-              CardTopSection(
-                title: '고민 제목',
+              const SizedBox(
+                height: 5,
               ),
-              const SizedBox(height: 20),
+              // 제목 영역
+              const CardTopSection(
+                title: '오늘의 커피 추천해줘',
+              ),
+              const SizedBox(height: 10),
               // 선택 항목 영역
               Stack(
                 clipBehavior: Clip.none, // Stack의 클리핑 설정
                 children: [
-                  CardBottomSection(
-                    option1: '선택 1 내용',
-                    option2: '선택 2 내용',
+                  const CardBottomSection(
+                    option1: '아이스 아메리카노',
+                    option2: '아이스 바닐라 라떼',
                   ),
                   // 중앙 텍스트 영역
                   Positioned(
@@ -44,7 +73,7 @@ class MakListItem extends StatelessWidget {
                         solidColorForMainText: Colors.red,
                         strokeColorForBorderText: Colors.white,
                         solidColorForBorderText: Colors.black,
-                        mainText: '0%',
+                        mainText: '${voteDifference}%', // 투표 차이 값을 전달
                         borderText: '차이',
                       ),
                     ),
@@ -54,7 +83,7 @@ class MakListItem extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(height: 25), // ConcernListItem들 사이의 간격 추가
+        const SizedBox(height: 10), // ConcernListItem들 사이의 간격 추가
       ],
     );
   }

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:gomintapa/src/controllers/auth_controller.dart';
 import 'package:gomintapa/src/screens/auth/register.dart';
 import 'package:gomintapa/src/widgets/themes/auth_theme.dart';
-import 'package:gomintapa/src/widgets/forms/label_textfield.dart';
+import 'package:gomintapa/src/widgets/forms/input/label_textfield.dart';
 
 import '../../home.dart';
 
@@ -24,8 +24,10 @@ class _LoginState extends State<Login> {
       _idController.text,
       _passwordController.text,
     );
-    if(result) {
-      Get.offAll(() => const Home());
+    if (result) {
+      Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
+
+      // Get.offAll(() => const Home());
     }
   }
 
@@ -43,7 +45,7 @@ class _LoginState extends State<Login> {
                 padding:
                     const EdgeInsets.only(left: 156), // 이미지 왼쪽에 156픽셀 패딩 추가
                 child: Image.asset(
-                  'assets/images/gmtp_logo_big.png',
+                  'assets/images/gomintapa_logo.png',
                   width: 130,
                   height: 130,
                 ),
@@ -87,15 +89,15 @@ class _LoginState extends State<Login> {
               ),
               const SizedBox(height: 24),
               LabelTextField(
-                label: '아이디',
-                hintText: '아이디를 입력해주세요.',
-                keyboardType: TextInputType.phone,
-                controller: _idController
-              ),
+                  label: '아이디',
+                  hintText: '아이디를 입력해주세요.',
+                  keyboardType: TextInputType.text,
+                  controller: _idController),
               LabelTextField(
                 label: '비밀번호',
                 hintText: '비밀번호를 입력해주세요.',
                 controller: _passwordController,
+                keyboardType: TextInputType.text,
                 isObscure: true,
               ),
               const SizedBox(height: 108),
