@@ -55,9 +55,10 @@ class _PhotoAttachmentState extends State<PhotoAttachment> {
                   Text(
                     '사진 첨부하기',
                     style: TextStyle(
+                      fontFamily: 'NanumSquare_ac',
                       fontSize: 16,
                       color: Color(0xff9B9B9B),
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w800,
                     ),
                   ),
                 ],

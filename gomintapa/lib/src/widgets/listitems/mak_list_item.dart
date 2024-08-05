@@ -49,7 +49,7 @@ class _MakListItemState extends State<MakListItem> {
               ),
               // 제목 영역
               const CardTopSection(
-                title: '고민 제목',
+                title: '오늘의 커피 추천해줘',
               ),
               const SizedBox(height: 10),
               // 선택 항목 영역
@@ -57,8 +57,8 @@ class _MakListItemState extends State<MakListItem> {
                 clipBehavior: Clip.none, // Stack의 클리핑 설정
                 children: [
                   const CardBottomSection(
-                    option1: '선택 1 내용',
-                    option2: '선택 2 내용',
+                    option1: '아이스 아메리카노',
+                    option2: '아이스 바닐라 라떼',
                   ),
                   // 중앙 텍스트 영역
                   Positioned(

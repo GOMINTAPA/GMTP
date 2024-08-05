@@ -23,7 +23,11 @@ class _CreatePostButtonState extends State<CreatePostButton> {
           extended = !extended;
         });
       },
-      label: const Text("고민 작성"),
+      label: const Text(
+        "고민 작성",
+        style: const TextStyle(
+            fontFamily: 'NanumSquare_ac', fontWeight: FontWeight.w700),
+      ),
       isExtended: extended,
       icon: const Icon(Icons.edit_outlined, color: Colors.red),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),

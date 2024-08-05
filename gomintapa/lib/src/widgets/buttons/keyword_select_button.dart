@@ -28,8 +28,9 @@ class KeywordSelectButton extends StatelessWidget {
           textAlign: TextAlign.center,
           style: TextStyle(
             color: Color(0xff9B9B9B),
+            fontFamily: 'NanumSquare_ac',
             fontSize: 16,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w800,
           ),
         ),
       ),

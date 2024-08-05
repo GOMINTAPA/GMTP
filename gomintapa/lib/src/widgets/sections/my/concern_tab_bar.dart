@@ -21,7 +21,7 @@ class ConcernTabBar extends StatelessWidget {
       labelColor: Colors.black,
       labelStyle: const TextStyle(
         fontSize: 15,
-        fontFamily: 'Roboto',
+        fontFamily: 'NanumSquare_ac',
         fontWeight: FontWeight.w700,
         letterSpacing: 0.50,
       ),
@@ -30,7 +30,7 @@ class ConcernTabBar extends StatelessWidget {
       unselectedLabelColor: Color.fromARGB(255, 155, 155, 155),
       unselectedLabelStyle: const TextStyle(
         fontSize: 15,
-        fontFamily: 'Roboto',
+        fontFamily: 'NanumSquare_ac',
         fontWeight: FontWeight.w700,
         letterSpacing: 0.50,
       ),
@@ -62,7 +62,7 @@ class ConcernTabBar extends StatelessWidget {
               label,
               style: const TextStyle(
                 fontSize: 15,
-                fontFamily: 'Roboto',
+                fontFamily: 'NanumSquare_ac',
                 fontWeight: FontWeight.w700,
                 letterSpacing: 0.50,
               ),
@@ -81,7 +81,7 @@ class ConcernTabBar extends StatelessWidget {
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 12,
-                  fontFamily: 'Roboto',
+                  fontFamily: 'NanumSquare_ac',
                 ),
               ),
             ),

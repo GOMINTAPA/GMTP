@@ -27,8 +27,9 @@ class LargeTextDisplay extends StatelessWidget {
           choiceText,
           style: const TextStyle(
             color: Colors.white,
+            fontFamily: 'NanumSquare_ac',
             fontSize: 16,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w800,
           ),
           textAlign: TextAlign.center,
         ),
