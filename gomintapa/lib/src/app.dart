@@ -30,7 +30,8 @@ class MyWidget extends StatelessWidget {
         // GetMaterialApp의 routes에서는 인자를 전달하지 않기 때문에 주석 처리
         // '/post_detail': (context) => PostDetail(),
       },
-      initialRoute: isLogin ? '/' : '/intro',
+      initialRoute: '/',
+      // initialRoute: isLogin ? '/' : '/intro',
     );
   }
 }

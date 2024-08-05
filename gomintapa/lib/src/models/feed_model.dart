@@ -11,7 +11,7 @@ class FeedModel {
   DateTime? createdAt;
   bool isMe = false;
   UserModel? writer;
-  late String keyword;
+  late List<String> keywords;
 
   get imageUrl => (imageId != null)
       ? "${Global.baseUrl}/file/$imageId"
@@ -27,7 +27,7 @@ class FeedModel {
     required this.createdAt,
     required this.isMe,
     this.writer,
-    this.keyword = '', // 기본값 설정
+    required this.keywords,
   });
 
   FeedModel.parse(Map m) {
@@ -40,7 +40,7 @@ class FeedModel {
     createdAt = DateTime.parse(m['created_at']);
     isMe = m['is_me'] ?? false;
     writer = (m['writer'] != null) ? UserModel.parse(m['writer']) : null;
-    keyword = m['keyword'] ?? ''; // null 체크 및 기본값 설정
+    keywords = List<String>.from(m['keywords'] ?? []);
   }
 
   FeedModel copyWith({
@@ -53,7 +53,7 @@ class FeedModel {
     DateTime? createdAt,
     bool? isMe,
     UserModel? writer,
-    String? keyword,
+    List<String>? keywords,
   }) {
     return FeedModel(
       id: id ?? this.id,
@@ -65,7 +65,7 @@ class FeedModel {
       createdAt: createdAt ?? this.createdAt,
       isMe: isMe ?? this.isMe,
       writer: writer ?? this.writer,
-      keyword: keyword ?? this.keyword,
+      keywords: keywords ?? this.keywords,
     );
   }
 }

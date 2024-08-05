@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:gomintapa/src/models/feed_model.dart';
+import 'package:gomintapa/src/screens/shared/dummy_data.dart';
 
 import '../providers/feed_provider.dart';
 
@@ -7,6 +8,29 @@ class FeedController extends GetxController {
   final feedProvider = Get.put(FeedProvider());
   final RxList<FeedModel> feedList = <FeedModel>[].obs;
   final Rx<FeedModel?> currentFeed = Rx<FeedModel?>(null);
+  final RxList<FeedModel> filteredFeedList = <FeedModel>[].obs;
+
+  // 초기 데이터 로드
+  @override
+  void onInit() {
+    super.onInit();
+    feedList.assignAll(generateDummyData());
+    filteredFeedList.assignAll(feedList);
+  }
+
+  void filterByKeywords(Set<String> keywords) {
+    if (keywords.isEmpty) {
+      filteredFeedList.assignAll(feedList);
+    } else {
+      filteredFeedList.assignAll(
+        feedList
+            .where((feed) =>
+                feed.keywords.isNotEmpty &&
+                feed.keywords.any((keyword) => keywords.contains(keyword)))
+            .toList(),
+      );
+    }
+  }
 
   Future<void> vote(int feedId, String choice) async {
     try {

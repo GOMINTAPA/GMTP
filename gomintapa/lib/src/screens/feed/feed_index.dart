@@ -13,13 +13,13 @@ class FeedIndex extends StatefulWidget {
 }
 
 class _FeedIndexState extends State<FeedIndex> {
-  final feedController = Get.put(FeedController());
+  final feedController = Get.find<FeedController>(); // Get.find로 변경
   int _currentPage = 1;
 
   bool _onNotification(ScrollNotification scrollInfo) {
     if (scrollInfo is ScrollEndNotification &&
         scrollInfo.metrics.extentAfter == 0) {
-      feedController.feedIndex(page: ++_currentPage);
+      // feedController.feedIndex(page: ++_currentPage); // 서버 연동 시 활성화
       return true;
     }
     return false;
@@ -27,7 +27,7 @@ class _FeedIndexState extends State<FeedIndex> {
 
   Future<void> _onRefresh() async {
     _currentPage = 1;
-    await feedController.feedIndex();
+    // await feedController.feedIndex(); // 서버 연동 시 활성화
   }
 
   @override
@@ -44,9 +44,9 @@ class _FeedIndexState extends State<FeedIndex> {
                     child: RefreshIndicator(
                       onRefresh: _onRefresh,
                       child: ListView.builder(
-                        itemCount: feedController.feedList.length,
+                        itemCount: feedController.filteredFeedList.length,
                         itemBuilder: (context, index) {
-                          final item = feedController.feedList[index];
+                          final item = feedController.filteredFeedList[index];
                           return ConcernListItem(item);
                         },
                       ),

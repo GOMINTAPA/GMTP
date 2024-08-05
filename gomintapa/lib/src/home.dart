@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:gomintapa/src/controllers/feed_controller.dart';
 import 'package:gomintapa/src/controllers/user_controller.dart';
 
 import 'utils/modals/keyword_modal_util.dart';
@@ -27,6 +28,7 @@ class _HomeState extends State<Home> {
   int _selectedIndex = 1;
   PageController _pageController = PageController(initialPage: 1);
   final userController = Get.put(UserController());
+  final feedController = Get.put(FeedController()); // FeedController 초기화
 
   // 선택된 키워드를 저장할 Set
   final Set<String> _selectedKeywords = {};
@@ -59,6 +61,7 @@ class _HomeState extends State<Home> {
   void _removeKeyword(String keyword) {
     setState(() {
       _selectedKeywords.remove(keyword); // 키워드를 선택된 키워드 집합에서 제거
+      feedController.filterByKeywords(_selectedKeywords); // 필터 적용
     });
   }
 
@@ -77,6 +80,7 @@ class _HomeState extends State<Home> {
         _selectedKeywords.clear();
         // 새로 선택한 키워드를 _selectedKeywords에 추가
         _selectedKeywords.addAll(selectedKeywords);
+        feedController.filterByKeywords(_selectedKeywords); // 필터 적용
       });
     }
   }

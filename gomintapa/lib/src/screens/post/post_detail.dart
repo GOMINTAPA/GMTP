@@ -42,10 +42,7 @@ class _PostDetailState extends State<PostDetail> {
         widget.feedModel.imageId != null ? widget.feedModel.imageUrl : null;
     final bool isMe = widget.feedModel.isMe;
     // 키워드 리스트를 가져옴
-    final List<String> keywords = widget.feedModel.keyword
-        .split(', ')
-        .where((keyword) => keyword.isNotEmpty) // 빈 문자열 필터링
-        .toList();
+    final List<String> keywords = widget.feedModel.keywords;
 
     return Scaffold(
       appBar: BackAppBar(),
