@@ -96,7 +96,8 @@ class _PostDetailState extends State<PostDetail> {
                         'vs',
                         style: TextStyle(
                           fontSize: 30,
-                          fontWeight: FontWeight.w600,
+                          fontFamily: 'NanumSquare_ac',
+                          fontWeight: FontWeight.w800,
                           color: Color(0xff9B9B9B),
                         ),
                       ),

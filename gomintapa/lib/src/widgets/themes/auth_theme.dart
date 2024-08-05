@@ -23,7 +23,7 @@ class AuthTheme {
     textTheme: const TextTheme(
       labelLarge: TextStyle(
         fontSize: 20,
-        fontFamily: 'Roboto',
+        fontFamily: 'NanumSquare_ac',
         fontWeight: FontWeight.w700,
       ),
     ),
@@ -34,7 +34,7 @@ class AuthTheme {
             fontWeight: FontWeight.w700,
             fontSize: 16,
             letterSpacing: 0.50,
-            fontFamily: 'Roboto'),
+            fontFamily: 'NanumSquare_ac'),
         minimumSize: const Size(280, 50),
         shape: RoundedRectangleBorder(
           side: BorderSide(width: 1, color: Color(0xFF3C3C3C)),

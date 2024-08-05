@@ -80,8 +80,10 @@ class _KeywordListModalState extends State<KeywordListModal> {
                     onPressed: widget.onClose, // 바텀 시트를 닫기 위한 콜백 함수
                     child: Text(
                       '닫기',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                          fontFamily: 'NanumSquare_ac',
+                          fontSize: 18,
+                          fontWeight: FontWeight.w800),
                     ),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
@@ -109,8 +111,9 @@ class _KeywordListModalState extends State<KeywordListModal> {
                     child: Text(
                       '적용',
                       style: TextStyle(
+                        fontFamily: 'NanumSquare_ac',
                         fontSize: 18,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w800,
                       ),
                     ),
                     style: ElevatedButton.styleFrom(
