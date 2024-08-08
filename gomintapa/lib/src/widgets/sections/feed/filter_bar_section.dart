@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:gomintapa/src/controllers/feed_controller.dart';
 
 import '../../buttons/filter_button.dart';
 import '../../buttons/keyword_chip/removable_keyword_chip.dart';
@@ -17,6 +19,8 @@ class FilterBarSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final feedController = Get.find<FeedController>();
+
     return Container(
       color: Color(0xffD9D9D9), // 배경색
       height: 40, // 높이
@@ -36,7 +40,10 @@ class FilterBarSection extends StatelessWidget {
                 children: selectedKeywords.map((keyword) {
                   return RemovableKeywordChip(
                     keyword: keyword,
-                    onRemoved: () => onKeywordRemoved(keyword),
+                    onRemoved: () {
+                      onKeywordRemoved(keyword);
+                      feedController.filterByKeywords(selectedKeywords);
+                    },
                   );
                 }).toList(), // 선택된 키워드를 리스트로 변환
               ),

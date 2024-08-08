@@ -5,8 +5,6 @@ import 'package:gomintapa/src/screens/auth/register.dart';
 import 'package:gomintapa/src/widgets/themes/auth_theme.dart';
 import 'package:gomintapa/src/widgets/forms/input/label_textfield.dart';
 
-import '../../home.dart';
-
 class Login extends StatefulWidget {
   const Login({super.key});
 
